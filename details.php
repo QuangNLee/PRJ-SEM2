@@ -56,7 +56,16 @@
 		<div class="rightsidebar span_3_of_1">
 			<h2>CATEGORIES</h2>
 			<ul>
-				<li><a href="productbycat.php">Mobile Phones</a></li>
+                <?php
+                    $getAll_category = $cat->getAll_category();
+                    if($getAll_category){
+                        while ($result_getAll = $getAll_category->fetch_assoc()){
+                ?>
+				<li><a href="productbycat.php?catId=<?php echo $result_getAll['catId'] ?>"><?php echo $result_getAll['catName'] ?></a></li>
+				<?php
+                        }
+                    }
+                ?>
 			</ul>
 		</div>
 	</div>

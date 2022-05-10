@@ -75,5 +75,23 @@
             $result = $this->db->select($query);
             return $result;
         }
+
+        public function getAll_category(){
+            $query = "SELECT * FROM tbl_category ORDER BY catId ASC";
+            $result = $this->db->select($query);
+            return $result;
+        }
+
+        public function get_product_by_cat($id){
+            $query = "SELECT * FROM tbl_product WHERE catId = '$id' ORDER BY productId DESC LIMIT 8";
+            $result = $this->db->select($query);
+            return $result;
+        }
+
+        public function get_name_by_cat($id){
+            $query = "SELECT * FROM tbl_category WHERE catId = '$id'";
+            $result = $this->db->select($query);
+            return $result;
+        }
     }
 ?>
