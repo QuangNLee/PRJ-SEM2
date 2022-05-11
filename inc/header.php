@@ -101,7 +101,22 @@
 				<li><a href="index.php">Home</a></li>
 				<li><a href="products.php">Products</a> </li>
 				<li><a href="topbrands.php">Top Brands</a></li>
-				<li><a href="cart.php">Cart</a></li>
+                <?php
+                    $check_cart = $cart->check_cart();
+                    if($check_cart == true){
+                        echo '<li><a href="cart.php">Cart</a></li>';
+                    } else {
+                        echo '';
+                    }
+                ?>
+                <?php
+                    $login_check = Session::get('customer_login');
+                    if($login_check == false){
+                        echo '';
+                    } else {
+                        echo '<li><a href="profile.php">Profile</a> </li>';
+                    }
+                ?>
 				<li><a href="contact.php">Contact</a> </li>
 				<div class="clear"></div>
 			</ul>
