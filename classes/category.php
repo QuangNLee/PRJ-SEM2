@@ -83,7 +83,7 @@
         }
 
         public function get_product_by_cat($id){
-            $query = "SELECT * FROM tbl_product WHERE catId = '$id' ORDER BY productId DESC LIMIT 8";
+            $query = "SELECT * FROM tbl_product WHERE catId = '$id' ORDER BY productId DESC";
             $result = $this->db->select($query);
             return $result;
         }

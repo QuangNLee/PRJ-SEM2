@@ -12,6 +12,7 @@
 	$cart = new cart();
 	$user = new user();
 	$cat = new category();
+    $customer = new customer();
 	$product  = new product();
 ?>
 <?php
@@ -76,7 +77,21 @@
 						</a>
 					</div>
 				</div>
-				<div class="login"><a href="login.php">Login</a></div>
+                <?php
+                    if(isset($_GET['customer_id'])){
+                        $delCart = $cart->del_all_data_cart();
+                        Session::destroy();
+                    }
+                ?>
+				<div class="login">
+                    <?php
+                        $login_check = Session::get('customer_login');
+                        if($login_check == false){
+                            echo '<a href="login.php">Login</a></div>';
+                        } else {
+                            echo '<a href="?customer_id='.Session::get('customer_id').'">Logout</a></div>';
+                        }
+                    ?>
 				<div class="clear"></div>
 			</div>
 			<div class="clear"></div>

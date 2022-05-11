@@ -2483,3 +2483,16 @@ p.terms {
 	color: red;
 	font-size: 18px;
 }
+input.grey{
+	font-size: 20px;
+	color: white;
+	border: 1px solid #303030;
+	background: #3f4040;
+	background: -moz-linear-gradient(top, #3f4040 0%, #303131 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#3f4040), color-stop(100%,#303131));
+	background: -webkit-linear-gradient(top, #3f4040 0%,#303131 100%);
+	background: -o-linear-gradient(top, #3f4040 0%,#303131 100%);
+	background: -ms-linear-gradient(top, #3f4040 0%,#303131 100%);
+	background: linear-gradient(top, #3f4040 0%,#303131 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3f4040', endColorstr='#303131',GradientType=0 );
+}

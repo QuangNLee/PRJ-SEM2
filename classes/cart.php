@@ -77,5 +77,12 @@
             $result = $this->db->select($query);
             return $result;
         }
+
+        public function del_all_data_cart(){
+            $sid = session_id();
+            $query = "DELETE FROM tbl_cart WHERE sid = '$sid'";
+            $result = $this->db->delete($query);
+            return $result;
+        }
     }
 ?>
