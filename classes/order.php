@@ -75,7 +75,7 @@
         }
 
         public function get_inbox_order(){
-            $query = "SELECT o.id, o.createdAt, o.customerId, p.productName, od.quantity, 
+            $query = "SELECT o.id, o.customerId, o.createdAt, o.customerId, p.productName, od.quantity, 
                         ROUND(od.quantity*od.unitPrice + od.quantity*od.unitPrice*od.VAT/100) AS 'total', od.status
                       FROM tbl_order o, tbl_orderDetail od, tbl_product p
                       WHERE o.id = od.orderId AND p.productId = od.productId
