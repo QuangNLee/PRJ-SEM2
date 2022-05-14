@@ -61,7 +61,7 @@
                             if($result['status'] == 0){
                         ?>
                         <a href="?shippedId=<?php echo $result['id'] ?>&productId=<?php echo $result['productId'] ?>
-                            &quantity=<?php echo $result['quantity'] ?>">Shipping</a>
+                            &quantity=<?php echo $result['quantity'] ?>">Pending</a>
                         <?php
                             } else if ($result['status'] == 1) {
                                 echo 'Waiting';

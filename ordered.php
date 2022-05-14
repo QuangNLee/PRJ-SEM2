@@ -52,9 +52,9 @@
                                     <td>
                                         <?php
                                             if($result['status'] == 0) {
-                                                echo 'Shipping';
+                                                echo 'Delivering';
                                             } else if ($result['status'] == 1){
-                                                echo 'Shipped';
+                                                echo 'Waiting submit';
                                             } else {
                                                 echo 'Success';
                                             }
