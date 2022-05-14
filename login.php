@@ -66,13 +66,13 @@
                                 <div>
                                     <select id="city" name="city" onchange="change_country(this.value)" class="frm-field required">
                                         <option value="null">Select a City</option>
-                                        <option value="HN">HaNoi</option>
-                                        <option value="HCM">TPHCM</option>
-                                        <option value="HP">HaiPhong</option>
-                                        <option value="DN">DaNang</option>
-                                        <option value="CT">CanTho</option>
-                                        <option value="LS">LangSon</option>
-                                        <option value="NT">NhaTrang</option>
+                                        <option value="HaNoi">Hà Nội</option>
+                                        <option value="TPHCM">Thành phố Hồ Chí Minh</option>
+                                        <option value="Hải Phòng">Hải Phòng</option>
+                                        <option value="Đà Nẵng">Đà Nẵng</option>
+                                        <option value="Cần Thơ">Cần Thơ</option>
+                                        <option value="Lạng Sơn">Lạng Sơn</option>
+                                        <option value="Nha Trang">Nha Trang</option>
                                     </select>
                                 </div>
                                 <div>
