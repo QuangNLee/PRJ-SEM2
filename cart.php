@@ -23,8 +23,8 @@
 <div class="main">
     <div class="content">
     	<div class="cartoption">		
-			<div class="cartpage">
-                    <h2>Your Cart</h2>
+			<div>
+                    <h2 style="border-bottom: 1px solid #ddd; font-size: 30px; margin-bottom: 20px;">Your Cart</h2>
                         <?php
                             if (isset($update_quantity_cart)){
                                 echo $update_quantity_cart;
@@ -77,18 +77,18 @@
 								}
 							?>
 						</table>
-                            <?php
+                        <?php
                             $check_cart = $cart->check_cart();
                             if($check_cart){
-                            ?>
+                        ?>
 						<table style="float:right;text-align:left;" width="40%">
 							<tr>
 								<th>Sub Total : </th>
 								<td><?php
-									echo $subtotal;
-									Session::set('sum',$subtotal);
-									Session::set('qty',$qty);
-								?>
+                                        echo $subtotal;
+                                        Session::set('sum',$subtotal);
+                                        Session::set('qty',$qty);
+								    ?>
 								$</td>
 							</tr>
 							<tr>

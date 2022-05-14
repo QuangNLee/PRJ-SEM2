@@ -23,11 +23,12 @@
             $productName = $result['productName'];
             $image = $result['image'];
             $price = $result['price'];
-//            $check_cart = "SELECT * FROM tbl_cart WHERE productId = '$id' AND sid = '$sid'";
-//            if($check_cart){
-//                $msg = "<span class='error'>Product already exists in cart!!!</span>";
-//                return $msg;
-//            } else {
+            $query_check_cart = "SELECT * FROM tbl_cart WHERE productId = '$id' AND sid = '$sid'";
+            $check_cart = $this->db->select($query_check_cart);
+            if($check_cart){
+                $msg = "<span class='error'>Product already exists in cart!!!</span>";
+                return $msg;
+            } else {
                 $query_insert = "INSERT INTO tbl_cart (productId, sid, productName, price, quantity, image) 
                     VALUES ('$id', '$sid', '$productName', '$price', '$quantity', '$image')";
                 $result_insert = $this->db->insert($query_insert);
@@ -36,7 +37,7 @@
                 } else {
                     header('Location:404.php');
                 }
-//            }
+            }
         }
 
         public function get_product_cart(){
@@ -84,6 +85,62 @@
             $result = $this->db->delete($query);
             return $result;
         }
-        
+
+        public function insertCompare($productid,$customer_id){
+            $productid  = mysqli_real_escape_string($this->db->link, $productid);
+            $customer_id  = mysqli_real_escape_string($this->db->link, $customer_id);
+            $query_check_compare = "SELECT * FROM tbl_compare WHERE productId = '$productid' AND customerId = '$customer_id'";
+            $check_compare = $this->db->select($query_check_compare);
+            if($check_compare){
+                $msg = '<br><span class="error">Product already exists to compare</span>';
+                return $msg;
+            } else {
+                $query_product = "SELECT * FROM tbl_product WHERE productId = '$productid'";
+                $result_product = $this->db->select($query_product)->fetch_assoc();
+                $productName = $result_product['productName'];
+                $image = $result_product['image'];
+                $price = $result_product['price'];
+                $query = "INSERT INTO tbl_compare (customerId, productId, productName, image, price) 
+                VALUES ('$customer_id', '$productid', '$productName', '$image', '$price')";
+                $result = $this->db->insert($query);
+                if($result){
+                    $alert = "<br><span class='success'>Add compare list successful!</span>";
+                    return $alert;
+                } else {
+                    $alert = "<span class='error'>Failed!!!</span>";
+                    return $alert;
+                }
+            }
+        }
+
+        public function get_all_compare($customer_id){
+            $query = "SELECT * FROM tbl_compare WHERE customerId = '$customer_id'";
+            $result = $this->db->select($query);
+            return $result;
+        }
+
+        public function del_product_compare($compareId){
+            $compareId = mysqli_real_escape_string($this->db->link,$compareId);
+            $query = "DELETE FROM tbl_compare WHERE id = '$compareId'";
+            $result = $this->db->delete($query);
+            if($result){
+                header('Location:compare.php');
+            } else{
+                $msg = "<span class='error'>Failed!!!</span>";
+                return $msg;
+            }
+        }
+
+        public function check_compare($customerId){
+            $query = "SELECT * FROM tbl_compare WHERE customerId = '$customerId'";
+            $result = $this->db->select($query);
+            return $result;
+        }
+
+        public function del_all_data_compare($customer_id){
+            $query = "DELETE FROM tbl_compare WHERE customerId = '$customer_id'";
+            $result = $this->db->delete($query);
+            return $result;
+        }
     }
 ?>

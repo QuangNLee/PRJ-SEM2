@@ -80,7 +80,9 @@
 				</div>
                 <?php
                     if(isset($_GET['customer_id'])){
+                        $customer_id = $_GET['customer_id'];
                         $delCart = $cart->del_all_data_cart();
+                        $delCompare = $cart->del_all_data_compare($customer_id);
                         Session::destroy();
                     }
                 ?>
@@ -125,6 +127,14 @@
                         echo '';
                     } else {
                         echo '<li><a href="profile.php">Profile</a> </li>';
+                    }
+                ?>
+                <?php
+                    $login_check = Session::get('customer_login');
+                    if($login_check == false){
+                        echo '';
+                    } else {
+                        echo '<li><a href="compare.php">Compare</a> </li>';
                     }
                 ?>
 				<li><a href="contact.php">Contact</a> </li>

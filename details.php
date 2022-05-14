@@ -7,9 +7,14 @@
     } else {
         $id = $_GET['productId'];
     }
+	$customer_id = Session::get('customer_id');
 	if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])){
 		$quantity = $_POST['quantity'];
         $addToCart = $cart->add_to_cart($quantity,$id);
+    }
+    if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['compare'])){
+        $productid = $_POST['productid'];
+        $insert_compare = $cart->insertCompare($productid,$customer_id);
     }
 ?>
 <div class="main">
@@ -39,10 +44,29 @@
 					</form>
 					<?php
 						if(isset($addToCart)){
-							echo $addToCart;
+							echo '<span style="color: red; font-size: 18px;">Product already exists in cart</span>';
 						}
 					?>
 				</div>
+                <div class="add-cart">
+                    <form action="" method="POST">
+                        <input type="hidden" name="productid" value="<?php echo $result_details['productId'] ?>"/>
+                        <?php
+                            $login_check = Session::get('customer_login');
+                            if($login_check){
+                                echo '<input type="submit" class="buysubmit" name="compare" value="Compare Product"/> ';
+                                echo '<input type="submit" class="buysubmit" name="flist" value="Save to favorite list"/>';
+                            } else {
+                                echo '';
+                            }
+                        ?>
+                        <?php
+                            if(isset($insert_compare)){
+                                echo $insert_compare;
+                            }
+                        ?>
+                    </form>
+                </div>
 			</div>
 			<div class="product-desc">
 				<h2>Product Details</h2>
