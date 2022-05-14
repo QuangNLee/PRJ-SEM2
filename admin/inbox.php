@@ -16,7 +16,8 @@
                 <tr>
                     <th>No.</th>
                     <th>Order time</th>
-                    <th>Address</th>
+                    <th>Customer ID</th>
+                    <th>Customer</th>
                     <th>Product</th>
                     <th>Quantity</th>
                     <th>Price</th>
@@ -36,7 +37,8 @@
                 <tr class="odd gradeX">
                     <td><?php echo $i ?></td>
                     <td><?php echo $fm->formatDate($result['createdAt']) ?></td>
-                    <td><a href="customer.php?customerId=<?php echo $result['customerId'] ?>">View address</a></td>
+                    <td><?php echo $result['customerId'] ?></td>
+                    <td><a href="customer.php?customerId=<?php echo $result['customerId'] ?>">View customer</a></td>
                     <td><?php echo $result['productName'] ?></td>
                     <td><?php echo $result['quantity'] ?></td>
                     <td><?php echo $result['total'] ?></td>
