@@ -1,4 +1,4 @@
-﻿<?php
+<?php
     include 'inc/header.php';
     include 'inc/sidebar.php';
 ?>
@@ -9,24 +9,15 @@
 ?>
 <?php
     $order = new order();
-    if(isset($_GET['shippedId'])){
-        $id = $_GET['shippedId'];
-        $productId = $_GET['productId'];
-        $quantity = $_GET['quantity'];
-        $shipped = $order->shipped($id,$productId,$quantity);
-    }
+    $fm = new Format();
+    $get_successful_order = $order->get_successful_order();
 ?>
 <div class="grid_10">
     <div class="box round first grid">
         <h2>Inbox</h2>
         <div class="block">
-            <?php
-                if(isset($shipped)){
-                    echo $shipped;
-                }
-            ?>
             <table class="data display datatable" id="example">
-            <thead>
+                <thead>
                 <tr>
                     <th>No.</th>
                     <th>Order time</th>
@@ -37,15 +28,12 @@
                     <th>Price</th>
                     <th>Action</th>
                 </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
                 <?php
-                    $order = new order();
-                    $fm = new Format();
-                    $get_inbox_order = $order->get_inbox_order();
-                    if($get_inbox_order){
+                    if($get_successful_order){
                         $i = 0;
-                        while ($result = $get_inbox_order->fetch_assoc()){
+                        while ($result = $get_successful_order->fetch_assoc()){
                             $i++;
                 ?>
                 <tr class="odd gradeX">
@@ -56,30 +44,15 @@
                     <td><?php echo $result['productName'] ?></td>
                     <td><?php echo $result['quantity'] ?></td>
                     <td><?php echo $result['total'] ?></td>
-                    <td>
-                        <?php
-                            if($result['status'] == 0){
-                        ?>
-                        <a href="?shippedId=<?php echo $result['id'] ?>&productId=<?php echo $result['productId'] ?>
-                            &quantity=<?php echo $result['quantity'] ?>">Shipping</a>
-                        <?php
-                            } else if ($result['status'] == 1) {
-                                echo 'Waiting';
-                            } else {
-                        ?>
-                        <a style="color: green">Success</a>
-                        <?php
-                            }
-                        ?>
-                    </td>
+                    <td><a style="color: green">Success</a></td>
                 </tr>
                 <?php
-                        }
                     }
+                }
                 ?>
-            </tbody>
-        </table>
-       </div>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 <script type="text/javascript">
