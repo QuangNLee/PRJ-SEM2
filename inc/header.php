@@ -134,6 +134,14 @@
                     if($login_check == false){
                         echo '';
                     } else {
+                        echo '<li><a href="favorite.php">Favorite</a> </li>';
+                    }
+                ?>
+                <?php
+                    $login_check = Session::get('customer_login');
+                    if($login_check == false){
+                        echo '';
+                    } else {
                         echo '<li><a href="compare.php">Compare</a> </li>';
                     }
                 ?>

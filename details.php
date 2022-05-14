@@ -16,6 +16,10 @@
         $productid = $_POST['productid'];
         $insert_compare = $cart->insertCompare($productid,$customer_id);
     }
+    if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['flist'])){
+        $productid = $_POST['productid'];
+        $insert_flist = $cart->insertflist($productid,$customer_id);
+    }
 ?>
 <div class="main">
     <div class="content">
@@ -63,6 +67,9 @@
                         <?php
                             if(isset($insert_compare)){
                                 echo $insert_compare;
+                            }
+                            if(isset($insert_flist)){
+                                echo $insert_flist;
                             }
                         ?>
                     </form>

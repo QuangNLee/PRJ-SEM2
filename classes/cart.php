@@ -131,16 +131,55 @@
             }
         }
 
-        public function check_compare($customerId){
-            $query = "SELECT * FROM tbl_compare WHERE customerId = '$customerId'";
-            $result = $this->db->select($query);
-            return $result;
-        }
-
         public function del_all_data_compare($customer_id){
             $query = "DELETE FROM tbl_compare WHERE customerId = '$customer_id'";
             $result = $this->db->delete($query);
             return $result;
+        }
+
+        public function insertflist($productid,$customer_id){
+            $productid  = mysqli_real_escape_string($this->db->link, $productid);
+            $customer_id  = mysqli_real_escape_string($this->db->link, $customer_id);
+            $query_check_flist = "SELECT * FROM tbl_favoriteList WHERE productId = '$productid' AND customerId = '$customer_id'";
+            $check_flist = $this->db->select($query_check_flist);
+            if($check_flist){
+                $msg = '<br><span class="error">Product already exists in favorite list</span>';
+                return $msg;
+            } else {
+                $query_product = "SELECT * FROM tbl_product WHERE productId = '$productid'";
+                $result_product = $this->db->select($query_product)->fetch_assoc();
+                $productName = $result_product['productName'];
+                $image = $result_product['image'];
+                $price = $result_product['price'];
+                $query = "INSERT INTO tbl_favoriteList (customerId, productId, productName, image, price) 
+                VALUES ('$customer_id', '$productid', '$productName', '$image', '$price')";
+                $result = $this->db->insert($query);
+                if($result){
+                    $alert = "<br><span class='success'>Add favorite list successful!</span>";
+                    return $alert;
+                } else {
+                    $alert = "<span class='error'>Failed!!!</span>";
+                    return $alert;
+                }
+            }
+        }
+
+        public function get_all_flist($customer_id){
+            $query = "SELECT * FROM tbl_favoriteList WHERE customerId = '$customer_id'";
+            $result = $this->db->select($query);
+            return $result;
+        }
+
+        public function del_product_flist($favorId){
+            $favorId = mysqli_real_escape_string($this->db->link,$favorId);
+            $query = "DELETE FROM tbl_favoriteList WHERE id = '$favorId'";
+            $result = $this->db->delete($query);
+            if($result){
+                header('Location:favorite.php');
+            } else{
+                $msg = "<span class='error'>Failed!!!</span>";
+                return $msg;
+            }
         }
     }
 ?>
