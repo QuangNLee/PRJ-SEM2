@@ -49,11 +49,11 @@
                                     <tr>
                                         <td><?php echo $result['productName'] ?></td>
                                         <td><img src="admin/uploads/<?php echo $result['image'] ?>" alt=""/></td>
-                                        <td><?php echo $result['price'] ?> $</td>
+                                        <td><?php echo $fm->format_currency($result['price']) ?> $</td>
                                         <td><?php echo $result['quantity'] ?></td>
                                         <td><?php
                                             $total = $result['price'] * $result['quantity'];
-                                            echo $total;
+                                            echo $fm->format_currency($total);
                                             ?>
                                             $</td>
 
@@ -73,7 +73,7 @@
                                 <tr>
                                     <th>Sub Total : </th>
                                     <td><?php
-                                        echo $subtotal;
+                                        echo $fm->format_currency($subtotal);
                                         Session::set('sum',$subtotal);
                                         Session::set('qty',$qty);
                                         ?>

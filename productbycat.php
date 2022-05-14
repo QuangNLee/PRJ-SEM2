@@ -39,7 +39,7 @@
                 <a href="details.php?productId=<?php echo $result_product_by_cat['productId'] ?>"><img src="admin/uploads/<?php echo $result_product_by_cat['image'] ?>" width="200px" alt="" /></a>
                 <h2><?php echo $result_product_by_cat['productName'] ?></h2>
                 <p><?php echo $fm->textShorten($result_product_by_cat['product_description'], 100) ?></p>
-                <p><span class="price"><?php echo $result_product_by_cat['price'] ?>$</span></p>
+                <p><span class="price"><?php echo $fm->format_currency($result_product_by_cat['price']) ?>$</span></p>
                 <div class="button"><span><a href="details.php?productId=<?php echo $result_product_by_cat['productId'] ?>" class="details">Details</a></span></div>
             </div>
             <?php
