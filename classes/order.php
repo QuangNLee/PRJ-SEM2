@@ -65,7 +65,7 @@
         }
 
         public function get_all_order_detail($customer_id){
-            $query = "SELECT p.productId, p.productName, p.image, od.unitPrice, 
+            $query = "SELECT p.productId, p.productName, p.image, od.unitPrice, o.id, 
                         od.quantity, od.VAT, ROUND(od.unitPrice*od.quantity + od.unitPrice*od.quantity*od.VAT/100) as 'total', 
                         o.createdAt AS 'orderDate', od.status FROM tbl_product p, tbl_orderDetail od, tbl_order o
                         WHERE o.customerId = '$customer_id' AND p.productId = od.productId AND o.id = od.orderId
@@ -75,12 +75,46 @@
         }
 
         public function get_inbox_order(){
-            $query = "SELECT o.id, o.customerId, o.createdAt, o.customerId, p.productName, od.quantity, 
+            $query = "SELECT o.id, o.customerId, o.createdAt, o.customerId, p.productName, od.quantity, od.productId, 
                         ROUND(od.quantity*od.unitPrice + od.quantity*od.unitPrice*od.VAT/100) AS 'total', od.status
                       FROM tbl_order o, tbl_orderDetail od, tbl_product p
-                      WHERE o.id = od.orderId AND p.productId = od.productId
+                      WHERE o.id = od.orderId AND p.productId = od.productId AND status IN (SELECT DISTINCT status FROM tbl_orderDetail where status = '0' OR status = '1')
                       ORDER BY o.createdAt DESC";
             $result = $this->db->select($query);
+            return $result;
+        }
+
+        public function get_successful_order(){
+            $query = "SELECT o.id, o.customerId, o.createdAt, o.customerId, p.productName, od.quantity, od.productId, 
+                        ROUND(od.quantity*od.unitPrice + od.quantity*od.unitPrice*od.VAT/100) AS 'total', od.status
+                      FROM tbl_order o, tbl_orderDetail od, tbl_product p
+                      WHERE o.id = od.orderId AND p.productId = od.productId AND status = '2'
+                      ORDER BY o.createdAt DESC";
+            $result = $this->db->select($query);
+            return $result;
+        }
+
+        public function shipped($id,$productId,$quantity){
+            $id = mysqli_real_escape_string($this->db->link, $id);
+            $productId = mysqli_real_escape_string($this->db->link, $productId);
+            $quantity = mysqli_real_escape_string($this->db->link, $quantity);
+            $query = "UPDATE tbl_orderDetail SET status = '1' WHERE orderId = '$id' AND productId = '$productId' AND quantity = '$quantity'";
+            $result = $this->db->update($query);
+            if($result){
+                $msg = "<span class='success'>Success!!!</span>";
+                return $msg;
+            } else {
+                $msg = "<span class='error'>Failed!!!</span>";
+                return $msg;
+            }
+        }
+
+        public function confirm_order($id,$productId,$quantity){
+            $id = mysqli_real_escape_string($this->db->link, $id);
+            $productId = mysqli_real_escape_string($this->db->link, $productId);
+            $quantity = mysqli_real_escape_string($this->db->link, $quantity);
+            $query = "UPDATE tbl_orderDetail SET status = '2' WHERE orderId = '$id' AND productId = '$productId' AND quantity = '$quantity'";
+            $result = $this->db->update($query);
             return $result;
         }
     }

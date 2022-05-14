@@ -8,6 +8,13 @@
     if($login_check == false){
         header('Location:login.php');
     }
+    if (isset($_GET['confirmId'])){
+        $id = $_GET['confirmId'];
+        $productId = $_GET['productId'];
+        $quantity = $_GET['quantity'];
+        $confirm_order = $order->confirm_order($id,$productId,$quantity);
+        header('Location:ordered.php');
+    }
 ?>
 <div class="main">
     <div class="content">
@@ -42,24 +49,34 @@
                                     <td><?php echo $result['VAT'] ?> %</td>
                                     <td><?php echo $result['total'] ?>$</td>
                                     <td><?php echo $fm->formatDate($result['orderDate']) ?></td>
-                                    <td><?php
-                                        if($result['status'] == 0) {
-                                            echo 'Pending';
-                                        } else {
-                                            echo 'Success';
-                                        }
+                                    <td>
+                                        <?php
+                                            if($result['status'] == 0) {
+                                                echo 'Shipping';
+                                            } else if ($result['status'] == 1){
+                                                echo 'Shipped';
+                                            } else {
+                                                echo 'Success';
+                                            }
                                         ?>
                                     </td>
                                     <?php
-                                    if($result['status'] == 0){
-                                        ?>
+                                        if($result['status'] == 0){
+                                    ?>
                                         <td><?php echo 'N/A' ?></td>
-                                        <?php
-                                    } else {
-                                        ?>
-                                        <td><a onclick="return confirm('Do you want to delete?');" href="?cartid=<?php $result['cartId']?>">Delete</a></td>
-                                        <?php
-                                    }
+                                    <?php
+                                        } else if ($result['status'] == 1){
+                                    ?>
+                                        <td>
+                                            <a href="?confirmId=<?php echo $result['id'] ?>&productId=<?php echo $result['productId'] ?>
+                                                &quantity=<?php echo $result['quantity'] ?>">Accept</a>
+                                        </td>
+                                    <?php
+                                        } else {
+                                    ?>
+                                            <td>x</a></td>
+                                    <?php
+                                        }
                                     ?>
                                 </tr>
                                 <?php
