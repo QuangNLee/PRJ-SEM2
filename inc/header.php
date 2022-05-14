@@ -14,6 +14,7 @@
 	$cat = new category();
     $customer = new customer();
 	$product  = new product();
+	$order = new order();
 ?>
 <?php
   header("Cache-Control: no-cache, must-revalidate");
@@ -105,6 +106,15 @@
                     $check_cart = $cart->check_cart();
                     if($check_cart == true){
                         echo '<li><a href="cart.php">Cart</a></li>';
+                    } else {
+                        echo '';
+                    }
+                ?>
+                <?php
+                    $customer_id = Session::get('customer_id');
+                    $check_order = $order->check_order($customer_id);
+                    if($check_order == true){
+                        echo '<li><a href="ordered.php">Ordered</a></li>';
                     } else {
                         echo '';
                     }
