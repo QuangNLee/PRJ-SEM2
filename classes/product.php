@@ -21,7 +21,7 @@
             $price = mysqli_real_escape_string($this->db->link, $data['price']);
             $type = mysqli_real_escape_string($this->db->link, $data['type']);
             //Check image and put image into folder upload
-            $permited = array('jpg','jpeg','png','gif');
+            $permitted = array('jpg','jpeg','png','gif');
             $file_name = $_FILES['image']['name'];
             $file_size = $_FILES['image']['size'];
             $file_temp = $_FILES['image']['tmp_name'];
@@ -64,7 +64,7 @@
             $price = mysqli_real_escape_string($this->db->link, $data['price']);
             $type = mysqli_real_escape_string($this->db->link, $data['type']);
             //Check image and put image into folder upload
-            $permited = array('jpg','jpeg','png','gif');
+            $permitted = array('jpg','jpeg','png','gif');
             $file_name = $_FILES['image']['name'];
             $file_size = $_FILES['image']['size'];
             $file_temp = $_FILES['image']['tmp_name'];
@@ -80,8 +80,8 @@
                     if($file_size > 20480){
                         $alert = "<span class='error'>Image size should be less than 2MB!</span>";
                         return $alert;
-                    } else if (in_array($file_ext, $permited) === false){
-                        $alert = "<span class='error'> You can upload only :-".implode(', ', $permited)."</span>";
+                    } else if (in_array($file_ext, $permitted) === false){
+                        $alert = "<span class='error'> You can upload only :-".implode(', ', $permitted)."</span>";
                         return $alert;
                     }
                     move_uploaded_file($file_temp, $uploaded_image);

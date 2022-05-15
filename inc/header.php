@@ -15,6 +15,7 @@
     $customer = new customer();
 	$product  = new product();
 	$order = new order();
+	$slider = new slider();
 ?>
 <?php
   header("Cache-Control: no-cache, must-revalidate");

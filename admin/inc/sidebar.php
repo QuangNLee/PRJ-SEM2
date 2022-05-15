@@ -20,6 +20,12 @@
                         <li><a href="productlist.php">Products List</a> </li>
                     </ul>
                 </li>
+                <li><a class="menuitem">Slider</a>
+                    <ul class="submenu">
+                        <li><a href="slideradd.php">Add New Slider</a> </li>
+                        <li><a href="sliderlist.php">Slider List</a> </li>
+                    </ul>
+                </li>
                <li><a class="menuitem">Site Option</a>
                     <ul class="submenu">
                         <li><a href="titleslogan.php">Title & Slogan</a></li>
