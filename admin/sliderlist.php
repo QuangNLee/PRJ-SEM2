@@ -1,29 +1,73 @@
-<?php include 'inc/header.php';?>
-<?php include 'inc/sidebar.php';?>
+<?php
+    include 'inc/header.php';
+    include 'inc/sidebar.php';
+    include '../classes/slider.php';
+?>
+<?php
+    $slider = new slider();
+    if(isset($_GET['change_type']) && isset($_GET['type'])){
+        $id = $_GET['change_type'];
+        $type = $_GET['type'];
+        $update_type = $slider->update_type($id,$type);
+    }
+    if(isset($_GET['del_slider'])){
+        $id = $_GET['del_slider'];
+        $del_slider = $slider->del_slider($id);
+    }
+?>
+?>
 <div class="grid_10">
     <div class="box round first grid">
         <h2>Slider List</h2>
-        <div class="block">  
+        <div class="block">
+            <?php
+                if(isset($del_slider)){
+                    echo $del_slider;
+                }
+            ?>
             <table class="data display datatable" id="example">
 			<thead>
 				<tr>
 					<th>No.</th>
 					<th>Slider Title</th>
 					<th>Slider Image</th>
+                    <th>Slider Type</th>
 					<th>Action</th>
 				</tr>
 			</thead>
 			<tbody>
-
+                <?php
+                    $get_slider = $slider->show_slider_admin();
+                    if($get_slider){
+                        $i = 0;
+                        while($result_slider = $get_slider->fetch_assoc()){
+                            $i++;
+                ?>
 				<tr class="odd gradeX">
-					<td>01</td>
-					<td>Title of Slider</td>
-					<td><img src="" height="40px" width="60px"/></td>				
-				<td>
-					<a href="">Edit</a> || 
-					<a onclick="return confirm('Are you sure to Delete!');" >Delete</a> 
-				</td>
-					</tr>	
+					<td><?php echo $i; ?></td>
+					<td><?php echo $result_slider['sliderName'] ?></td>
+					<td><img src="uploads/<?php echo $result_slider['image'] ?>" height="120px" width="400px"/></td>
+                    <td>
+                        <?php
+                            if($result_slider['type'] == 1){
+                        ?>
+                        <a href="?change_type=<?php echo $result_slider['id'] ?>&type=0">ON</a>
+                        <?php
+                            } else {
+                        ?>
+                        <a href="?change_type=<?php echo $result_slider['id'] ?>&type=1">OFF</a>
+                        <?php
+                            }
+                        ?>
+                    </td>
+                    <td>
+                        <a onclick="return confirm('Do you want to delete?');" href="?del_slider=<?php echo $result_slider['id'] ?>">Delete</a>
+                    </td>
+                </tr>
+                <?php
+                        }
+                    }
+                ?>
 			</tbody>
 		</table>
 
