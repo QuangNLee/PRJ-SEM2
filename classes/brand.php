@@ -38,15 +38,17 @@
             return $result;
         }
 
-        public function update_brand($brandName,$id){
+        public function update_brand($brandName,$status,$id){
             $brandName = $this->fm->validation($brandName);
+            $status = $this->fm->validation($status);
             $brandName = mysqli_real_escape_string($this->db->link, $brandName);
+            $status = mysqli_real_escape_string($this->db->link, $status);
             $id = mysqli_real_escape_string($this->db->link, $id);
             if(empty($brandName)){
                 $alert = "<span class='error'>Brand name must be not empty!!!</span>";
                 return $alert;
             } else {
-                $query = "UPDATE tbl_brand SET brandName = '$brandName' WHERE brandId = '$id'";
+                $query = "UPDATE tbl_brand SET brandName = '$brandName', status = '$status' WHERE brandId = '$id'";
                 $result = $this->db->update($query);
                 if($result){
                     $alert = "<span class='success'>Updated successfully!!!</span>";
@@ -55,18 +57,6 @@
                     $alert = "<span class='error'>Failed!!!</span>";
                     return $alert;
                 }
-            }
-        }
-
-        public function delete_brand($id){
-            $query = "DELETE FROM tbl_brand WHERE brandId = '$id'";
-            $result = $this->db->delete($query);
-            if($result){
-                $alert = "<span class='success'>Deleted successfully!!!</span>";
-                return $alert;
-            } else {
-                $alert = "<span class='error'>Failed!!!</span>";
-                return $alert;
             }
         }
 

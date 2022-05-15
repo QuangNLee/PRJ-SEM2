@@ -117,7 +117,6 @@
                             <input type="file" name="image" />
                         </td>
                     </tr>
-                    
                     <tr>
                         <td>
                             <label>Product Type</label>
@@ -137,6 +136,29 @@
                                 <option selected value="0">Non-Featured</option>
                                 <?php
                                     }
+                                ?>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Status</label>
+                        </td>
+                        <td>
+                            <select id="select" name="status">
+                                <option>Choose status</option>
+                                <?php
+                                if($result_product['status'] == 1){
+                                    ?>
+                                    <option selected value="1">Available</option>
+                                    <option value="0">Not available</option>
+                                    <?php
+                                }else{
+                                    ?>
+                                    <option value="1">Available</option>
+                                    <option selected value="0">Not available</option>
+                                    <?php
+                                }
                                 ?>
                             </select>
                         </td>
