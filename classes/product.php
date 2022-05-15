@@ -63,6 +63,7 @@
             $product_description = mysqli_real_escape_string($this->db->link, $data['product_description']);
             $price = mysqli_real_escape_string($this->db->link, $data['price']);
             $type = mysqli_real_escape_string($this->db->link, $data['type']);
+            $status = mysqli_real_escape_string($this->db->link, $data['status']);
             //Check image and put image into folder upload
             $permitted = array('jpg','jpeg','png','gif');
             $file_name = $_FILES['image']['name'];
@@ -72,7 +73,7 @@
             $file_ext = strtolower(end($div));
             $unique_image = substr(md5(time()), 0, 10).'.'.$file_ext;
             $uploaded_image = "uploads/".$unique_image;
-            if($productName == "" || $category == "" || $brand == "" || $product_description == "" || $price == "" || $type == ""){
+            if($productName == "" || $category == "" || $brand == "" || $product_description == "" || $price == "" || $type == "" || $status == ""){
                 $alert = "<span class='error'>Fields must be not empty!!!</span>";
                 return $alert;
             } else {
@@ -86,14 +87,15 @@
                     }
                     move_uploaded_file($file_temp, $uploaded_image);
                     $query = "UPDATE tbl_product SET 
-                    productName = '$productName',
-                    catId = '$category',
-                    brandId = '$brand',
-                    product_description = '$product_description',
-                    type = '$type',
-                    price = '$price',
-                    image = '$unique_image'
-                    WHERE productId = '$id'";
+                        productName = '$productName',
+                        catId = '$category',
+                        brandId = '$brand',
+                        product_description = '$product_description',
+                        type = '$type',
+                        price = '$price',
+                        image = '$unique_image',
+                        status = '$status'
+                        WHERE productId = '$id'";
                 } else {
                     $query = "UPDATE tbl_product SET 
                     productName = '$productName',
@@ -101,7 +103,8 @@
                     brandId = '$brand',
                     product_description = '$product_description',
                     type = '$type',
-                    price = '$price'
+                    price = '$price',
+                    status = '$status'
                     WHERE productId = '$id'";
                 }
                 $result = $this->db->update($query);
@@ -115,17 +118,17 @@
             }
         }
 
-        public function delete_product($id){
-            $query = "DELETE FROM tbl_product WHERE productId = '$id'";
-            $result = $this->db->delete($query);
-            if($result){
-                $alert = "<span class='success'>Deleted successfully!!!</span>";
-                return $alert;
-            } else {
-                $alert = "<span class='error'>Failed!!!</span>";
-                return $alert;
-            }
-        }
+//        public function delete_product($id){
+//            $query = "DELETE FROM tbl_product WHERE productId = '$id'";
+//            $result = $this->db->delete($query);
+//            if($result){
+//                $alert = "<span class='success'>Deleted successfully!!!</span>";
+//                return $alert;
+//            } else {
+//                $alert = "<span class='error'>Failed!!!</span>";
+//                return $alert;
+//            }
+//        }
 
         public function getproductbyId($id){
             $query = "SELECT * FROM tbl_product WHERE productId = '$id'";
@@ -135,13 +138,13 @@
 
         //FRONTEND
         public function getproduct_featured(){
-            $query = "SELECT * FROM tbl_product WHERE type = '1' ORDER BY productId desc LIMIT 4";
+            $query = "SELECT * FROM tbl_product WHERE type = '1' AND status = '1' ORDER BY productId desc LIMIT 4";
             $result = $this->db->select($query);
             return $result;
         }
 
         public function getproduct_new(){
-            $query = "SELECT * FROM tbl_product ORDER BY productId desc LIMIT 4";
+            $query = "SELECT * FROM tbl_product WHERE status = '1' ORDER BY productId desc LIMIT 4";
             $result = $this->db->select($query);
             return $result;
         }
@@ -156,30 +159,30 @@
         }
 
         public function getLastestIP(){
-            $query = "SELECT * FROM tbl_product WHERE brandId = '1' ORDER BY productId DESC LIMIT 1";
+            $query = "SELECT * FROM tbl_product WHERE brandId = '1' AND status = '1' ORDER BY productId DESC LIMIT 1";
             $result = $this->db->select($query);
             return $result;
         }
 
         public function getLastestSamsung(){
-            $query = "SELECT * FROM tbl_product WHERE brandId = '2' ORDER BY productId DESC LIMIT 1";
+            $query = "SELECT * FROM tbl_product WHERE brandId = '2' AND status = '1' ORDER BY productId DESC LIMIT 1";
             $result = $this->db->select($query);
             return $result;
         }
         public function getLastestOppo(){
-            $query = "SELECT * FROM tbl_product WHERE brandId = '3' ORDER BY productId DESC LIMIT 1";
+            $query = "SELECT * FROM tbl_product WHERE brandId = '3' AND status = '1' ORDER BY productId DESC LIMIT 1";
             $result = $this->db->select($query);
             return $result;
         }
         public function getLastestXiaomi(){
-            $query = "SELECT * FROM tbl_product WHERE brandId = '6' ORDER BY productId DESC LIMIT 1";
+            $query = "SELECT * FROM tbl_product WHERE brandId = '6' AND status = '1' ORDER BY productId DESC LIMIT 1";
             $result = $this->db->select($query);
             return $result;
         }
 
         public function search_product($keyword){
             $keyword = $this->fm->validation($keyword);
-            $query = "SELECT * FROM tbl_product WHERE productName LIKE '%$keyword%'";
+            $query = "SELECT * FROM tbl_product WHERE productName LIKE '%$keyword%' AND status = '1'";
             $result = $this->db->select($query);
             return $result;
         }

@@ -34,6 +34,7 @@
 					<th>Type</th>
 					<th>Product Price</th>
 					<th>Image</th>
+                    <th>Status</th>
 					<th>Action</th>
 				</tr>
 			</thead>
@@ -61,9 +62,16 @@
 					</td>
 					<td><?php echo $result['price'] ?></td>
 					<td><img src="uploads/<?php echo $result['image'] ?>" width="50px"/></td>
-					<td><a href="productedit.php?productId=<?php echo $result['productId'] ?>">Edit</a> || 
-					    <a onclick="return confirm('Do you want to delete???')" 
-						   href="?productId=<?php echo $result['productId'] ?>">Delete</a></td>
+                    <td>
+                        <?php
+                        if($result['status'] == 1){
+                            echo 'Available';
+                        } else {
+                            echo 'Not available';
+                        }
+                        ?>
+                    </td>
+					<td><a href="productedit.php?productId=<?php echo $result['productId'] ?>">Edit</a></td>
 				</tr>
 				<?php
 						}

@@ -38,15 +38,17 @@
             return $result;
         }
 
-        public function update_category($catName,$id){
+        public function update_category($catName,$status,$id){
             $catName = $this->fm->validation($catName);
+            $status = $this->fm->validation($status);
             $catName = mysqli_real_escape_string($this->db->link, $catName);
+            $status = mysqli_real_escape_string($this->db->link, $status);
             $id = mysqli_real_escape_string($this->db->link, $id);
             if(empty($catName)){
                 $alert = "<span class='error'>Category must be not empty!!!</span>";
                 return $alert;
             } else {
-                $query = "UPDATE tbl_category SET catName = '$catName' WHERE catId = '$id'";
+                $query = "UPDATE tbl_category SET catName = '$catName', status = '$status' WHERE catId = '$id'";
                 $result = $this->db->update($query);
                 if($result){
                     $alert = "<span class='success'>Updated successfully!!!</span>";
@@ -58,17 +60,17 @@
             }
         }
 
-        public function delete_category($id){
-            $query = "DELETE FROM tbl_category WHERE catId = '$id'";
-            $result = $this->db->delete($query);
-            if($result){
-                $alert = "<span class='success'>Deleted successfully!!!</span>";
-                return $alert;
-            } else {
-                $alert = "<span class='error'>Failed!!!</span>";
-                return $alert;
-            }
-        }
+//        public function delete_category($id){
+//            $query = "DELETE FROM tbl_category WHERE catId = '$id'";
+//            $result = $this->db->delete($query);
+//            if($result){
+//                $alert = "<span class='success'>Deleted successfully!!!</span>";
+//                return $alert;
+//            } else {
+//                $alert = "<span class='error'>Failed!!!</span>";
+//                return $alert;
+//            }
+//        }
 
         public function getcatbyId($id){
             $query = "SELECT * FROM tbl_category WHERE catId = '$id'";
