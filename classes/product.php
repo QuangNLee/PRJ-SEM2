@@ -176,5 +176,12 @@
             $result = $this->db->select($query);
             return $result;
         }
+
+        public function search_product($keyword){
+            $keyword = $this->fm->validation($keyword);
+            $query = "SELECT * FROM tbl_product WHERE productName LIKE '%$keyword%'";
+            $result = $this->db->select($query);
+            return $result;
+        }
     }
 ?>
