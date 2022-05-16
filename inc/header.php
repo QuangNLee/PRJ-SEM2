@@ -15,6 +15,7 @@
     $customer = new customer();
 	$product  = new product();
 	$order = new order();
+	$brand = new brand();
 	$slider = new slider();
 ?>
 <?php
@@ -103,7 +104,7 @@
 			<ul id="dc_mega-menu-orange" class="dc_mm-orange">
 				<li><a href="index.php">Home</a></li>
 				<li><a href="products.php">Products</a> </li>
-				<li><a href="topbrands.php">Top Brands</a></li>
+				<li><a href="brands.php">Brands</a></li>
                 <?php
                     $check_cart = $cart->check_cart();
                     if($check_cart == true){
