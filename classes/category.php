@@ -33,7 +33,7 @@
         }
 
         public function show_category(){
-            $query = "SELECT * FROM tbl_category order by catId desc";
+            $query = "SELECT * FROM tbl_category order by catName ASC";
             $result = $this->db->select($query);
             return $result;
         }

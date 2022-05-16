@@ -33,7 +33,7 @@
         }
 
         public function show_brand(){
-            $query = "SELECT * FROM tbl_brand order by brandId desc";
+            $query = "SELECT * FROM tbl_brand order by brandName ASC";
             $result = $this->db->select($query);
             return $result;
         }
@@ -61,6 +61,18 @@
         }
 
         public function getbrandbyId($id){
+            $query = "SELECT * FROM tbl_brand WHERE brandId = '$id'";
+            $result = $this->db->select($query);
+            return $result;
+        }
+
+        public function list_brand(){
+            $query = "SELECT * FROM tbl_brand WHERE status = 1 order by brandName ASC";
+            $result = $this->db->select($query);
+            return $result;
+        }
+
+        public function getNameByBrandId($id){
             $query = "SELECT * FROM tbl_brand WHERE brandId = '$id'";
             $result = $this->db->select($query);
             return $result;

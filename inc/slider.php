@@ -42,18 +42,18 @@
         </div>
         <div class="section group">
             <?php
-                $getLastestOP = $product->getLastestOppo();
-                if($getLastestOP){
-                    while ($resultOP = $getLastestOP->fetch_assoc()){
+                $getLastestMSI = $product->getLastestMSI();
+                if($getLastestMSI){
+                    while ($resultMSI = $getLastestMSI->fetch_assoc()){
             ?>
             <div class="listview_1_of_2 images_1_of_2">
                 <div class="listimg listimg_2_of_1">
-                    <a href="details.php?productId=<?php echo $resultOP['productId'] ?>"> <img src="admin/uploads/<?php echo $resultOP['image'] ?>" alt="" /></a>
+                    <a href="details.php?productId=<?php echo $resultMSI['productId'] ?>"> <img src="admin/uploads/<?php echo $resultMSI['image'] ?>" alt="" /></a>
                 </div>
                 <div class="text list_2_of_1">
-                    <h2>Oppo</h2>
-                    <p><?php echo $resultOP['productName'] ?></p>
-                    <div class="button"><span><a href="details.php?productId=<?php echo $resultOP['productId'] ?>">Add to cart</a></span></div>
+                    <h2>MSI</h2>
+                    <p><?php echo $fm->textShorten($resultMSI['productName'], 25) ?></p>
+                    <div class="button"><span><a href="details.php?productId=<?php echo $resultMSI['productId'] ?>">Add to cart</a></span></div>
                 </div>
             </div>
             <?php
@@ -61,18 +61,18 @@
                 }
             ?>
             <?php
-                $getLastestXM = $product->getLastestXiaomi();
-                if($getLastestXM){
-                    while ($resultXM = $getLastestXM->fetch_assoc()){
+                $getLastestDELL = $product->getLastestDELL();
+                if($getLastestDELL){
+                    while ($resultDELL = $getLastestDELL->fetch_assoc()){
             ?>
             <div class="listview_1_of_2 images_1_of_2">
                 <div class="listimg listimg_2_of_1">
-                    <a href="details.php?productId=<?php echo $resultXM['productId'] ?>"> <img src="admin/uploads/<?php echo $resultXM['image'] ?>" alt="" /></a>
+                    <a href="details.php?productId=<?php echo $resultDELL['productId'] ?>"> <img src="admin/uploads/<?php echo $resultDELL['image'] ?>" alt="" /></a>
                 </div>
                 <div class="text list_2_of_1">
                     <h2>Xiaomi</h2>
-                    <p><?php echo $resultXM['productName'] ?></p>
-                    <div class="button"><span><a href="details.php?productId=<?php echo $resultXM['productId'] ?>">Add to cart</a></span></div>
+                    <p><?php echo $fm->textShorten($resultDELL['productName'], 25) ?></p>
+                    <div class="button"><span><a href="details.php?productId=<?php echo $resultDELL['productId'] ?>">Add to cart</a></span></div>
                 </div>
             </div>
             <?php
