@@ -11,7 +11,7 @@
                     <a href="details.php?productId=<?php echo $resultIP['productId'] ?>"> <img src="admin/uploads/<?php echo $resultIP['image'] ?>" alt="" /></a>
                 </div>
                 <div class="text list_2_of_1">
-                    <h2>IPhone</h2>
+                    <h2><a href="productbybrand.php?brandId=<?php echo $resultIP['brandId'] ?>?"style="color: red; font-weight: bold">Apple</a></h2>
                     <p><?php echo $resultIP['productName'] ?></p>
                     <div class="button"><span><a href="details.php?productId=<?php echo $resultIP['productId'] ?>">Add to cart</a></span></div>
                 </div>
@@ -30,7 +30,7 @@
                     <a href="details.php?productId=<?php echo $resultSS['productId'] ?>"> <img src="admin/uploads/<?php echo $resultSS['image'] ?>" alt="" /></a>
                 </div>
                 <div class="text list_2_of_1">
-                    <h2>Samsung</h2>
+                    <h2><a href="productbybrand.php?brandId=<?php echo $resultSS['brandId'] ?>?"style="color: red; font-weight: bold">Samsung</a></h2>
                     <p><?php echo $resultSS['productName'] ?></p>
                     <div class="button"><span><a href="details.php?productId=<?php echo $resultSS['productId'] ?>">Add to cart</a></span></div>
                 </div>
@@ -51,7 +51,7 @@
                     <a href="details.php?productId=<?php echo $resultMSI['productId'] ?>"> <img src="admin/uploads/<?php echo $resultMSI['image'] ?>" alt="" /></a>
                 </div>
                 <div class="text list_2_of_1">
-                    <h2>MSI</h2>
+                    <h2><a href="productbybrand.php?brandId=<?php echo $resultMSI['brandId'] ?>?" style="color: red; font-weight: bold">MSI</a></h2>
                     <p><?php echo $fm->textShorten($resultMSI['productName'], 25) ?></p>
                     <div class="button"><span><a href="details.php?productId=<?php echo $resultMSI['productId'] ?>">Add to cart</a></span></div>
                 </div>
@@ -70,7 +70,7 @@
                     <a href="details.php?productId=<?php echo $resultDELL['productId'] ?>"> <img src="admin/uploads/<?php echo $resultDELL['image'] ?>" alt="" /></a>
                 </div>
                 <div class="text list_2_of_1">
-                    <h2>Xiaomi</h2>
+                    <h2><a href="productbybrand.php?brandId=<?php echo $resultDELL['brandId'] ?>?" style="color: red; font-weight: bold">DELL</a></h2>
                     <p><?php echo $fm->textShorten($resultDELL['productName'], 25) ?></p>
                     <div class="button"><span><a href="details.php?productId=<?php echo $resultDELL['productId'] ?>">Add to cart</a></span></div>
                 </div>
