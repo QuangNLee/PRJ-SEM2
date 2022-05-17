@@ -165,78 +165,81 @@
         }
 
         public function getLastestIP(){
-            $query = "SELECT * FROM tbl_product WHERE brandId = '1' AND status = '1' ORDER BY productId DESC LIMIT 1";
+            $query = "SELECT * FROM tbl_product WHERE brandId = (SELECT brandId FROM tbl_brand WHERE brandName LIKE 'apple') AND status = '1' ORDER BY productId DESC LIMIT 1";
             $result = $this->db->select($query);
             return $result;
         }
 
         public function getLastestSamsung(){
-            $query = "SELECT * FROM tbl_product WHERE brandId = '2' AND status = '1' ORDER BY productId DESC LIMIT 1";
+            $query = "SELECT * FROM tbl_product WHERE brandId = (SELECT brandId FROM tbl_brand WHERE brandName LIKE 'samsung') AND status = '1' ORDER BY productId DESC LIMIT 1";
             $result = $this->db->select($query);
             return $result;
         }
         public function getLastestMSI(){
-            $query = "SELECT * FROM tbl_product WHERE brandId = '7' AND status = '1' ORDER BY productId DESC LIMIT 1";
+            $query = "SELECT * FROM tbl_product WHERE brandId = (SELECT brandId FROM tbl_brand WHERE brandName LIKE 'msi') AND status = '1' ORDER BY productId DESC LIMIT 1";
             $result = $this->db->select($query);
             return $result;
         }
         public function getLastestDELL(){
-            $query = "SELECT * FROM tbl_product WHERE brandId = '17' AND status = '1' ORDER BY productId DESC LIMIT 1";
+            $query = "SELECT * FROM tbl_product WHERE brandId = (SELECT brandId FROM tbl_brand WHERE brandName LIKE 'dell') AND status = '1' ORDER BY productId DESC LIMIT 1";
             $result = $this->db->select($query);
             return $result;
         }
 
         public function search_product($keyword){
             $keyword = $this->fm->validation($keyword);
-            $query = "SELECT * FROM tbl_product WHERE productName LIKE '%$keyword%' AND status = '1'";
+            $query = "SELECT * FROM tbl_product WHERE productId IN (SELECT productId FROM tbl_product
+                WHERE productName LIKE '%$keyword%' AND status = 1) OR productId IN (SELECT productId FROM tbl_product
+                WHERE catId = (SELECT catId FROM tbl_category WHERE catName LIKE '%$keyword%' AND status = 1))
+                OR productId IN (SELECT productId FROM tbl_product
+                WHERE brandId = (SELECT brandId FROM tbl_brand WHERE brandName LIKE '%$keyword%' AND status = 1))
+                ORDER BY productName ASC";
             $result = $this->db->select($query);
             return $result;
         }
 
-        public function get_all_mobile(){
-            $query = "SELECT * FROM tbl_product WHERE catId = 3 AND status = 1 ORDER BY productId DESC";
+        public function search_product_pagination($keyword,$product_start,$limit){
+            $keyword = $this->fm->validation($keyword);
+            $product_start = mysqli_real_escape_string($this->db->link, $product_start);
+            $limit = mysqli_real_escape_string($this->db->link, $limit);
+            $query = "SELECT * FROM tbl_product WHERE productId IN (SELECT productId FROM tbl_product
+                WHERE productName LIKE '%$keyword%' AND status = 1) OR productId IN (SELECT productId FROM tbl_product
+                WHERE catId = (SELECT catId FROM tbl_category WHERE catName LIKE '%$keyword%' AND status = 1))
+                OR productId IN (SELECT productId FROM tbl_product
+                WHERE brandId = (SELECT brandId FROM tbl_brand WHERE brandName LIKE '%$keyword%' AND status = 1))
+                ORDER BY productName ASC LIMIT {$product_start},{$limit}";
             $result = $this->db->select($query);
             return $result;
         }
 
-        public function get_all_laptop(){
-            $query = "SELECT * FROM tbl_product WHERE catId = 5 AND status = 1 ORDER BY productId DESC";
+        public function get_product_by_cat($catId){
+            $catId = mysqli_real_escape_string($this->db->link, $catId);
+            $query = "SELECT * FROM tbl_product WHERE catId = '$catId' AND status = 1 ORDER BY productId DESC";
             $result = $this->db->select($query);
             return $result;
         }
 
-        public function get_all_accessory(){
-            $query = "SELECT * FROM tbl_product WHERE catId = 6 AND status = 1 ORDER BY productId DESC";
+        public function get_pagination_product_by_cat($catId,$product_start,$limit){
+            $catId = mysqli_real_escape_string($this->db->link, $catId);
+            $product_start = mysqli_real_escape_string($this->db->link, $product_start);
+            $limit = mysqli_real_escape_string($this->db->link, $limit);
+            $query = "SELECT * FROM tbl_product where catId = '$catId' AND status = 1 ORDER BY productId DESC LIMIT {$product_start},{$limit}";
             $result = $this->db->select($query);
             return $result;
         }
 
-        public function get_all_tablet(){
-            $query = "SELECT * FROM tbl_product WHERE catId = 7 AND status = 1 ORDER BY productId DESC";
+        public function get_product_by_brand($brandId){
+            $catId = mysqli_real_escape_string($this->db->link, $brandId);
+            $query = "SELECT * FROM tbl_product WHERE brandId = '$brandId' AND status = 1 ORDER BY productId DESC";
             $result = $this->db->select($query);
             return $result;
         }
 
-        public function get_all_smartDevice(){
-            $query = "SELECT * FROM tbl_product WHERE catId = 8 AND status = 1 ORDER BY productId DESC";
-            $result = $this->db->select($query);
-            return $result;
-        }
-
-        public function get_all_smartWatch(){
-            $query = "SELECT * FROM tbl_product WHERE catId = 9 AND status = 1 ORDER BY productId DESC";
-            $result = $this->db->select($query);
-            return $result;
-        }
-
-        public function get_all_fashionWatch(){
-            $query = "SELECT * FROM tbl_product WHERE catId = 10 AND status = 1 ORDER BY productId DESC";
-            $result = $this->db->select($query);
-            return $result;
-        }
-
-        public function productByBrandId($id){
-            $query = "SELECT * FROM tbl_product WHERE brandId = '$id' AND status = 1 order by productName ASC";
+        public function get_pagination_product_by_brand($brandId,$product_start,$limit){
+            $brandId = mysqli_real_escape_string($this->db->link, $brandId);
+            $product_start = mysqli_real_escape_string($this->db->link, $product_start);
+            $limit = mysqli_real_escape_string($this->db->link, $limit);
+            $query = "SELECT * FROM tbl_product where brandId = '$brandId' AND status = 1 ORDER BY productId DESC LIMIT {$product_start},{$limit}";
             $result = $this->db->select($query);
             return $result;
         }

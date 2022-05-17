@@ -20,14 +20,21 @@
                 $alert = "<span class='error'>Brand name must be not empty!!!</span>";
                 return $alert;
             } else {
-                $query = "INSERT INTO tbl_brand (brandName) VALUES ('$brandName')";
-                $result = $this->db->insert($query);
-                if($result){
-                    $alert = "<span class='success'>Success!!!</span>";
+                $query_check_brand = "SELECT * FROM tbl_brand WHERE brandName LIKE '%$brandName%'";
+                $result_check = $this->db->select($query_check_brand);
+                if($result_check){
+                    $alert = "<span class='error'>Brand name existed!!!</span>";
                     return $alert;
                 } else {
-                    $alert = "<span class='error'>Failed!!!</span>";
-                    return $alert;
+                    $query = "INSERT INTO tbl_brand (brandName) VALUES ('$brandName')";
+                    $result = $this->db->insert($query);
+                    if($result){
+                        $alert = "<span class='success'>Success!!!</span>";
+                        return $alert;
+                    } else {
+                        $alert = "<span class='error'>Failed!!!</span>";
+                        return $alert;
+                    }
                 }
             }
         }
