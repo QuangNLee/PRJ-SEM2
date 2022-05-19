@@ -60,7 +60,7 @@
                     Session::set('customer_login', true);
                     Session::set('customer_id', $value['id']);
                     Session::set('customer_name', $value['name']);
-                    header('Location:order.php');
+                    header('Location:index.php');
                 } else {
                     $alert = "<span class='error'>Email or password does not correct!!!</span>";
                     return $alert;
@@ -98,6 +98,26 @@
                 $result = $this->db->update($query);
                 if($result){
                     $alert = "<span class='success'>Updated successfully!!!</span>";
+                    return $alert;
+                } else {
+                    $alert = "<span class='error'>Failed!!!</span>";
+                    return $alert;
+                }
+            }
+        }
+
+        public function insert_comment($data){
+            $productId = mysqli_real_escape_string($this->db->link, $data['commentProductId']);
+            $commentName = mysqli_real_escape_string($this->db->link, $data['commentName']);
+            $comment = mysqli_real_escape_string($this->db->link, $data['comment']);
+            if($commentName == "" || $comment == ""){
+                $alert = "<span class='error'>Fields must be not empty!!!</span>";
+                return $alert;
+            } else {
+                $query = "INSERT INTO tbl_comment (productId, commentName, comment) VALUES ('$productId', '$commentName', '$comment')";
+                $result = $this->db->insert($query);
+                if($result){
+                    $alert = "<span class='success'>Success!!!</span>";
                     return $alert;
                 } else {
                     $alert = "<span class='error'>Failed!!!</span>";

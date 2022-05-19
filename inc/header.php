@@ -27,10 +27,10 @@
 <!DOCTYPE HTML>
 <head>
 	<title>Store Website</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-	<link href="css/menu.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="css/style.css" rel="stylesheet" type="text/css" media="all">
+	<link href="css/menu.css" rel="stylesheet" type="text/css" media="all">
 	<script src="js/jquerymain.js"></script>
 	<script src="js/script.js" type="text/javascript"></script>
 	<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
@@ -46,7 +46,6 @@
 		});
 	</script>
 </head>
-
 <body>
 	<div class="wrap">
 		<div class="header_top">
@@ -100,11 +99,30 @@
 			</div>
 			<div class="clear"></div>
 		</div>
-		<div class="menu">
-			<ul id="dc_mega-menu-orange" class="dc_mm-orange">
+		<div class="menu-header">
+			<ul>
 				<li><a href="index.php">Home</a></li>
-				<li><a href="products.php">Products</a> </li>
-				<li><a href="brands.php">Brands</a></li>
+				<li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn">Product</a>
+                    <div class="dropdown-content">
+                        <?php
+                            $show_category = $cat->show_category_index();
+                            if($show_category){
+                                while ($result_category = $show_category->fetch_assoc()){
+                        ?>
+                        <a href="productbycat.php?catId=<?php echo $result_category['catId'] ?>"><?php echo $result_category['catName'] ?></a>
+                        <?php
+                                }
+                            }
+                        ?>
+                    </div>
+                </li>
+<!--				<li class="dropdown">-->
+<!--                    <a href="javascript:void(0)" class="dropbtn">Brand</a>-->
+<!--                    <div class="dropdown-content">-->
+<!--                        <a href="">1</a>-->
+<!--                    </div>-->
+<!--                </li>-->
                 <?php
                     $check_cart = $cart->check_cart();
                     if($check_cart == true){

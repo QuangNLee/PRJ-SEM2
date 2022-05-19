@@ -13,7 +13,7 @@
         $id = $_GET['productId'];
     }
     if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])){
-        $updateProduct = $prod->update_product($_POST,$FILES,$id);
+        $updateProduct = $prod->update_product($_POST,$_FILES,$id);
     }
 ?>
 <div class="grid_10">
