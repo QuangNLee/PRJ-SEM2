@@ -20,21 +20,17 @@
                         <li><a href="productlist.php">Products List</a> </li>
                     </ul>
                 </li>
+                <li><a class="menuitem">Order</a>
+                    <ul class="submenu">
+                        <li><a href="order.php">All order list</a></li>
+                    </ul>
+                </li>
                 <li><a class="menuitem">Slider</a>
                     <ul class="submenu">
                         <li><a href="slideradd.php">Add New Slider</a> </li>
                         <li><a href="sliderlist.php">Slider List</a> </li>
                     </ul>
                 </li>
-               <li><a class="menuitem">Site Option</a>
-                    <ul class="submenu">
-                        <li><a href="titleslogan.php">Title & Slogan</a></li>
-                        <li><a href="social.php">Social Media</a></li>
-                        <li><a href="copyright.php">Copyright</a></li>
-                        
-                    </ul>
-                </li>
-				
                  <li><a class="menuitem">Update Pages</a>
                     <ul class="submenu">
                         <li><a>About Us</a></li>

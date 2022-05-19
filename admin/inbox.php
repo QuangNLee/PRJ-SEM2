@@ -15,6 +15,13 @@
         $quantity = $_GET['quantity'];
         $shipped = $order->shipped($id,$productId,$quantity);
     }
+    if(isset($_GET['cancelId'])){
+        $id = $_GET['cancelId'];
+        $productId = $_GET['productId'];
+        $quantity = $_GET['quantity'];
+        $cancel_order = $order->cancel_order($id,$productId,$quantity);
+        header('Location:ordered.php');
+    }
 ?>
 <div class="grid_10">
     <div class="box round first grid">
@@ -30,6 +37,7 @@
                 <tr>
                     <th>No.</th>
                     <th>Order time</th>
+                    <th>Type</th>
                     <th>Customer ID</th>
                     <th>Customer</th>
                     <th>Product</th>
@@ -51,6 +59,7 @@
                 <tr class="odd gradeX">
                     <td><?php echo $i ?></td>
                     <td><?php echo $fm->formatDate($result['createdAt']) ?></td>
+                    <td><?php echo $result['orderType'] ?></td>
                     <td><?php echo $result['customerId'] ?></td>
                     <td><a href="customer.php?customerId=<?php echo $result['customerId'] ?>">View customer</a></td>
                     <td><?php echo $result['productName'] ?></td>
@@ -61,7 +70,9 @@
                             if($result['status'] == 0){
                         ?>
                         <a href="?shippedId=<?php echo $result['id'] ?>&productId=<?php echo $result['productId'] ?>
-                            &quantity=<?php echo $result['quantity'] ?>">Pending</a>
+                            &quantity=<?php echo $result['quantity'] ?>" style="color: blue">Pending</a> ||
+                        <a onclick="confirm('Do you want to cancel?')" href="?cancelId=<?php echo $result['id'] ?>&productId=<?php echo $result['productId'] ?>
+                                        &quantity=<?php echo $result['quantity'] ?>" style="color: #8B0000">Cancel</a>
                         <?php
                             } else if ($result['status'] == 1) {
                                 echo 'Waiting';

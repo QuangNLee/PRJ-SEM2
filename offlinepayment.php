@@ -4,7 +4,7 @@
 <?php
     if(isset($_GET['orderid']) && $_GET['orderid'] == 'order'){
         $customer_id = Session::get('customer_id');
-        $insertOrder = $order->insertOrder($customer_id);
+        $insertOrder = $order->insertOrderOffline($customer_id);
         $delcart = $cart->del_all_data_cart();
         header('Location:success.php');
     }

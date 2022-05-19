@@ -13,12 +13,12 @@
             $this->fm = new Format();
         }
 
-        public function insertOrder($customer_id){
+        public function insertOrderOffline($customer_id){
             $sid = session_id();
             $query_get_product = "SELECT * FROM tbl_cart WHERE sid = '$sid'";
             $get_product = $this->db->select($query_get_product);
             if($get_product){
-                $query_insert_order = "INSERT INTO tbl_order (customerId) VALUE ('$customer_id')";
+                $query_insert_order = "INSERT INTO tbl_order (customerId,orderType) VALUE ('$customer_id','Offline Payment')";
                 $insert_order = $this->db->insert($query_insert_order);
                 while($result_product = $get_product->fetch_assoc()){
                     $query_get_order = "SELECT * FROM tbl_order WHERE customerId = '$customer_id' ORDER BY createdAt DESC LIMIT 1";
@@ -75,20 +75,30 @@
         }
 
         public function get_inbox_order(){
-            $query = "SELECT o.id, o.customerId, o.createdAt, o.customerId, p.productName, od.quantity, od.productId, 
+            $query = "SELECT o.id, o.customerId, o.createdAt, o.orderType, o.customerId, p.productName, od.quantity, od.productId, 
                         ROUND(od.quantity*od.unitPrice + od.quantity*od.unitPrice*od.VAT/100) AS 'total', od.status
                       FROM tbl_order o, tbl_orderDetail od, tbl_product p
-                      WHERE o.id = od.orderId AND p.productId = od.productId AND status IN (SELECT DISTINCT status FROM tbl_orderDetail where status = '0' OR status = '1')
+                      WHERE o.id = od.orderId AND p.productId = od.productId AND od.status IN (SELECT DISTINCT status FROM tbl_orderDetail where status = '0' OR status = '1')
                       ORDER BY o.createdAt DESC";
             $result = $this->db->select($query);
             return $result;
         }
 
-        public function get_successful_order(){
-            $query = "SELECT o.id, o.customerId, o.createdAt, o.customerId, p.productName, od.quantity, od.productId, 
+        public function get_all_order(){
+            $query = "SELECT o.id, o.customerId, o.createdAt, o.orderType, o.customerId, p.productName, od.quantity, od.productId, 
                         ROUND(od.quantity*od.unitPrice + od.quantity*od.unitPrice*od.VAT/100) AS 'total', od.status
                       FROM tbl_order o, tbl_orderDetail od, tbl_product p
-                      WHERE o.id = od.orderId AND p.productId = od.productId AND status = '2'
+                      WHERE o.id = od.orderId AND p.productId = od.productId
+                      ORDER BY o.createdAt DESC";
+            $result = $this->db->select($query);
+            return $result;
+        }
+
+        public function get_completed_order(){
+            $query = "SELECT o.id, o.customerId, o.createdAt, o.orderType, o.customerId, p.productName, od.quantity, od.productId, 
+                        ROUND(od.quantity*od.unitPrice + od.quantity*od.unitPrice*od.VAT/100) AS 'total', od.status
+                      FROM tbl_order o, tbl_orderDetail od, tbl_product p
+                      WHERE o.id = od.orderId AND p.productId = od.productId AND od.status IN (SELECT DISTINCT status FROM tbl_orderDetail where status = '2' OR status = '3')
                       ORDER BY o.createdAt DESC";
             $result = $this->db->select($query);
             return $result;
@@ -114,6 +124,15 @@
             $productId = mysqli_real_escape_string($this->db->link, $productId);
             $quantity = mysqli_real_escape_string($this->db->link, $quantity);
             $query = "UPDATE tbl_orderDetail SET status = '2' WHERE orderId = '$id' AND productId = '$productId' AND quantity = '$quantity'";
+            $result = $this->db->update($query);
+            return $result;
+        }
+
+        public function cancel_order($id,$productId,$quantity){
+            $id = mysqli_real_escape_string($this->db->link, $id);
+            $productId = mysqli_real_escape_string($this->db->link, $productId);
+            $quantity = mysqli_real_escape_string($this->db->link, $quantity);
+            $query = "UPDATE tbl_orderDetail SET status = '3' WHERE orderId = '$id' AND productId = '$productId' AND quantity = '$quantity'";
             $result = $this->db->update($query);
             return $result;
         }
