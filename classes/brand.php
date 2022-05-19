@@ -2,7 +2,7 @@
     $filepath = realpath(dirname(__FILE__));
     include_once ($filepath.'/../lib/database.php');
     include_once ($filepath.'/../helper/format.php');
-?>/
+?>
 <?php
     class brand{
         private $db;
@@ -40,6 +40,12 @@
         }
 
         public function show_brand(){
+            $query = "SELECT * FROM tbl_brand order by brandName ASC";
+            $result = $this->db->select($query);
+            return $result;
+        }
+
+        public function show_brand_index(){
             $query = "SELECT * FROM tbl_brand order by brandName ASC";
             $result = $this->db->select($query);
             return $result;

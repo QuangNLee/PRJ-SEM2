@@ -207,23 +207,15 @@
                 WHERE catId = (SELECT catId FROM tbl_category WHERE catName LIKE '%$keyword%' AND status = 1))
                 OR productId IN (SELECT productId FROM tbl_product
                 WHERE brandId = (SELECT brandId FROM tbl_brand WHERE brandName LIKE '%$keyword%' AND status = 1))
-                ORDER BY productName ASC LIMIT {$product_start},{$limit}";
+                ORDER BY type DESC, productName ASC LIMIT {$product_start},{$limit}";
             $result = $this->db->select($query);
             return $result;
         }
 
-        public function get_product_by_cat($catId){
-            $catId = mysqli_real_escape_string($this->db->link, $catId);
-            $query = "SELECT * FROM tbl_product WHERE catId = '$catId' AND status = 1 ORDER BY productId DESC";
-            $result = $this->db->select($query);
-            return $result;
-        }
-
-        public function get_pagination_product_by_cat($catId,$product_start,$limit){
-            $catId = mysqli_real_escape_string($this->db->link, $catId);
+        public function get_pagination_product($product_start,$limit){
             $product_start = mysqli_real_escape_string($this->db->link, $product_start);
             $limit = mysqli_real_escape_string($this->db->link, $limit);
-            $query = "SELECT * FROM tbl_product where catId = '$catId' AND status = 1 ORDER BY productId DESC LIMIT {$product_start},{$limit}";
+            $query = "SELECT * FROM tbl_product where status = 1 ORDER BY productId DESC LIMIT {$product_start},{$limit}";
             $result = $this->db->select($query);
             return $result;
         }
@@ -240,6 +232,21 @@
             $product_start = mysqli_real_escape_string($this->db->link, $product_start);
             $limit = mysqli_real_escape_string($this->db->link, $limit);
             $query = "SELECT * FROM tbl_product where brandId = '$brandId' AND status = 1 ORDER BY productId DESC LIMIT {$product_start},{$limit}";
+            $result = $this->db->select($query);
+            return $result;
+        }
+
+        public function get_product_by_cat($id){
+            $query = "SELECT * FROM tbl_product WHERE catId = '$id' ORDER BY productId DESC";
+            $result = $this->db->select($query);
+            return $result;
+        }
+
+        public function get_pagination_product_by_cat($catId,$product_start,$limit){
+            $catId = mysqli_real_escape_string($this->db->link, $catId);
+            $product_start = mysqli_real_escape_string($this->db->link, $product_start);
+            $limit = mysqli_real_escape_string($this->db->link, $limit);
+            $query = "SELECT * FROM tbl_product where catId = '$catId' AND status = 1 ORDER BY productId DESC LIMIT {$product_start},{$limit}";
             $result = $this->db->select($query);
             return $result;
         }

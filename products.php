@@ -1,29 +1,17 @@
 <?php
 	include 'inc/header.php';
-    $show_category = $cat->show_category();
 ?>
 <div class="main">
-    <?php
-        if($show_category){
-            while($result_category = $show_category->fetch_assoc()){
-                $id = $result_category['catId'];
-    ?>
     <div class="content">
-    	<div class="content_top">
-    		<div class="heading">
-    		    <h3><?php echo $result_category['catName'] ?></h3>
-    		</div>
-    		<div class="clear"></div>
-        </div>
         <div class="section group">
             <?php
-                $limit = 4;
-                $get_product_by_cat = $product->get_product_by_cat($id);
-                $total_product = mysqli_num_rows($get_product_by_cat);
+                $limit = 12;
+                $get_product = $product->show_product();
+                $total_product = mysqli_num_rows($get_product);
                 $current_page_product = isset($_GET['page']) ? $_GET['page'] : 1;
                 $product_start = ($current_page_product -1) * $limit;
                 $total_page_product = ceil($total_product/$limit);
-                $get_pagination_product = $product->get_pagination_product_by_cat($id,$product_start,$limit);
+                $get_pagination_product = $product->get_pagination_product($product_start,$limit);
                 if($get_pagination_product){
                     while($result = $get_pagination_product->fetch_assoc()){
             ?>
@@ -62,10 +50,6 @@
             ?>
         </div>
     </div>
-    <?php
-            }
-        }
-    ?>
 </div>
 <?php
 	include 'inc/footer.php';

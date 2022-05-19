@@ -52,21 +52,21 @@
             <?php
                 if ($current_page_product -1 > 0){
             ?>
-            <li><a href="productbybrand.php?brandId=1&page=<?php echo $current_page_product-1; ?>">&laquo;</a></li>
+            <li><a href="productbybrand.php?brandId=<?php echo $id; ?>&page=<?php echo $current_page_product-1; ?>">&laquo;</a></li>
             <?php
                 }
             ?>
             <?php
-            for($i = 1; $i <= $total_page_product; $i++){
-                ?>
-                <li class="<?php echo (($current_page_product == $i)?'active': '') ?>"><a href="productbybrand.php?brandId=1&page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
-                <?php
-            }
+                for($i = 1; $i <= $total_page_product; $i++){
+            ?>
+            <li class="<?php echo (($current_page_product == $i)?'active': '') ?>"><a href="productbybrand.php?brandId=<?php echo $id; ?>&page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+            <?php
+                }
             ?>
             <?php
                 if($current_page_product +1 <= $total_page_product){
             ?>
-            <li><a href="productbybrand.php?brandId=1&page=<?php echo $current_page_product+1; ?>">&raquo;</a></li>
+            <li><a href="productbybrand.php?brandId=<?php echo $id; ?>&page=<?php echo $current_page_product+1; ?>">&raquo;</a></li>
             <?php
                 }
             ?>

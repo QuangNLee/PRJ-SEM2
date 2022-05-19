@@ -45,6 +45,12 @@
             return $result;
         }
 
+        public function show_category_index(){
+            $query = "SELECT * FROM tbl_category WHERE status = '1' order by catName ASC";
+            $result = $this->db->select($query);
+            return $result;
+        }
+
         public function update_category($catName,$status,$id){
             $catName = $this->fm->validation($catName);
             $status = $this->fm->validation($status);
@@ -86,13 +92,7 @@
         }
 
         public function getAll_category(){
-            $query = "SELECT * FROM tbl_category ORDER BY catId ASC";
-            $result = $this->db->select($query);
-            return $result;
-        }
-
-        public function get_product_by_cat($id){
-            $query = "SELECT * FROM tbl_product WHERE catId = '$id' ORDER BY productId DESC";
+            $query = "SELECT * FROM tbl_category ORDER BY catName ASC";
             $result = $this->db->select($query);
             return $result;
         }
