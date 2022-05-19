@@ -26,16 +26,16 @@
             <table class="data display datatable" id="example">
 			<thead>
 				<tr>
-					<th>No.</th>
-					<th>Product Name</th>
-					<th>Category</th>
-					<th>Brand</th>
-					<th>Description</th>
-					<th>Type</th>
-					<th>Product Price</th>
-					<th>Image</th>
-                    <th>Status</th>
-					<th>Action</th>
+					<th width="5%">No.</th>
+					<th width="20%">Product Name</th>
+					<th width="5%">Category</th>
+					<th width="5%">Brand</th>
+					<th width="25%">Description</th>
+					<th width="5%">Type</th>
+					<th width="5%">Product Price</th>
+					<th width="10%">Image</th>
+                    <th width="10%">Status</th>
+					<th width="10%">Action</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -54,7 +54,7 @@
 					<td><?php echo $fm->textShorten($result['product_description'], 30) ?></td>
 					<td><?php 
 							if($result['type'] == 1){
-								echo 'Featured';
+								echo '<span style="color: blue">Featured</span>';
 							} else {
 								echo 'Non-Featured';
 							}
@@ -65,9 +65,9 @@
                     <td>
                         <?php
                         if($result['status'] == 1){
-                            echo 'Available';
+                            echo '<span style="color: green">Available</span>';
                         } else {
-                            echo 'Not available';
+                            echo '<span style="color: red">Not available</span>';
                         }
                         ?>
                     </td>
