@@ -1012,6 +1012,7 @@ p.note{
 	padding-top:20px;
 }
 .product-desc h2,.product-tags h2{
+	width: 100%;
 	padding:8px 20px;
 	background:#602D8D;
 	border: 1px solid #EBE8E8;

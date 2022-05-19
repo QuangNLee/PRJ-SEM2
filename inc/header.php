@@ -117,12 +117,7 @@
                         ?>
                     </div>
                 </li>
-<!--				<li class="dropdown">-->
-<!--                    <a href="javascript:void(0)" class="dropbtn">Brand</a>-->
-<!--                    <div class="dropdown-content">-->
-<!--                        <a href="">1</a>-->
-<!--                    </div>-->
-<!--                </li>-->
+				<li><a href="brands.php">Brand</a></li>
                 <?php
                     $check_cart = $cart->check_cart();
                     if($check_cart == true){

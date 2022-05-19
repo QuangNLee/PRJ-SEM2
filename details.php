@@ -20,6 +20,9 @@
         $productid = $_POST['productid'];
         $insert_flist = $cart->insertflist($productid,$customer_id);
     }
+    if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['sendComment'])){
+        $insert_comment = $customer->insert_comment($id,$_POST);
+    }
 ?>
 	<div class="main">
 		<div class="content">
@@ -83,6 +86,16 @@
 						}
 					}
 				?>
+                <div class="product-desc">
+                    <h2>Comment</h2>
+                    <div class="comment">
+                        <form action="" method="POST">
+                            <p><input type="text" placeholder="Enter your name..." class="form-control" name="commentName"></p>
+                            <p><textarea rows="5" style="resize: none;" placeholder="Enter your comment..." class="form-control" name="comment"></textarea></p>
+                            <p><input type="submit" class="btn btn-success" value="Send" name="sendComment"></p>
+                        </form>
+                    </div>
+                </div>
 			</div>
 			<div class="rightsidebar span_3_of_1">
 				<h2>CATEGORIES</h2>

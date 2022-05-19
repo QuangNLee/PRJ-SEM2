@@ -10,7 +10,7 @@
 <?php
     $order = new order();
     $fm = new Format();
-    $get_successful_order = $order->get_successful_order();
+    $get_successful_order = $order->get_completed_order();
 ?>
 <div class="grid_10">
     <div class="box round first grid">
@@ -21,12 +21,13 @@
                 <tr>
                     <th>No.</th>
                     <th>Order time</th>
+                    <th>Type</th>
                     <th>Customer ID</th>
                     <th>Customer</th>
                     <th>Product</th>
                     <th>Quantity</th>
                     <th>Price</th>
-                    <th>Action</th>
+                    <th>Status</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -39,12 +40,23 @@
                 <tr class="odd gradeX">
                     <td><?php echo $i ?></td>
                     <td><?php echo $fm->formatDate($result['createdAt']) ?></td>
+                    <td><?php echo $result['orderType'] ?></td>
                     <td><?php echo $result['customerId'] ?></td>
                     <td><a href="customer.php?customerId=<?php echo $result['customerId'] ?>">View customer</a></td>
                     <td><?php echo $result['productName'] ?></td>
                     <td><?php echo $result['quantity'] ?></td>
                     <td><?php echo $result['total'] ?></td>
-                    <td><a style="color: green">Success</a></td>
+                    <?php
+                        if($result['status'] == 2){
+                    ?>
+                            <td><a style="color: green">Success</a></td>
+                    <?php
+                        } else {
+                    ?>
+                            <td><a style="color: #8B0000">Canceled</a></td>
+                    <?php
+                        }
+                    ?>
                 </tr>
                 <?php
                     }

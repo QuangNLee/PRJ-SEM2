@@ -15,6 +15,13 @@
         $confirm_order = $order->confirm_order($id,$productId,$quantity);
         header('Location:ordered.php');
     }
+    if(isset($_GET['cancelId'])){
+        $id = $_GET['cancelId'];
+        $productId = $_GET['productId'];
+        $quantity = $_GET['quantity'];
+        $cancel_order = $order->cancel_order($id,$productId,$quantity);
+        header('Location:ordered.php');
+    }
 ?>
 <div class="main">
     <div class="content">
@@ -52,24 +59,31 @@
                                     <td>
                                         <?php
                                             if($result['status'] == 0) {
-                                                echo 'Delivering';
+                                                echo '<span style="color: #FF8C00;">Delivering</span>';
                                             } else if ($result['status'] == 1){
-                                                echo 'Waiting submit';
+                                                echo '<span style="color: #0000FF;">Waiting submit</span>';
+                                            } else if ($result['status'] == 3){
+                                                echo '<span style="color: #8B0000;">Canceled</span>';
                                             } else {
-                                                echo 'Success';
+                                                echo '<span style="color: green;">Success</span>';
                                             }
                                         ?>
                                     </td>
                                     <?php
                                         if($result['status'] == 0){
                                     ?>
-                                        <td><?php echo 'N/A' ?></td>
+                                        <td>
+                                            <a onclick="confirm('Do you want to cancel?')" href="?cancelId=<?php echo $result['id'] ?>&productId=<?php echo $result['productId'] ?>
+                                                &quantity=<?php echo $result['quantity'] ?>">Cancel</a>
+                                        </td>
                                     <?php
                                         } else if ($result['status'] == 1){
                                     ?>
                                         <td>
                                             <a href="?confirmId=<?php echo $result['id'] ?>&productId=<?php echo $result['productId'] ?>
-                                                &quantity=<?php echo $result['quantity'] ?>">Accept</a>
+                                                &quantity=<?php echo $result['quantity'] ?>">Accept</a> ||
+                                            <a onclick="confirm('Do you want to cancel?')" href="?cancelId=<?php echo $result['id'] ?>&productId=<?php echo $result['productId'] ?>
+                                                &quantity=<?php echo $result['quantity'] ?>">Cancel</a>
                                         </td>
                                     <?php
                                         } else {

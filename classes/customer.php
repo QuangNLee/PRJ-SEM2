@@ -106,8 +106,8 @@
             }
         }
 
-        public function insert_comment($data){
-            $productId = mysqli_real_escape_string($this->db->link, $data['commentProductId']);
+        public function insert_comment($productId,$data){
+            $productId = mysqli_real_escape_string($this->db->link, $productId);
             $commentName = mysqli_real_escape_string($this->db->link, $data['commentName']);
             $comment = mysqli_real_escape_string($this->db->link, $data['comment']);
             if($commentName == "" || $comment == ""){
