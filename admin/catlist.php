@@ -34,11 +34,11 @@
                             <?php
                             if($result['status'] == 1){
                                 ?>
-                                Available
+                                <span style="color: green">Available</span>
                                 <?php
                             } else {
                                 ?>
-                                Not available
+                                <span style="color: red">Not available</span>
                                 <?php
                             }
                             ?>

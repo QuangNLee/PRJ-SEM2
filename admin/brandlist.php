@@ -33,13 +33,9 @@
                     <td>
                         <?php
                             if($result['status'] == 1){
-                        ?>
-                                Available
-                        <?php
+                                echo '<span style="color: green">Available</span>';
                             } else {
-                        ?>
-                                Not available
-                        <?php
+                                echo '<span style="color: red">Not available</span>';
                             }
                         ?>
                     </td>

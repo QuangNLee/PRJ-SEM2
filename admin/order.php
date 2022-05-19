@@ -52,10 +52,10 @@
                     <?php
                         $order = new order();
                         $fm = new Format();
-                        $get_inbox_order = $order->get_all_order();
-                        if($get_inbox_order){
+                        $get_all_order = $order->get_all_order();
+                        if($get_all_order){
                             $i = 0;
-                            while ($result = $get_inbox_order->fetch_assoc()){
+                            while ($result = $get_all_order->fetch_assoc()){
                                 $i++;
                     ?>
                     <tr class="odd gradeX">
