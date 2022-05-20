@@ -68,8 +68,20 @@
             $query = "SELECT p.productId, p.productName, p.image, od.unitPrice, o.id, 
                         od.quantity, od.VAT, ROUND(od.unitPrice*od.quantity + od.unitPrice*od.quantity*od.VAT/100) as 'total', 
                         o.createdAt AS 'orderDate', od.status FROM tbl_product p, tbl_orderDetail od, tbl_order o
+                        WHERE o.customerId = '$customer_id' AND p.productId = od.productId AND o.id = od.orderId";
+            $result = $this->db->select($query);
+            return $result;
+        }
+
+        public function get_pagination_all_order_detail($customer_id,$order_start,$limit){
+            $customer_id = mysqli_real_escape_string($this->db->link, $customer_id);
+            $order_start = mysqli_real_escape_string($this->db->link, $order_start);
+            $limit = mysqli_real_escape_string($this->db->link, $limit);
+            $query = "SELECT p.productId, p.productName, p.image, od.unitPrice, o.id, 
+                        od.quantity, od.VAT, ROUND(od.unitPrice*od.quantity + od.unitPrice*od.quantity*od.VAT/100) as 'total', 
+                        o.createdAt AS 'orderDate', od.status FROM tbl_product p, tbl_orderDetail od, tbl_order o
                         WHERE o.customerId = '$customer_id' AND p.productId = od.productId AND o.id = od.orderId
-                        ORDER BY orderDate DESC";
+                        ORDER BY orderDate DESC LIMIT {$order_start},{$limit}";
             $result = $this->db->select($query);
             return $result;
         }

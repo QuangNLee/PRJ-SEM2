@@ -45,58 +45,87 @@
                             <th width="5%">Action</th>
                         </tr>
                         <?php
-                        if($get_all_order_detail){
-                            while($result = $get_all_order_detail->fetch_assoc()){
-                                ?>
-                                <tr>
-                                    <td><?php echo $result['productName'] ?></td>
-                                    <td><img src="admin/uploads/<?php echo $result['image'] ?>" alt=""/></td>
-                                    <td><?php echo $fm->format_currency($result['unitPrice']) ?> $</td>
-                                    <td><?php echo $result['quantity'] ?></td>
-                                    <td><?php echo $result['VAT'] ?> %</td>
-                                    <td><?php echo $fm->format_currency($result['total']) ?>$</td>
-                                    <td><?php echo $fm->formatDate($result['orderDate']) ?></td>
-                                    <td>
-                                        <?php
-                                            if($result['status'] == 0) {
-                                                echo '<span style="color: #FF8C00;">Delivering</span>';
-                                            } else if ($result['status'] == 1){
-                                                echo '<span style="color: #0000FF;">Waiting submit</span>';
-                                            } else if ($result['status'] == 3){
-                                                echo '<span style="color: #8B0000;">Canceled</span>';
-                                            } else {
-                                                echo '<span style="color: green;">Success</span>';
-                                            }
-                                        ?>
-                                    </td>
-                                    <?php
-                                        if($result['status'] == 0){
-                                    ?>
-                                        <td>
-                                            <a onclick="confirm('Do you want to cancel?')" href="?cancelId=<?php echo $result['id'] ?>&productId=<?php echo $result['productId'] ?>
-                                                &quantity=<?php echo $result['quantity'] ?>">Cancel</a>
-                                        </td>
-                                    <?php
-                                        } else if ($result['status'] == 1){
-                                    ?>
-                                        <td>
-                                            <a href="?confirmId=<?php echo $result['id'] ?>&productId=<?php echo $result['productId'] ?>
-                                                &quantity=<?php echo $result['quantity'] ?>">Accept</a> ||
-                                            <a onclick="confirm('Do you want to cancel?')" href="?cancelId=<?php echo $result['id'] ?>&productId=<?php echo $result['productId'] ?>
-                                                &quantity=<?php echo $result['quantity'] ?>">Cancel</a>
-                                        </td>
-                                    <?php
-                                        } else {
-                                    ?>
-                                            <td>x</a></td>
-                                    <?php
-                                        }
-                                    ?>
-                                </tr>
-                                <?php
-                            }
-                        }
+                            $limit = 10;
+                            $total_order = mysqli_num_rows($get_all_order_detail);
+                            $current_page_order = isset($_GET['page']) ? $_GET['page'] : 1;
+                            $order_start = ($current_page_order -1) * $limit;
+                            $total_page_order = ceil($total_order/$limit);
+                            $get_pagination_order = $order->get_pagination_all_order_detail($customer_id,$order_start,$limit);
+                            if($get_pagination_order){
+                                while($result = $get_pagination_order->fetch_assoc()){
                         ?>
+                        <tr>
+                            <td><?php echo $result['productName'] ?></td>
+                            <td><img src="admin/uploads/<?php echo $result['image'] ?>" alt=""/></td>
+                            <td><?php echo $fm->format_currency($result['unitPrice']) ?> $</td>
+                            <td><?php echo $result['quantity'] ?></td>
+                            <td><?php echo $result['VAT'] ?> %</td>
+                            <td><?php echo $fm->format_currency($result['total']) ?>$</td>
+                            <td><?php echo $fm->formatDate($result['orderDate']) ?></td>
+                            <td>
+                                <?php
+                                    if($result['status'] == 0) {
+                                        echo '<span style="color: #FF8C00;">Delivering</span>';
+                                    } else if ($result['status'] == 1){
+                                        echo '<span style="color: #0000FF;">Waiting submit</span>';
+                                    } else if ($result['status'] == 3){
+                                        echo '<span style="color: #8B0000;">Canceled</span>';
+                                    } else {
+                                        echo '<span style="color: green;">Success</span>';
+                                    }
+                                ?>
+                            </td>
+                            <?php
+                                if($result['status'] == 0){
+                            ?>
+                                <td>
+                                    <a onclick="confirm('Do you want to cancel?')" href="?cancelId=<?php echo $result['id'] ?>&productId=<?php echo $result['productId'] ?>
+                                        &quantity=<?php echo $result['quantity'] ?>">Cancel</a>
+                                </td>
+                            <?php
+                                } else if ($result['status'] == 1){
+                            ?>
+                                <td>
+                                    <a href="?confirmId=<?php echo $result['id'] ?>&productId=<?php echo $result['productId'] ?>
+                                        &quantity=<?php echo $result['quantity'] ?>">Accept</a> ||
+                                    <a onclick="confirm('Do you want to cancel?')" href="?cancelId=<?php echo $result['id'] ?>&productId=<?php echo $result['productId'] ?>
+                                        &quantity=<?php echo $result['quantity'] ?>">Cancel</a>
+                                </td>
+                            <?php
+                                } else {
+                            ?>
+                                    <td>x</a></td>
+                            <?php
+                                }
+                            ?>
+                        </tr>
+                        <?php
+                                }
+                            }
+                        ?>
+                        <div class="pagination">
+                            <?php
+                                if ($current_page_order -1 > 0){
+                            ?>
+                            <li><a href="ordered.php?page=<?php echo $current_page_order-1; ?>">&laquo;</a></li>
+                            <?php
+                                }
+                            ?>
+                            <?php
+                                for($i = 1; $i <= $total_page_order; $i++){
+                            ?>
+                            <li class="<?php echo (($current_page_order == $i)?'active': '') ?>"><a href="ordered.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+                            <?php
+                                }
+                            ?>
+                            <?php
+                                if($current_page_order +1 <= $total_page_order){
+                            ?>
+                            <li><a href="ordered.php?page=<?php echo $current_page_order+1; ?>">&raquo;</a></li>
+                            <?php
+                                }
+                            ?>
+                        </div>
                     </table>
                 </div>
             </div>
