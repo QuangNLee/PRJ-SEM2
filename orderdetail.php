@@ -33,10 +33,10 @@ include 'inc/header.php';
                         <tr>
                             <td><?php echo $result['productName'] ?></td>
                             <td><img src="admin/uploads/<?php echo $result['image'] ?>" alt=""/></td>
-                            <td><?php echo $fm->format_currency($result['unitPrice']) ?> $</td>
+                            <td><?php echo $fm->format_currency($result['unitPrice']) ?> VND</td>
                             <td><?php echo $result['quantity'] ?></td>
                             <td><?php echo $result['VAT'] ?> %</td>
-                            <td><?php echo $fm->format_currency($result['total']) ?>$</td>
+                            <td><?php echo $fm->format_currency($result['total']) ?> VND</td>
                             <td><?php echo $fm->formatDate($result['createdAt']) ?></td>
                             <td><?php
                                     if($result['status'] == 0) {

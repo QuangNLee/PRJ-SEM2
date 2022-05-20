@@ -49,13 +49,13 @@
                                     <tr>
                                         <td><?php echo $result['productName'] ?></td>
                                         <td><img src="admin/uploads/<?php echo $result['image'] ?>" alt=""/></td>
-                                        <td><?php echo $fm->format_currency($result['price']) ?> $</td>
+                                        <td><?php echo $fm->format_currency($result['price']) ?> VND</td>
                                         <td><?php echo $result['quantity'] ?></td>
                                         <td><?php
                                             $total = $result['price'] * $result['quantity'];
                                             echo $fm->format_currency($total);
                                             ?>
-                                            $</td>
+                                            VND</td>
 
                                     </tr>
                                     <?php
@@ -77,7 +77,7 @@
                                         Session::set('sum',$subtotal);
                                         Session::set('qty',$qty);
                                         ?>
-                                        $</td>
+                                        VND</td>
                                 </tr>
                                 <tr>
                                     <th>VAT : </th>
@@ -88,9 +88,9 @@
                                     <td><?php
                                         $vat = $subtotal * 0.05;
                                         $gtotal = $subtotal + $vat;
-                                        echo $gtotal;
+                                        echo $fm->format_currency($gtotal);
                                         ?>
-                                        $</td>
+                                        VND</td>
                                 </tr>
                             </table>
                             <?php

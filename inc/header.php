@@ -121,7 +121,7 @@
                 <?php
                     $check_cart = $cart->check_cart();
                     if($check_cart == true){
-                        echo '<li><a href="cartController.php">Cart</a></li>';
+                        echo '<li><a href="cart.php">Cart</a></li>';
                     } else {
                         echo '';
                     }

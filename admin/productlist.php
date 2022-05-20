@@ -30,9 +30,9 @@
 					<th width="20%">Product Name</th>
 					<th width="5%">Category</th>
 					<th width="5%">Brand</th>
-					<th width="25%">Description</th>
+					<th width="20%">Description</th>
 					<th width="5%">Type</th>
-					<th width="5%">Product Price</th>
+					<th width="10%">Product Price</th>
 					<th width="10%">Image</th>
                     <th width="10%">Status</th>
 					<th width="10%">Action</th>
@@ -60,7 +60,7 @@
 							}
 					    ?>
 					</td>
-					<td><?php echo $result['price'] ?></td>
+					<td><?php echo $result['price'] ?> VND</td>
 					<td><img src="uploads/<?php echo $result['image'] ?>" width="50px"/></td>
                     <td>
                         <?php

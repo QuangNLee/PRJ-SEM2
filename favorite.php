@@ -42,7 +42,7 @@
                                     <td><?php echo $i; ?></td>
                                     <td><?php echo $result['productName'] ?></td>
                                     <td><img src="admin/uploads/<?php echo $result['image'] ?>" alt=""/></td>
-                                    <td><?php echo $fm->format_currency($result['price']) ?>$</td>
+                                    <td><?php echo $fm->format_currency($result['price']) ?> VND</td>
                                     <td>
                                         <a href="details.php?productId=<?php echo $result['productId'] ?>">Buy Now</a>
                                         <a onclick="return confirm('Do you want to delete???')"

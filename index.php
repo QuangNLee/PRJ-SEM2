@@ -20,7 +20,7 @@
                             <a href="details.php"><img src="admin/uploads/<?php echo $result['image'] ?>" alt="" /></a>
                             <h2><?php echo $result['productName'] ?></h2>
                             <p><?php echo $fm->textShorten($result['product_description'], 50) ?></p>
-                            <p><span class="price"><?php echo $fm->format_currency($result['price'])."$" ?></span></p>
+                            <p><span class="price"><?php echo $fm->format_currency($result['price'])." VND" ?></span></p>
                             <div class="button"><span><a href="details.php?productId=<?php echo $result['productId'] ?>" class="details">Details</a></span></div>
                         </div>
                         <?php
@@ -44,7 +44,7 @@
                             <a href="details.php"><img src="admin/uploads/<?php echo $result_new['image'] ?>" alt="" /></a>
                             <h2><?php echo $result_new['productName'] ?></h2>
                             <p><?php echo $fm->textShorten($result_new['product_description'], 50) ?></p>
-                            <p><span class="price"><?php echo $fm->format_currency($result_new['price'])."$" ?></span></p>
+                            <p><span class="price"><?php echo $fm->format_currency($result_new['price'])." VND" ?></span></p>
                             <div class="button"><span><a href="details.php?productId=<?php echo $result_new['productId'] ?>" class="details">Details</a></span></div>
                         </div>
                         <?php
