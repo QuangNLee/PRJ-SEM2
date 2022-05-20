@@ -18,7 +18,7 @@ function setupDashboardChart(containerElementId) {
     var s3 = [250, 350, 450, 550, 650, 750, 850, 950, 1050];
     var s4 = [2000, 1600, 1400, 1100, 900, 800, 1550, 1950, 1050];
     // Can specify a custom tick Array.
-    // Ticks should match up one for each y value (categoryController) in the series.
+    // Ticks should match up one for each y value (category) in the series.
     var ticks = ['March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November'];
 
     var plot1 = $.jqplot(containerElementId, [s1, s2, s3, s4], {
@@ -46,7 +46,7 @@ function setupDashboardChart(containerElementId) {
             placement: 'outsideGrid'
         },
         axes: {
-            // Use a categoryController axis on the x axis and use our custom ticks.
+            // Use a category axis on the x axis and use our custom ticks.
             xaxis: {
                 renderer: $.jqplot.CategoryAxisRenderer,
                 ticks: ticks
@@ -168,7 +168,7 @@ function drawBarchart(containerElement) {
     var s2 = [460, -210, 690, 820];
     var s3 = [-260, -440, 320, 200];
     // Can specify a custom tick Array.
-    // Ticks should match up one for each y value (categoryController) in the series.
+    // Ticks should match up one for each y value (category) in the series.
     var ticks = ['May', 'June', 'July', 'August'];
 
     var plot1 = $.jqplot(containerElement, [s1, s2, s3], {
@@ -195,7 +195,7 @@ function drawBarchart(containerElement) {
             placement: 'outsideGrid'
         },
         axes: {
-            // Use a categoryController axis on the x axis and use our custom ticks.
+            // Use a category axis on the x axis and use our custom ticks.
             xaxis: {
                 renderer: $.jqplot.CategoryAxisRenderer,
                 ticks: ticks
