@@ -1,10 +1,10 @@
 <?php 
     include 'inc/header.php';
     include 'inc/sidebar.php';
-    include '../classes/brand.php';
+    include '../controller/brandController.php';
 ?>
 <?php
-    $brand = new brand();
+    $brand = new brandController();
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $brandName = $_POST['brandName'];
         $insertbrand = $brand->insert_brand($brandName);

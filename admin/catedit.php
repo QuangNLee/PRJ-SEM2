@@ -1,10 +1,10 @@
 <?php 
     include 'inc/header.php';
     include 'inc/sidebar.php';
-    include '../classes/category.php';
+    include '../controller/categoryController.php';
 ?>
 <?php
-    $cat = new category();
+    $cat = new categoryController();
     if(!isset($_GET['catId']) || $_GET['catId'] == NULL){
         echo "<script>window.location ='catlist.php'</script>";
     } else {
@@ -44,7 +44,6 @@
                                 </td>
                                 <td>
                                     <select id="select" name="status">
-                                        <option>Choose status</option>
                                         <?php
                                         if($result['status'] == 1){
                                             ?>

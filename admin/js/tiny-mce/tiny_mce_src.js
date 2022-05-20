@@ -310,7 +310,7 @@
 							o = li[n];
 
 							if (o && o.func)
-								o.func.call(o.scope, 1); // Send in one arg to distinct unload and user destroy
+								o.func.call(o.scope, 1); // Send in one arg to distinct unload and userController destroy
 						}
 
 						// Detach unload function
@@ -350,7 +350,7 @@
 							d.attachEvent('onstop', stop);
 
 						// Remove onstop listener after a while to prevent the unload function
-						// to execute if the user presses cancel in an onbeforeunload
+						// to execute if the userController presses cancel in an onbeforeunload
 						// confirm dialog and then presses the browser stop button
 						win.setTimeout(function() {
 							if (d)
@@ -1397,7 +1397,7 @@ tinymce.create('static tinymce.util.XHR', {
 
 	function focusBody(ed) {
 		// Fix for a focus bug in FF 3.x where the body element
-		// wouldn't get proper focus if the user clicked on the HTML element
+		// wouldn't get proper focus if the userController clicked on the HTML element
 		if (!Range.prototype.getClientRects) { // Detect getClientRects got introduced in FF 4
 			ed.onMouseDown.add(function(ed, e) {
 				if (e.target.nodeName === "HTML") {
@@ -1849,7 +1849,7 @@ tinymce.html.Styles = function(settings, schema) {
 				serializeStyles('*');
 				serializeStyles(element_name);
 			} else {
-				// Output the styles in the order they are inside the object
+				// Output the styles in the orderController they are inside the object
 				for (name in styles) {
 					value = styles[name];
 
@@ -2166,7 +2166,7 @@ tinymce.html.Styles = function(settings, schema) {
 										attr.pattern = patternToRegExp(attrName);
 										element.attributePatterns.push(attr);
 									} else {
-										// Add attribute to order list if it doesn't already exist
+										// Add attribute to orderController list if it doesn't already exist
 										if (!attributes[attrName])
 											attributesOrder.push(attrName);
 
@@ -2323,7 +2323,7 @@ tinymce.html.Styles = function(settings, schema) {
 		// Todo: Remove this when we fix list handling to be valid
 		addValidChildren('+ol[ul|ol],+ul[ul|ol]');
 
-		// If the user didn't allow span only allow internal spans
+		// If the userController didn't allow span only allow internal spans
 		if (!getElementRule('span'))
 			addValidElements('span[!data-mce-type|*]');
 
@@ -4126,7 +4126,7 @@ tinymce.html.Writer = function(settings) {
 							return;
 						}
 
-						// No mce_style for elements with these since they might get resized by the user
+						// No mce_style for elements with these since they might get resized by the userController
 						if (s.keep_values) {
 							if (v && !t._isRes(v))
 								e.setAttribute('data-mce-style', v, 2);
@@ -4676,7 +4676,7 @@ tinymce.html.Writer = function(settings) {
 									ov = v;
 									v = tinymce._replace(/.*\.([a-z0-9_\-]+).*/i, '$1', v);
 
-									// Filter classes
+									// Filter controller
 									if (f && !(v = f(v, ov)))
 										return;
 
@@ -4856,7 +4856,7 @@ tinymce.html.Writer = function(settings) {
 			var t = this, r = t.createRng(), bef, aft, pa;
 
 			// W3C valid browsers tend to leave empty nodes to the left/right side of the contents, this makes sense
-			// but we don't want that in our code since it serves no purpose for the end user
+			// but we don't want that in our code since it serves no purpose for the end userController
 			// For example if this is chopped:
 			//   <p>text 1<span><b>CHOP</b></span>text 2</p>
 			// would produce:
@@ -5273,7 +5273,7 @@ tinymce.html.Writer = function(settings) {
 
 			// In the fourth case, none of three other cases hold: the containers of A and B
 			// are siblings or descendants of sibling nodes. In this case, A is before B if
-			// the container of A is before the container of B in a pre-order traversal of the
+			// the container of A is before the container of B in a pre-orderController traversal of the
 			// Ranges' context tree and A is after B otherwise.
 			cmnRoot = dom.findCommonAncestor(containerA, containerB);
 			childA = containerA;
@@ -7118,7 +7118,7 @@ tinymce.html.Writer = function(settings) {
 			if (t.selectedRange && t.explicitRange) {
 				if (r.compareBoundaryPoints(r.START_TO_START, t.selectedRange) === 0 && r.compareBoundaryPoints(r.END_TO_END, t.selectedRange) === 0) {
 					// Safari, Opera and Chrome only ever select text which causes the range to change.
-					// This lets us use the originally set range if the selection hasn't been changed by the user.
+					// This lets us use the originally set range if the selection hasn't been changed by the userController.
 					r = t.explicitRange;
 				} else {
 					t.selectedRange = null;
@@ -7392,7 +7392,7 @@ tinymce.html.Writer = function(settings) {
 				startRng = started = 0;
 			};
 
-			// Detect when user selects outside BODY
+			// Detect when userController selects outside BODY
 			dom.bind(doc, ['mousedown', 'contextmenu'], function(e) {
 				if (e.target.nodeName === 'HTML') {
 					if (started)
@@ -7467,7 +7467,7 @@ tinymce.html.Writer = function(settings) {
 			}
 		});
 
-		// Remove internal classes mceItem<..>
+		// Remove internal controller mceItem<..>
 		htmlParser.addAttributeFilter('class', function(nodes, name) {
 			var i = nodes.length, node, value;
 
@@ -10911,7 +10911,7 @@ tinymce.create('tinymce.ui.Toolbar:tinymce.ui.Container', {
 				t.formatter.register(name, {block : name, remove : 'all'});
 			});
 
-			// Register user defined formats
+			// Register userController defined formats
 			t.formatter.register(t.settings.formats);
 
 			t.undoManager = new tinymce.UndoManager(t);
@@ -11019,7 +11019,7 @@ tinymce.create('tinymce.ui.Toolbar:tinymce.ui.Container', {
 					var s, cl;
 
 					if (n == 'class') {
-						// Build regexp for classes
+						// Build regexp for controller
 						if (!t.classesRE) {
 							cl = t.dom.getClasses();
 
@@ -13626,7 +13626,7 @@ tinymce.create('tinymce.ui.Toolbar:tinymce.ui.Container', {
 			// Fix for bug #1897785, #1898007
 			if (tinymce.isIE) {
 				c.onShowMenu.add(function() {
-					// IE 8 needs focus in order to store away a range with the current collapsed caret location
+					// IE 8 needs focus in orderController to store away a range with the current collapsed caret location
 					ed.focus();
 
 					bm = ed.selection.getBookmark(1);
@@ -13829,7 +13829,7 @@ tinymce.create('tinymce.ui.Toolbar:tinymce.ui.Container', {
 			// Fix for bug #1897785, #1898007
 			if (tinymce.isIE) {
 				c.onShowMenu.add(function() {
-					// IE 8 needs focus in order to store away a range with the current collapsed caret location
+					// IE 8 needs focus in orderController to store away a range with the current collapsed caret location
 					ed.focus();
 					bm = ed.selection.getBookmark(1);
 				});
@@ -14072,7 +14072,7 @@ tinymce.create('tinymce.ui.Toolbar:tinymce.ui.Container', {
 							format.block_expand = true;
 						}
 
-						// Split classes if needed
+						// Split controller if needed
 						if (typeof(format.classes) === 'string')
 							format.classes = format.classes.split(/\s+/);
 					});
@@ -14167,7 +14167,7 @@ tinymce.create('tinymce.ui.Toolbar:tinymce.ui.Container', {
 				};
 
 				// Adjust selection so that a end container with a end offset of zero is not included in the selection
-				// as this isn't visible to the user.
+				// as this isn't visible to the userController.
 				var rng = ed.selection.getRng();
 				var start = rng.startContainer;
 				var end = rng.endContainer;
@@ -14753,9 +14753,9 @@ tinymce.create('tinymce.ui.Toolbar:tinymce.ui.Container', {
 				for (i = 0; i < formatList.length; i++) {
 					format = formatList[i];
 
-					// Name name, attributes, styles and classes
+					// Name name, attributes, styles and controller
 					if (matchName(node, format) && matchItems(node, format, 'attributes') && matchItems(node, format, 'styles')) {
-						// Match classes
+						// Match controller
 						if (classes = format.classes) {
 							for (i = 0; i < classes.length; i++) {
 								if (!dom.hasClass(node, classes[i]))
@@ -15220,18 +15220,18 @@ tinymce.create('tinymce.ui.Toolbar:tinymce.ui.Container', {
 					}
 
 					if (!compare_node || isEq(dom.getAttrib(compare_node, name), value)) {
-						// Keep internal classes
+						// Keep internal controller
 						if (name == 'class') {
 							value = dom.getAttrib(node, name);
 							if (value) {
-								// Build new class value where everything is removed except the internal prefixed classes
+								// Build new class value where everything is removed except the internal prefixed controller
 								valueOut = '';
 								each(value.split(/\s+/), function(cls) {
 									if (/mce\w+/.test(cls))
 										valueOut += (valueOut ? ' ' : '') + cls;
 								});
 
-								// We got some internal classes left
+								// We got some internal controller left
 								if (valueOut) {
 									dom.setAttrib(node, name, valueOut);
 									return;
@@ -15251,7 +15251,7 @@ tinymce.create('tinymce.ui.Toolbar:tinymce.ui.Container', {
 					}
 				});
 
-				// Remove classes
+				// Remove controller
 				each(format.classes, function(value) {
 					value = replaceVars(value, vars);
 

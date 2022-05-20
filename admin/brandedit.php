@@ -1,10 +1,10 @@
 <?php 
     include 'inc/header.php';
     include 'inc/sidebar.php';
-    include '../classes/brand.php';
+    include '../controller/brandController.php';
 ?>
 <?php
-    $brand = new brand();
+    $brand = new brandController();
     if(!isset($_GET['brandId']) || $_GET['brandId'] == NULL){
         echo "<script>window.location ='brandlist.php'</script>";
     } else {
@@ -44,7 +44,6 @@
                                 </td>
                                 <td>
                                     <select id="select" name="status">
-                                        <option>Choose status</option>
                                         <?php
                                         if($result['status'] == 1){
                                             ?>

@@ -1,10 +1,10 @@
 <?php
     $filepath = realpath(dirname(__FILE__));
     include_once ($filepath.'/../lib/database.php');
-    include_once ($filepath.'/../helper/format.php');
+    include_once($filepath . '/../helpers/format.php');
 ?>
 <?php
-    class product{
+    class productController{
         private $db;
         private $fm;
 
@@ -15,8 +15,8 @@
 
         public function insert_product($data,$files){
             $productName = mysqli_real_escape_string($this->db->link, $data['productName']);
-            $category = mysqli_real_escape_string($this->db->link, $data['category']);
-            $brand = mysqli_real_escape_string($this->db->link, $data['brand']);
+            $category = mysqli_real_escape_string($this->db->link, $data['categoryController']);
+            $brand = mysqli_real_escape_string($this->db->link, $data['brandController']);
             $product_description = mysqli_real_escape_string($this->db->link, $data['product_description']);
             $price = mysqli_real_escape_string($this->db->link, $data['price']);
             $type = mysqli_real_escape_string($this->db->link, $data['type']);
@@ -58,8 +58,8 @@
 
         public function update_product($data,$files,$id){
             $productName = mysqli_real_escape_string($this->db->link, $data['productName']);
-            $category = mysqli_real_escape_string($this->db->link, $data['category']);
-            $brand = mysqli_real_escape_string($this->db->link, $data['brand']);
+            $category = mysqli_real_escape_string($this->db->link, $data['categoryController']);
+            $brand = mysqli_real_escape_string($this->db->link, $data['brandController']);
             $product_description = mysqli_real_escape_string($this->db->link, $data['product_description']);
             $price = mysqli_real_escape_string($this->db->link, $data['price']);
             $type = mysqli_real_escape_string($this->db->link, $data['type']);
@@ -222,7 +222,7 @@
 
         public function get_product_by_brand($brandId){
             $catId = mysqli_real_escape_string($this->db->link, $brandId);
-            $query = "SELECT * FROM tbl_product WHERE brandId = '$brandId' AND status = 1 ORDER BY productId DESC";
+            $query = "SELECT * FROM tbl_product WHERE brandId = '$brandId' AND status = 1";
             $result = $this->db->select($query);
             return $result;
         }
@@ -231,13 +231,13 @@
             $brandId = mysqli_real_escape_string($this->db->link, $brandId);
             $product_start = mysqli_real_escape_string($this->db->link, $product_start);
             $limit = mysqli_real_escape_string($this->db->link, $limit);
-            $query = "SELECT * FROM tbl_product where brandId = '$brandId' AND status = 1 ORDER BY productId DESC LIMIT {$product_start},{$limit}";
+            $query = "SELECT * FROM tbl_product where brandId = '$brandId' AND status = 1 ORDER BY type DESC, productName ASC LIMIT {$product_start},{$limit}";
             $result = $this->db->select($query);
             return $result;
         }
 
         public function get_product_by_cat($id){
-            $query = "SELECT * FROM tbl_product WHERE catId = '$id' ORDER BY productId DESC";
+            $query = "SELECT * FROM tbl_product WHERE catId = '$id'";
             $result = $this->db->select($query);
             return $result;
         }
@@ -246,7 +246,7 @@
             $catId = mysqli_real_escape_string($this->db->link, $catId);
             $product_start = mysqli_real_escape_string($this->db->link, $product_start);
             $limit = mysqli_real_escape_string($this->db->link, $limit);
-            $query = "SELECT * FROM tbl_product where catId = '$catId' AND status = 1 ORDER BY productId DESC LIMIT {$product_start},{$limit}";
+            $query = "SELECT * FROM tbl_product where catId = '$catId' AND status = 1 ORDER BY type DESC, productName ASC LIMIT {$product_start},{$limit}";
             $result = $this->db->select($query);
             return $result;
         }

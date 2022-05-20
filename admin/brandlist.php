@@ -1,10 +1,10 @@
 <?php 
 	include 'inc/header.php';
 	include 'inc/sidebar.php';
-	include '../classes/brand.php';
+	include '../controller/brandController.php';
 ?>
 <?php
-    $brand = new brand();
+    $brand = new brandController();
 ?>
 <div class="grid_10">
     <div class="box round first grid">

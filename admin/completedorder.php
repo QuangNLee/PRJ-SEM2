@@ -4,11 +4,11 @@
 ?>
 <?php
     $filepath = realpath(dirname(__FILE__));
-    include_once ($filepath.'/../classes/order.php');
-    include_once ($filepath.'/../helper/format.php');
+    include_once($filepath . '/../controller/orderController.php');
+    include_once($filepath . '/../helpers/format.php');
 ?>
 <?php
-    $order = new order();
+    $order = new orderController();
     $fm = new Format();
     $get_successful_order = $order->get_completed_order();
 ?>

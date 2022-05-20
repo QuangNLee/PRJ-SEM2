@@ -1,10 +1,10 @@
 <?php
     include 'inc/header.php';
     include 'inc/sidebar.php';
-    include '../classes/slider.php';
+    include '../controller/sliderController.php';
 ?>
 <?php
-    $slider = new slider();
+    $slider = new sliderController();
     if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])){
         $insertSlider = $slider->insertSlider($_POST,$_FILES);
     }

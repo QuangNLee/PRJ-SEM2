@@ -1,10 +1,10 @@
 <?php
     $filepath = realpath(dirname(__FILE__));
     include_once ($filepath.'/../lib/database.php');
-    include_once ($filepath.'/../helper/format.php');
+    include_once($filepath . '/../helpers/format.php');
 ?>
 <?php
-    class brand{
+    class brandController{
         private $db;
         private $fm;
 
@@ -40,13 +40,13 @@
         }
 
         public function show_brand(){
-            $query = "SELECT * FROM tbl_brand order by brandName ASC";
+            $query = "SELECT * FROM tbl_brand ORDER by brandName ASC";
             $result = $this->db->select($query);
             return $result;
         }
 
         public function show_brand_index(){
-            $query = "SELECT * FROM tbl_brand order by brandName ASC";
+            $query = "SELECT * FROM tbl_brand ORDER by brandName ASC";
             $result = $this->db->select($query);
             return $result;
         }
@@ -80,7 +80,7 @@
         }
 
         public function list_brand(){
-            $query = "SELECT * FROM tbl_brand WHERE status = 1 order by brandName ASC";
+            $query = "SELECT * FROM tbl_brand WHERE status = 1 ORDER by brandName ASC";
             $result = $this->db->select($query);
             return $result;
         }

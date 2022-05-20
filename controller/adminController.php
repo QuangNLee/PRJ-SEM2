@@ -3,10 +3,10 @@
     include ($filepath.'/../lib/session.php');
     Session::checkLogin();
     include_once ($filepath.'/../lib/database.php');
-    include_once ($filepath.'/../helper/format.php');
+    include_once($filepath . '/../helpers/format.php');
 ?>
 <?php
-    class adminlogin{
+    class adminController{
         private $db;
         private $fm;
 
@@ -30,13 +30,13 @@
                 $result = $this->db->select($query);
                 if($result != false){
                     $value = $result->fetch_assoc();
-                    Session::set('adminlogin',true);
+                    Session::set('adminController',true);
                     Session::set('adminId', $value['adminId']);
                     Session::set('adminUser', $value['adminUser']);
                     Session::set('adminName', $value['adminName']);
                     header('Location:index.php');
                 } else {
-                    $alert = "Username or password not match!!!";
+                    $alert = '<span style="color: red; font-size: 18px;">Username or password not match!!!</span>';
                     return $alert;
                 }
             }

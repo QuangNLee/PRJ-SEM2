@@ -1,10 +1,10 @@
 <?php
     $filepath = realpath(dirname(__FILE__));
     include_once ($filepath.'/../lib/database.php');
-    include_once ($filepath.'/../helper/format.php');
+    include_once($filepath . '/../helpers/format.php');
 ?>
 <?php
-    class category{
+    class categoryController{
         private $db;
         private $fm;
 
@@ -40,13 +40,13 @@
         }
 
         public function show_category(){
-            $query = "SELECT * FROM tbl_category order by catName ASC";
+            $query = "SELECT * FROM tbl_category ORDER BY catName ASC";
             $result = $this->db->select($query);
             return $result;
         }
 
         public function show_category_index(){
-            $query = "SELECT * FROM tbl_category WHERE status = '1' order by catName ASC";
+            $query = "SELECT * FROM tbl_category WHERE status = '1' ORDER BY catName ASC";
             $result = $this->db->select($query);
             return $result;
         }

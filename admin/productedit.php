@@ -1,12 +1,12 @@
 <?php 
     include 'inc/header.php';
     include 'inc/sidebar.php';
-    include '../classes/brand.php';
-    include '../classes/category.php';
-    include '../classes/product.php';
+    include '../controller/brandController.php';
+    include '../controller/categoryController.php';
+    include '../controller/productController.php';
 ?>
 <?php
-    $prod = new product();
+    $prod = new productController();
     if(!isset($_GET['productId']) || $_GET['productId'] == NULL){
         echo "<script>window.location ='productlist.php'</script>";
     } else {
@@ -48,7 +48,7 @@
                             <select id="select" name="category">
                                 <option>Select Category</option>
                                 <?php
-                                    $cat = new category();
+                                    $cat = new categoryController();
                                     $catlist = $cat->show_category();
                                     if($catlist){
                                         while($result = $catlist->fetch_assoc()){
@@ -73,7 +73,7 @@
                             <select id="select" name="brand">
                                 <option>Select Brand</option>
                                 <?php
-                                    $brand = new brand();
+                                    $brand = new brandController();
                                     $brandlist = $brand->show_brand();
                                     if($brandlist){
                                         while($result = $brandlist->fetch_assoc()){
@@ -123,7 +123,6 @@
                         </td>
                         <td>
                             <select id="select" name="type">
-                                <option>Select Type</option>
                                 <?php
                                     if($result_product['type'] == 1){
                                 ?>
@@ -146,7 +145,6 @@
                         </td>
                         <td>
                             <select id="select" name="status">
-                                <option>Choose status</option>
                                 <?php
                                 if($result_product['status'] == 1){
                                     ?>

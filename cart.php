@@ -107,7 +107,7 @@
                </table>
                 <?php
                     } else {
-                        echo 'Your cart is empty!';
+                        echo 'Your cartController is empty!';
                     }
                 ?>
             </div><br>

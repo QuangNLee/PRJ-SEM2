@@ -3,20 +3,20 @@
 	include 'lib/session.php';
     Session::init();
 	include_once 'lib/database.php';
-	include_once 'helper/format.php';
-	spl_autoload_register(function($className){
-		include_once "classes/".$className.".php";
+	include_once 'helpers/format.php';
+	spl_autoload_register(function($controller){
+		include_once "controller/".$controller.".php";
 	});
 	$db = new Database();
 	$fm = new Format();
-	$cart = new cart();
-	$user = new user();
-	$cat = new category();
-    $customer = new customer();
-	$product  = new product();
-	$order = new order();
-	$brand = new brand();
-	$slider = new slider();
+	$cart = new cartController();
+	$user = new userController();
+	$cat = new categoryController();
+    $customer = new customerController();
+	$product  = new productController();
+	$order = new orderController();
+	$brand = new brandController();
+	$slider = new sliderController();
 ?>
 <?php
   header("Cache-Control: no-cache, must-revalidate");
@@ -103,7 +103,7 @@
 			<ul>
 				<li><a href="index.php">Home</a></li>
 				<li class="dropdown">
-                    <a href="javascript:void(0)" class="dropbtn">Product</a>
+                    <a href="javascript:void(0)" class="dropbtn">Product ▼</a>
                     <div class="dropdown-content">
                         <?php
                             $show_category = $cat->show_category_index();
@@ -121,7 +121,7 @@
                 <?php
                     $check_cart = $cart->check_cart();
                     if($check_cart == true){
-                        echo '<li><a href="cart.php">Cart</a></li>';
+                        echo '<li><a href="cartController.php">Cart</a></li>';
                     } else {
                         echo '';
                     }

@@ -1,10 +1,10 @@
 ﻿<?php 
 	include 'inc/header.php';
 	include 'inc/sidebar.php';
-	include '../classes/category.php';
+	include '../controller/categoryController.php';
 ?>
 <?php
-    $cat = new category();
+    $cat = new categoryController();
 ?>
 <div class="grid_10">
     <div class="box round first grid">

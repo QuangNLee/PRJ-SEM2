@@ -2,11 +2,11 @@
     include 'inc/header.php';
     include 'inc/sidebar.php';
     $filepath = realpath(dirname(__FILE__));
-    include_once ($filepath.'/../classes/customer.php');
-    include_once ($filepath.'/../helper/format.php');
+    include_once($filepath . '/../controller/customerController.php');
+    include_once($filepath . '/../helpers/format.php');
 ?>
 <?php
-    $customer = new customer();
+    $customer = new customerController();
     if(!isset($_GET['customerId']) || $_GET['customerId'] == NULL){
         echo "<script>window.location ='inbox.php'</script>";
     } else {

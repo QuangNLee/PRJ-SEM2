@@ -4,11 +4,11 @@ include 'inc/sidebar.php';
 ?>
 <?php
 $filepath = realpath(dirname(__FILE__));
-include_once ($filepath.'/../classes/order.php');
-include_once ($filepath.'/../helper/format.php');
+include_once($filepath . '/../controller/orderController.php');
+include_once($filepath . '/../helpers/format.php');
 ?>
 <?php
-$order = new order();
+$order = new orderController();
 if(isset($_GET['shippedId'])){
     $id = $_GET['shippedId'];
     $productId = $_GET['productId'];
@@ -50,7 +50,7 @@ if(isset($_GET['cancelId'])){
                     </thead>
                     <tbody>
                     <?php
-                    $order = new order();
+                    $order = new orderController();
                     $fm = new Format();
                     $get_inbox_order = $order->get_inbox_order();
                     if($get_inbox_order){
