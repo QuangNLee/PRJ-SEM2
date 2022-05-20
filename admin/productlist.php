@@ -60,7 +60,7 @@
 							}
 					    ?>
 					</td>
-					<td><?php echo $result['price'] ?> VND</td>
+					<td><?php echo $fm->format_currency($result['price']) ?> VND</td>
 					<td><img src="uploads/<?php echo $result['image'] ?>" width="50px"/></td>
                     <td>
                         <?php

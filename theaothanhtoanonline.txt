@@ -1,0 +1,6 @@
+- VNPAY:
+    + Ngan hang: NCB
+    + The: 	9704198526191432198
+    + Chu the: NGUYEN VAN A
+    + Ngay phat hanh: 07/15
+    + OPT: 123456
