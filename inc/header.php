@@ -69,7 +69,7 @@
                                     if($check_cart){
                                         $sum = Session::get("sum");
                                         $qty = Session::get("qty");
-                                        echo $sum.'$'.' - '.'Qty:'.$qty;
+                                        echo $fm->format_currency($sum).'VND'.'-'.'Qty:'.$qty;
                                     } else {
                                         echo 'Empty';
                                     }

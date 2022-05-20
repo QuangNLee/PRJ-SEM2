@@ -15,8 +15,8 @@
 
         public function insert_product($data,$files){
             $productName = mysqli_real_escape_string($this->db->link, $data['productName']);
-            $category = mysqli_real_escape_string($this->db->link, $data['categoryController']);
-            $brand = mysqli_real_escape_string($this->db->link, $data['brandController']);
+            $category = mysqli_real_escape_string($this->db->link, $data['category']);
+            $brand = mysqli_real_escape_string($this->db->link, $data['brand']);
             $product_description = mysqli_real_escape_string($this->db->link, $data['product_description']);
             $price = mysqli_real_escape_string($this->db->link, $data['price']);
             $type = mysqli_real_escape_string($this->db->link, $data['type']);
@@ -58,8 +58,8 @@
 
         public function update_product($data,$files,$id){
             $productName = mysqli_real_escape_string($this->db->link, $data['productName']);
-            $category = mysqli_real_escape_string($this->db->link, $data['categoryController']);
-            $brand = mysqli_real_escape_string($this->db->link, $data['brandController']);
+            $category = mysqli_real_escape_string($this->db->link, $data['category']);
+            $brand = mysqli_real_escape_string($this->db->link, $data['brand']);
             $product_description = mysqli_real_escape_string($this->db->link, $data['product_description']);
             $price = mysqli_real_escape_string($this->db->link, $data['price']);
             $type = mysqli_real_escape_string($this->db->link, $data['type']);
