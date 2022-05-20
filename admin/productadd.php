@@ -1,12 +1,12 @@
 ﻿<?php 
     include 'inc/header.php';
     include 'inc/sidebar.php';
-    include '../classes/brand.php';
-    include '../classes/category.php';
-    include '../classes/product.php';
+    include '../controller/brandController.php';
+    include '../controller/categoryController.php';
+    include '../controller/productController.php';
 ?>
 <?php
-    $prod = new product();
+    $prod = new productController();
     if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])){
         
         $insertProduct = $prod->insert_product($_POST,$_FILES);
@@ -39,7 +39,7 @@
                         <select id="select" name="category">
                             <option>Select Category</option>
                             <?php
-                                $cat = new category();
+                                $cat = new categoryController();
                                 $catlist = $cat->show_category();
                                 if($catlist){
                                     while($result = $catlist->fetch_assoc()){
@@ -60,7 +60,7 @@
                         <select id="select" name="brand">
                             <option>Select Brand</option>
                             <?php
-                                $brand = new brand();
+                                $brand = new brandController();
                                 $brandlist = $brand->show_brand();
                                 if($brandlist){
                                     while($result = $brandlist->fetch_assoc()){
@@ -106,8 +106,7 @@
                     </td>
                     <td>
                         <select id="select" name="type">
-                            <option>Select Type</option>
-                            <option value="1">Featured</option>
+                            <option value="1" selected>Featured</option>
                             <option value="0">Non-Featured</option>
                         </select>
                     </td>

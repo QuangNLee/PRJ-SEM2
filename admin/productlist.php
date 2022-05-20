@@ -1,13 +1,13 @@
 ﻿<?php 
 	include 'inc/header.php';
 	include 'inc/sidebar.php';
-	include '../classes/brand.php';
-	include '../classes/category.php';
-	include '../classes/product.php';
-	include_once '../helper/format.php';
+	include '../controller/brandController.php';
+	include '../controller/categoryController.php';
+	include '../controller/productController.php';
+	include_once '../helpers/format.php';
 ?>
 <?php
-	$prod = new product();
+	$prod = new productController();
 	$fm = new Format();
 	if(isset($_GET['productId'])){
 		$id = $_GET['productId'];

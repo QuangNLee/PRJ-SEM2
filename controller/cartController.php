@@ -1,10 +1,10 @@
 <?php
     $filepath = realpath(dirname(__FILE__));
     include_once ($filepath.'/../lib/database.php');
-    include_once ($filepath.'/../helper/format.php');
+    include_once($filepath . '/../helpers/format.php');
 ?>
 <?php
-    class cart{
+    class cartController{
         private $db;
         private $fm;
 
@@ -26,14 +26,14 @@
             $query_check_cart = "SELECT * FROM tbl_cart WHERE productId = '$id' AND sid = '$sid'";
             $check_cart = $this->db->select($query_check_cart);
             if($check_cart){
-                $msg = "<span class='error'>Product already exists in cart!!!</span>";
+                $msg = "<span class='error'>Product already exists in cartController!!!</span>";
                 return $msg;
             } else {
                 $query_insert = "INSERT INTO tbl_cart (productId, sid, productName, price, quantity, image) 
                     VALUES ('$id', '$sid', '$productName', '$price', '$quantity', '$image')";
                 $result_insert = $this->db->insert($query_insert);
                 if($result_insert){
-                    header('Location:cart.php');
+                    header('Location:cartController.php');
                 } else {
                     header('Location:404.php');
                 }
@@ -53,7 +53,7 @@
             $query = "UPDATE tbl_cart SET quantity = '$quantity' WHERE cartId = '$cartId'";
             $result = $this->db->update($query);
             if($result){
-                header('Location:cart.php');
+                header('Location:cartController.php');
             } else {
                 $msg = "<span class='error'>Failed</span>";
                 return $msg;
@@ -65,7 +65,7 @@
             $query = "DELETE FROM tbl_cart WHERE cartId = '$cartid'";
             $result = $this->db->delete($query);
             if($result){
-                header('Location:cart.php');
+                header('Location:cartController.php');
             } else{
                 $msg = "<span class='error'>Failed!!!</span>";
                 return $msg;

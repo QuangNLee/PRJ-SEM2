@@ -15,7 +15,7 @@
  * 
  * The plugin attempts to use the most advanced features available in the current browser to save
  * as much content as possible.  There are a total of four different methods used to autosave the
- * content.  In order of preference, they are:
+ * content.  In orderController of preference, they are:
  * 
  * 1. localStorage - A new feature of HTML 5, localStorage can store megabytes of data per domain
  * on the client computer. Data stored in the localStorage area has no expiration date, so we must
@@ -36,7 +36,7 @@
  * way to store up to 128K of data per "document", or up to 1MB of data per domain, on the client
  * computer.  The feature is available for IE 5+, which makes it available for every version of IE
  * supported by TinyMCE.  The content is persistent across browser restarts and expires on the
- * date/time specified, just like a cookie.  However, the data is not cleared when the user clears
+ * date/time specified, just like a cookie.  However, the data is not cleared when the userController clears
  * cookies on the browser, which makes it well-suited for rescuing autosaved content.  UserData,
  * like other Microsoft IE browser technologies, is implemented as a behavior attached to a
  * specific DOM object, so in this case we attach the behavior to the same DOM element that the
@@ -129,7 +129,7 @@
 			});
 
 			ed.onInit.add(function() {
-				// Check if the user added the restore button, then setup auto storage logic
+				// Check if the userController added the restore button, then setup auto storage logic
 				if (ed.controlManager.get(RESTORE_DRAFT)) {
 					// Setup storage engine
 					self.setupStorage(ed);

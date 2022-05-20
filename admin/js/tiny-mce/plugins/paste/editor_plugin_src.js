@@ -74,7 +74,7 @@
 			ed.pasteAsPlainText = getParam(ed, 'paste_text_sticky_default');
 
 			// This function executes the process handlers and inserts the contents
-			// force_rich overrides plain text mode set by user, important for pasting with execCommand
+			// force_rich overrides plain text mode set by userController, important for pasting with execCommand
 			function process(o, force_rich) {
 				var dom = ed.dom, rng;
 

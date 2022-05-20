@@ -299,7 +299,7 @@
 				}
 			});
 
-			// Auto import classes if the ctrl box is empty
+			// Auto import controller if the ctrl box is empty
 			if (ctrl.getLength() == 0) {
 				ctrl.onPostRender.add(function(ed, n) {
 					if (!ctrl.NativeListBox) {
@@ -505,7 +505,7 @@
 				ed.settings.aria_label = s.aria_label + ed.getLang('advanced.help_shortcut');
 			}
 
-			// TODO: ACC Should have an aria-describedby attribute which is user-configurable to describe what this field is actually for.
+			// TODO: ACC Should have an aria-describedby attribute which is userController-configurable to describe what this field is actually for.
 			// Maybe actually inherit it from the original textara?
 			n = p = DOM.create('span', {role : 'application', 'aria-labelledby' : ed.id + '_voice', id : ed.id + '_parent', 'class' : 'mceEditor ' + ed.settings.skin + 'Skin' + (s.skin_variant ? ' ' + ed.settings.skin + 'Skin' + t._ufirst(s.skin_variant) : '')});
 			DOM.add(n, 'span', {'class': 'mceVoiceLabel', 'style': 'display:none;', id: ed.id + '_voice'}, s.aria_label);
@@ -531,12 +531,12 @@
 
 			n = o.targetNode;
 
-			// Add classes to first and last TRs
+			// Add controller to first and last TRs
 			nl = sc.rows;
 			DOM.addClass(nl[0], 'mceFirst');
 			DOM.addClass(nl[nl.length - 1], 'mceLast');
 
-			// Add classes to first and last TDs
+			// Add controller to first and last TDs
 			each(DOM.select('tr', tb), function(n) {
 				DOM.addClass(n.firstChild, 'mceFirst');
 				DOM.addClass(n.childNodes[n.childNodes.length - 1], 'mceLast');

@@ -269,7 +269,7 @@
 				}
 			});
 			
-			// Make sure the tab order loops within the dialog.
+			// Make sure the tab orderController loops within the dialog.
 			Event.add([id + '_left', id + '_right'], 'focus', function(evt) {
 				var iframe = DOM.get(id + '_ifr');
 				if (iframe) {

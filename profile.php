@@ -15,7 +15,7 @@
 //    }
 //    if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])){
 //        $quantity = $_POST['quantity'];
-//        $addToCart = $cart->add_to_cart($quantity,$id);
+//        $addToCart = $cartController->add_to_cart($quantity,$id);
 //    }
 ?>
 <div class="main">
