@@ -2701,3 +2701,8 @@ p.success_note{
 .menu-header .dropdown:hover .dropdown-content {
 	display: block;
 }
+a.btn-payment{
+	display: block;
+	width: 33%;
+	margin: 6px auto;
+}

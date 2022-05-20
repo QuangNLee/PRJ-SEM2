@@ -23,7 +23,7 @@ if(isset($_GET['orderid']) && $_GET['orderid'] == 'orderController'){
                         }
                     }
                 ?>
-                <p class="success_note">Total price: <?php echo $fm->format_currency($price) ?> $</p>
+                <p class="success_note">Total price: <?php echo $fm->format_currency($price) ?> VND</p>
                 <p class="success_note">We will contact you soon. Thank you!<a href="orderdetail.php"> Click here to see your order.</a> </p>
             </div>
         </div>
