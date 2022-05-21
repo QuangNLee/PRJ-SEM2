@@ -1,13 +1,13 @@
 <?php
-include 'inc/header.php';
+    include 'inc/header.php';
 ?>
 <?php
-if(isset($_GET['orderid']) && $_GET['orderid'] == 'orderController'){
-    $customer_id = Session::get('customer_id');
-    $insertOrder = $order->insertOrder($customer_id);
-    $delcart = $cart->del_all_data_cart();
-    header('Location:success.php');
-}
+    if(isset($_GET['orderid']) && $_GET['orderid'] == 'order'){
+        $customer_id = Session::get('customer_id');
+        $insertOrder = $order->insertOrderOffline($customer_id);
+        $delcart = $cart->del_all_data_cart();
+        header('Location:success.php');
+    }
 ?>
 <form action="" method="post">
     <div class="main">
@@ -30,5 +30,5 @@ if(isset($_GET['orderid']) && $_GET['orderid'] == 'orderController'){
     </div>
 </form>
 <?php
-include 'inc/footer.php';
+    include 'inc/footer.php';
 ?>
