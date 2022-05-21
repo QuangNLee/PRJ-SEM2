@@ -42,41 +42,41 @@
                     ?>
                 </table>
                 <?php
-                $check_cart = $cart->check_cart();
-                if($check_cart){
-                    ?>
-                    <table style="float:right;text-align:left;" width="40%">
-                        <tr>
-                            <th>Sub Total : </th>
-                            <td>
-                                <?php
-                                echo $fm->format_currency($subtotal);
-                                Session::set('sum',$subtotal);
-                                Session::set('qty',$qty);
-                                ?>
-                                VND
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>VAT : </th>
-                            <td>5%</td>
-                        </tr>
-                        <tr>
-                            <th>Grand Total :</th>
-                            <td>
-                                <?php
-                                $vat = $subtotal * 0.05;
-                                $gtotal = $subtotal + $vat;
-                                echo $fm->format_currency($gtotal);
-                                ?>
-                                VND
-                            </td>
-                        </tr>
-                    </table>
-                    <?php
-                } else {
-                    echo 'Your cart is empty!';
-                }
+                    $check_cart = $cart->check_cart();
+                    if($check_cart){
+                ?>
+                <table style="float:right;text-align:left;" width="40%">
+                    <tr>
+                        <th>Sub Total : </th>
+                        <td>
+                            <?php
+                            echo $fm->format_currency($subtotal);
+                            Session::set('sum',$subtotal);
+                            Session::set('qty',$qty);
+                            ?>
+                            VND
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>VAT : </th>
+                        <td>5%</td>
+                    </tr>
+                    <tr>
+                        <th>Grand Total :</th>
+                        <td>
+                            <?php
+                            $vat = $subtotal * 0.05;
+                            $gtotal = $subtotal + $vat;
+                            echo $fm->format_currency($gtotal);
+                            ?>
+                            VND
+                        </td>
+                    </tr>
+                </table>
+                <?php
+                    } else {
+                        echo 'Your cart is empty!';
+                    }
                 ?>
                 <div class="clear"></div>
                 <div class="shopping" style="text-align: center">
@@ -88,18 +88,13 @@
                         <input type="hidden" name="total_payment" value="<?php echo $gtotal; ?>">
                         <button class="btn btn-success btn-payment" name="redirect" id="redirect">Cash by VNPAY</button>
                     </form><br>
-                    <form action="paymentgatemomo.php" method="POST">
-                        <input type="hidden" name="total_payment" value="<?php echo $gtotal; ?>">
-                        <button class="btn btn-success btn-payment" name="captureWallet">Cash by QR MOMO</button>
-                    </form><br>
-                    <form action="paymentgatemomo.php" method="POST">
-                        <input type="hidden" name="total_payment" value="<?php echo $gtotal; ?>">
-                        <button class="btn btn-success btn-payment" name="payWithATM">Cash by ATM MOMO</button>
-                    </form><br>
-<!--                    <form action="paymentgateonepay.php" method="POST">-->
-<!--                        <input type="hidden" name="total_payment" value="--><?php //echo $gtotal; ?><!--">-->
-<!--                        <button class="btn btn-success btn-payment" name="">Cash by ATM ONEPAY</button>-->
-<!--                    </form>-->
+                    <div id="paypal-button-container" class="btn btn-success" style="background: white">
+                        <?php
+                            $priceUSD = round($gtotal/23000);
+                        ?>
+                        <input type="hidden" id="priceUSD" value="<?php echo $priceUSD; ?>">
+
+                    </div>
                     <?php
                         } else {
                     ?>

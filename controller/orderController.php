@@ -35,12 +35,12 @@
             }
         }
 
-        public function insertOrderOnline($customer_id){
+        public function insertOrderOnline($customer_id, $gate){
             $sid = session_id();
             $query_get_product = "SELECT * FROM tbl_cart WHERE sid = '$sid'";
             $get_product = $this->db->select($query_get_product);
             if($get_product){
-                $query_insert_order = "INSERT INTO tbl_order (customerId,orderType) VALUE ('$customer_id',1)";
+                $query_insert_order = "INSERT INTO tbl_order (customerId,orderType,gate) VALUE ('$customer_id',1, '$gate')";
                 $insert_order = $this->db->insert($query_insert_order);
                 while($result_product = $get_product->fetch_assoc()){
                     $query_get_order = "SELECT * FROM tbl_order WHERE customerId = '$customer_id' ORDER BY createdAt DESC LIMIT 1";

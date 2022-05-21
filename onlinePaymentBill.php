@@ -3,10 +3,14 @@
 ?>
 <?php
     if(isset($_GET['onlinepayment']) && $_GET['onlinepayment'] == 'success'){
+        if($_GET['gate'] == 'vnpay'){
+            $gate = 'vnpay';
+        } else if ($_GET['gate'] == 'paypal'){
+            $gate = 'paypal';
+        }
         $customer_id = Session::get('customer_id');
-        $insertOrder = $order->insertOrderOnline($customer_id);
+        $insertOrder = $order->insertOrderOnline($customer_id, $gate);
         $delcart = $cart->del_all_data_cart();
-        header('Location:success.php');
     }
 ?>
     <form action="" method="post">
