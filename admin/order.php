@@ -61,12 +61,20 @@
                     <tr class="odd gradeX">
                         <td><?php echo $i ?></td>
                         <td><?php echo $fm->formatDate($result['createdAt']) ?></td>
-                        <td><?php echo $result['orderType'] ?></td>
+                        <td>
+                            <?php
+                                if($result['orderType'] == 0){
+                                    echo '<span style="text-align: center; color: red">Offline Payment</span>';
+                                } else {
+                                    echo '<span style="text-align: center; color: green">Online Payment</span>';
+                                }
+                            ?>
+                        </td>
                         <td><?php echo $result['customerId'] ?></td>
                         <td><a href="customer.php?customerId=<?php echo $result['customerId'] ?>">View customer</a></td>
                         <td><?php echo $result['productName'] ?></td>
                         <td><?php echo $result['quantity'] ?></td>
-                        <td><?php echo $result['total'] ?></td>
+                        <td><?php echo $fm->format_currency($result['total']) ?></td>
                         <td>
                             <?php
                                 if($result['status'] == 0){

@@ -37,10 +37,11 @@
                             <th width="15%">Product Name</th>
                             <th width="15%">Image</th>
                             <th width="15%">Price</th>
-                            <th width="10%">Quantity</th>
+                            <th width="5%">Quantity</th>
                             <th width="10%">VAT</th>
                             <th width="15%">Total Price</th>
                             <th width="10%">Order date</th>
+                            <th width="5%">Type</th>
                             <th width="5%">Status</th>
                             <th width="5%">Action</th>
                         </tr>
@@ -62,6 +63,15 @@
                             <td><?php echo $result['VAT'] ?> %</td>
                             <td><?php echo $fm->format_currency($result['total']) ?> VND</td>
                             <td><?php echo $fm->formatDate($result['orderDate']) ?></td>
+                            <td>
+                                <?php
+                                     if($result['orderType'] == 0){
+                                         echo '<span style="text-align: center; color: red">Offline Payment</span>';
+                                     } else {
+                                         echo '<span style="text-align: center; color: green">Online Payment</span>';
+                                     }
+                                ?>
+                            </td>
                             <td>
                                 <?php
                                     if($result['status'] == 0) {

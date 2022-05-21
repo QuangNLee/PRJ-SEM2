@@ -13,12 +13,34 @@
             $this->fm = new Format();
         }
 
-        public function insertOrderOffline($customer_id){
+        public function insertOrder($customer_id){
             $sid = session_id();
             $query_get_product = "SELECT * FROM tbl_cart WHERE sid = '$sid'";
             $get_product = $this->db->select($query_get_product);
             if($get_product){
-                $query_insert_order = "INSERT INTO tbl_order (customerId,orderType) VALUE ('$customer_id','Offline Payment')";
+                $query_insert_order = "INSERT INTO tbl_order (customerId,orderType) VALUE ('$customer_id',0)";
+                $insert_order = $this->db->insert($query_insert_order);
+                while($result_product = $get_product->fetch_assoc()){
+                    $query_get_order = "SELECT * FROM tbl_order WHERE customerId = '$customer_id' ORDER BY createdAt DESC LIMIT 1";
+                    $get_order = $this->db->select($query_get_order);
+                    $result_order = $get_order->fetch_assoc();
+                    $orderId = $result_order['id'];
+                    $productId = $result_product['productId'];
+                    $quantity = $result_product['quantity'];
+                    $price = $result_product['price'];
+                    $query = "INSERT INTO tbl_orderDetail (orderId, productId, quantity, unitPrice)
+                        VALUES ('$orderId', '$productId', '$quantity', $price)";
+                    $result = $this->db->insert($query);
+                }
+            }
+        }
+
+        public function insertOrderOnline($customer_id){
+            $sid = session_id();
+            $query_get_product = "SELECT * FROM tbl_cart WHERE sid = '$sid'";
+            $get_product = $this->db->select($query_get_product);
+            if($get_product){
+                $query_insert_order = "INSERT INTO tbl_order (customerId,orderType) VALUE ('$customer_id',1)";
                 $insert_order = $this->db->insert($query_insert_order);
                 while($result_product = $get_product->fetch_assoc()){
                     $query_get_order = "SELECT * FROM tbl_order WHERE customerId = '$customer_id' ORDER BY createdAt DESC LIMIT 1";
@@ -77,7 +99,7 @@
             $customer_id = mysqli_real_escape_string($this->db->link, $customer_id);
             $order_start = mysqli_real_escape_string($this->db->link, $order_start);
             $limit = mysqli_real_escape_string($this->db->link, $limit);
-            $query = "SELECT p.productId, p.productName, p.image, od.unitPrice, o.id, 
+            $query = "SELECT p.productId, p.productName, p.image, od.unitPrice, o.id, o.orderType, 
                         od.quantity, od.VAT, ROUND(od.unitPrice*od.quantity + od.unitPrice*od.quantity*od.VAT/100) as 'total', 
                         o.createdAt AS 'orderDate', od.status FROM tbl_product p, tbl_orderDetail od, tbl_order o
                         WHERE o.customerId = '$customer_id' AND p.productId = od.productId AND o.id = od.orderId
