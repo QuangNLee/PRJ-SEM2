@@ -11,29 +11,29 @@
         );
         curl_setopt($ch, CURLOPT_TIMEOUT, 5);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
-    //execute post
+        //execute post
         $result = curl_exec($ch);
-    //close connection
+        //close connection
         curl_close($ch);
         return $result;
     }
 
 
-    $endpoint = "https://test-payment.momo.vn/v2/gateway/api/create";
+        $endpoint = "https://test-payment.momo.vn/v2/gateway/api/create";
 
 
-    $partnerCode = 'MOMOBKUN20180529';
-    $accessKey = 'klm05TvNBzhg7h7j';
-    $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
-    $orderInfo = "Thanh toán qua MoMo";
-    $amount = $_POST['total_payment'];
-    $orderId = time() ."";
-    $redirectUrl = "http://localhost:8088/prj_sem2/onlinePaymentBill.php?onlinepayment=success&gate=paypal";
-    $ipnUrl = "https://webhook.site/b3088a6a-2d17-4f8d-a383-71389a6c600b";
-    $extraData = "";
+        $partnerCode = 'MOMOBKUN20180529';
+        $accessKey = 'klm05TvNBzhg7h7j';
+        $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
+        $orderInfo = "Thanh toán qua MoMo";
+        $amount = $_POST['total_payment'];
+        $orderId = time() ."";
+        $redirectUrl = "http://localhost:8088/prj_sem2/onlinePaymentBill.php?onlinepayment=success&";
+        $ipnUrl = "https://webhook.site/b3088a6a-2d17-4f8d-a383-71389a6c600b";
+        $extraData = "";
 
 
-//    if (!empty($_POST)) {
+    //    if (!empty($_POST)) {
         $partnerCode = $partnerCode;
         $accessKey = $accessKey;
         $secretKey = $secretKey;
@@ -45,9 +45,9 @@
         $extraData = $extraData;
 
         $requestId = time() . "";
-        $requestType = "captureWallet";
-//        $extraData = ($_POST["extraData"] ? $_POST["extraData"] : "");
-    //before sign HMAC SHA256 signature
+        $requestType = "payWithATM";
+        //        $extraData = ($_POST["extraData"] ? $_POST["extraData"] : "");
+        //before sign HMAC SHA256 signature
         $rawHash = "accessKey=" . $accessKey . "&amount=" . $amount . "&extraData=" . $extraData . "&ipnUrl=" . $ipnUrl . "&orderId=" . $orderId . "&orderInfo=" . $orderInfo . "&partnerCode=" . $partnerCode . "&redirectUrl=" . $redirectUrl . "&requestId=" . $requestId . "&requestType=" . $requestType;
         $signature = hash_hmac("sha256", $rawHash, $secretKey);
         $data = array('partnerCode' => $partnerCode,
@@ -66,7 +66,7 @@
         $result = execPostRequest($endpoint, json_encode($data));
         $jsonResult = json_decode($result, true);  // decode json
 
-    //Just a example, please check more in there
+        //Just a example, please check more in there
 
         header('Location: ' . $jsonResult['payUrl']);
 //    }

@@ -46,7 +46,7 @@
                             <th width="5%">Action</th>
                         </tr>
                         <?php
-                            $limit = 10;
+                            $limit = 5;
                             $total_order = mysqli_num_rows($get_all_order_detail);
                             $current_page_order = isset($_GET['page']) ? $_GET['page'] : 1;
                             $order_start = ($current_page_order -1) * $limit;
