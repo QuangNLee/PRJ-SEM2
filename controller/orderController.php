@@ -119,7 +119,7 @@
         }
 
         public function get_all_order(){
-            $query = "SELECT o.id, o.customerId, o.createdAt, o.orderType, o.customerId, p.productName, od.quantity, od.productId, 
+            $query = "SELECT o.id, o.customerId, o.createdAt, o.orderType, o.gate, o.customerId, p.productName, od.quantity, od.productId, 
                         ROUND(od.quantity*od.unitPrice + od.quantity*od.unitPrice*od.VAT/100) AS 'total', od.status
                       FROM tbl_order o, tbl_orderDetail od, tbl_product p
                       WHERE o.id = od.orderId AND p.productId = od.productId

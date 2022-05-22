@@ -25,6 +25,7 @@ $login_check = Session::get('customer_login');
                     <div class="heading">
                         <h3>Update information profile</h3>
                     </div>
+                    <div class="clear"></div>
                 </div>
                 <form action="" method="post">
                     <table class="tblone">

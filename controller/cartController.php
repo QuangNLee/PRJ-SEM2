@@ -181,5 +181,13 @@
                 return $msg;
             }
         }
+
+        public function del_product_flist_ac($customerId,$productId){
+            $customerId = mysqli_real_escape_string($this->db->link,$customerId);
+            $productId = mysqli_real_escape_string($this->db->link,$productId);
+            $query = "DELETE FROM tbl_favoriteList WHERE customerId = '$customerId' AND productId = '$productId'";
+            $result = $this->db->delete($query);
+            return $result;
+        }
     }
 ?>

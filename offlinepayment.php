@@ -47,7 +47,7 @@
                                     $i++;
                                     ?>
                                     <tr>
-                                        <td><?php echo $result['productName'] ?></td>
+                                        <td><?php echo $fm->textShorten($result['productName'], 50) ?></td>
                                         <td><img src="admin/uploads/<?php echo $result['image'] ?>" alt=""/></td>
                                         <td><?php echo $fm->format_currency($result['price']) ?> VND</td>
                                         <td><?php echo $result['quantity'] ?></td>
@@ -152,7 +152,10 @@
                 </div>
             </div>
         </div>
-        <center><a href="?orderid=order" class="submit_order" name="order">Order Now</a></center><br>
+        <center>
+            <a href="cart.php" style="background: grey" class="submit_order"><< Previous</a>
+            <a href="?orderid=order" class="submit_order" name="order">Order Now</a>
+        </center><br>
     </div>
 </form>
 <?php
