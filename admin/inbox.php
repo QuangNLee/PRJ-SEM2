@@ -77,34 +77,34 @@
                         <td><?php echo $fm->format_currency($result['total']) ?></td>
                         <td>
                             <?php
-                            if($result['status'] == 0){
-                                echo '<span style="color: #7C2DC5">Pending</span>';
-                            } else if ($result['status'] == 1){
-                                echo '<span style="color: #4d8cbc">Delivering</span>';
-                            } else if ($result['status'] == 3){
-                                echo '<span style="color: #8B0000">Canceled</span>';
-                            } else {
-                                echo '<span style="color: green">Success</span>';
-                            }
+                                if($result['status'] == 0){
+                                    echo '<span style="color: #7C2DC5">Pending</span>';
+                                } else if ($result['status'] == 1){
+                                    echo '<span style="color: #4d8cbc">Delivering</span>';
+                                } else if ($result['status'] == 3){
+                                    echo '<span style="color: #8B0000">Canceled</span>';
+                                } else {
+                                    echo '<span style="color: green">Success</span>';
+                                }
                             ?>
                         </td>
-                        <td>
+                        <td style="text-align: center;">
                             <?php
-                            if($result['status'] == 0){
-                                ?>
-                                <a href="?shippedId=<?php echo $result['id'] ?>&productId=<?php echo $result['productId'] ?>
-                            &quantity=<?php echo $result['quantity'] ?>" style="color: blue">Ship</a> ||
-                                <a onclick="confirm('Do you want to cancel?')" href="?cancelId=<?php echo $result['id'] ?>&productId=<?php echo $result['productId'] ?>
-                            &quantity=<?php echo $result['quantity'] ?>" style="color: #8B0000">Cancel</a>
-                                <?php
-                            } else if ($result['status'] == 1) {
-                                ?>
-                                <a onclick="confirm('Do you want to cancel?')" href="?cancelId=<?php echo $result['id'] ?>&productId=<?php echo $result['productId'] ?>
-                            &quantity=<?php echo $result['quantity'] ?>" style="color: #8B0000">Cancel</a>
-                                <?php
-                            } else {
-                                echo 'x';
-                            }
+                                if($result['status'] == 0){
+                            ?>
+                            <a href="?shippedId=<?php echo $result['id'] ?>&productId=<?php echo $result['productId'] ?>
+                                &quantity=<?php echo $result['quantity'] ?>" style="color: blue">Ship</a> ||
+                            <a onclick="confirm('Do you want to cancel?')" href="?cancelId=<?php echo $result['id'] ?>&productId=<?php echo $result['productId'] ?>
+                                &quantity=<?php echo $result['quantity'] ?>" style="color: #8B0000">Cancel</a>
+                            <?php
+                                } else if ($result['status'] == 1 || $result['status'] == 2) {
+                            ?>
+                            <a onclick="confirm('Do you want to cancel?')" href="?cancelId=<?php echo $result['id'] ?>&productId=<?php echo $result['productId'] ?>
+                                &quantity=<?php echo $result['quantity'] ?>" style="color: #8B0000">Cancel</a>
+                            <?php
+                                } else {
+                                    echo 'x';
+                                }
                             ?>
                         </td>
                         <td>

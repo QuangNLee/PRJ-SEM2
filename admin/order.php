@@ -77,7 +77,7 @@
                         <td><?php echo $result['productName'] ?></td>
                         <td><?php echo $result['quantity'] ?></td>
                         <td><?php echo $fm->format_currency($result['total']) ?></td>
-                        <td>
+                        <td style="text-align: center">
                             <?php
                                 if($result['status'] == 0){
                                     echo '<span style="color: #7C2DC5">Pending</span>';
@@ -90,7 +90,7 @@
                                 }
                             ?>
                         </td>
-                        <td>
+                        <td style="text-align: center">
                             <?php
                             if($result['status'] == 0){
                                 ?>
@@ -99,7 +99,7 @@
                                 <a onclick="confirm('Do you want to cancel?')" href="?cancelId=<?php echo $result['id'] ?>&productId=<?php echo $result['productId'] ?>
                                     &quantity=<?php echo $result['quantity'] ?>" style="color: #8B0000">Cancel</a>
                             <?php
-                                } else if ($result['status'] == 1) {
+                                } else if ($result['status'] == 1 || $result['status'] == 2) {
                             ?>
                                 <a onclick="confirm('Do you want to cancel?')" href="?cancelId=<?php echo $result['id'] ?>&productId=<?php echo $result['productId'] ?>
                                     &quantity=<?php echo $result['quantity'] ?>" style="color: #8B0000">Cancel</a>

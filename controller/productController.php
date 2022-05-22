@@ -56,6 +56,17 @@
             return $result;
         }
 
+        public function get_pagination_product($product_start,$limit){
+            $product_start = mysqli_real_escape_string($this->db->link, $product_start);
+            $limit = mysqli_real_escape_string($this->db->link, $limit);
+            $query = "SELECT p.*, c.catName, b.brandName
+                FROM tbl_product AS p, tbl_category AS c, tbl_brand AS b
+                WHERE p.catId = c.catId and p.brandId = b.brandId
+                ORDER BY p.productName ASC LIMIT {$product_start},{$limit}";
+            $result = $this->db->select($query);
+            return $result;
+        }
+
         public function update_product($data,$files,$id){
             $productName = mysqli_real_escape_string($this->db->link, $data['productName']);
             $category = mysqli_real_escape_string($this->db->link, $data['category']);
@@ -208,14 +219,6 @@
                 OR productId IN (SELECT productId FROM tbl_product
                 WHERE brandId = (SELECT brandId FROM tbl_brand WHERE brandName LIKE '%$keyword%' AND status = 1))
                 ORDER BY type DESC, productName ASC LIMIT {$product_start},{$limit}";
-            $result = $this->db->select($query);
-            return $result;
-        }
-
-        public function get_pagination_product($product_start,$limit){
-            $product_start = mysqli_real_escape_string($this->db->link, $product_start);
-            $limit = mysqli_real_escape_string($this->db->link, $limit);
-            $query = "SELECT * FROM tbl_product where status = 1 ORDER BY productId DESC LIMIT {$product_start},{$limit}";
             $result = $this->db->select($query);
             return $result;
         }
