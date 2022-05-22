@@ -39,6 +39,7 @@
                         <th>No.</th>
                         <th>Order time</th>
                         <th>Type</th>
+                        <th>Gate</th>
                         <th>Customer ID</th>
                         <th>Customer</th>
                         <th>Product</th>
@@ -70,6 +71,7 @@
                                 }
                             ?>
                         </td>
+                        <td><?php echo $result['gate'] ?></td>
                         <td><?php echo $result['customerId'] ?></td>
                         <td><a href="customer.php?customerId=<?php echo $result['customerId'] ?>">View customer</a></td>
                         <td><?php echo $result['productName'] ?></td>

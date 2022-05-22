@@ -51,7 +51,7 @@
 						</form>
 						<?php
 							if(isset($addToCart)){
-								echo '<span style="color: red; font-size: 18px;">Product already exists in cartController</span>';
+								echo '<span style="color: red; font-size: 18px;">Product already exists in cart</span>';
 							}
 						?>
 					</div>
