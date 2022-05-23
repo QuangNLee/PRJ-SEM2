@@ -10,7 +10,7 @@
     <div class="box round first grid">
         <h2>Brands List</h2>
         <div class="block">
-            <table class="data display datatable" id="example">
+            <table class="data display">
                 <thead>
                     <tr>
                         <th>Serial No.</th>
