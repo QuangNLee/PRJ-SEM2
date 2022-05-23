@@ -17,7 +17,7 @@
         <div class="main">
             <div class="content">
                 <div class="section group">
-                    <h2 class="success_order">Order successfully!!!</h2>
+                    <h2 class="success_order">Payment successfully!!!</h2>
                     <?php
                         $customer_id = Session::get('customer_id');
                         $get_amount = $order->get_amount($customer_id);

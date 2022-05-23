@@ -128,12 +128,36 @@
             return $result;
         }
 
+        public function get_pagination_all_order($order_start,$limit){
+            $order_start = mysqli_real_escape_string($this->db->link, $order_start);
+            $limit = mysqli_real_escape_string($this->db->link, $limit);
+            $query = "SELECT o.id, o.customerId, o.createdAt, o.orderType, o.gate, o.customerId, p.productName, od.quantity, od.productId, 
+                        ROUND(od.quantity*od.unitPrice + od.quantity*od.unitPrice*od.VAT/100) AS 'total', od.status
+                      FROM tbl_order o, tbl_orderDetail od, tbl_product p
+                      WHERE o.id = od.orderId AND p.productId = od.productId
+                      ORDER BY o.createdAt DESC LIMIT {$order_start},{$limit}";
+            $result = $this->db->select($query);
+            return $result;
+        }
+
         public function get_completed_order(){
             $query = "SELECT o.id, o.customerId, o.createdAt, o.orderType, o.customerId, p.productName, od.quantity, od.productId, 
                         ROUND(od.quantity*od.unitPrice + od.quantity*od.unitPrice*od.VAT/100) AS 'total', od.status
                       FROM tbl_order o, tbl_orderDetail od, tbl_product p
                       WHERE o.id = od.orderId AND p.productId = od.productId AND od.status IN (SELECT DISTINCT status FROM tbl_orderDetail where status = '2' OR status = '3')
                       ORDER BY o.createdAt DESC";
+            $result = $this->db->select($query);
+            return $result;
+        }
+
+        public function get_pagination_completed_order($order_start,$limit){
+            $order_start = mysqli_real_escape_string($this->db->link, $order_start);
+            $limit = mysqli_real_escape_string($this->db->link, $limit);
+            $query = "SELECT o.id, o.customerId, o.createdAt, o.orderType, o.customerId, p.productName, od.quantity, od.productId, 
+                        ROUND(od.quantity*od.unitPrice + od.quantity*od.unitPrice*od.VAT/100) AS 'total', od.status
+                      FROM tbl_order o, tbl_orderDetail od, tbl_product p
+                      WHERE o.id = od.orderId AND p.productId = od.productId AND od.status IN (SELECT DISTINCT status FROM tbl_orderDetail where status = '2' OR status = '3')
+                      ORDER BY o.createdAt DESC LIMIT {$order_start},{$limit}";
             $result = $this->db->select($query);
             return $result;
         }

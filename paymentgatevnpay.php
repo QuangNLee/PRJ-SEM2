@@ -9,7 +9,7 @@
     $vnp_TmnCode = "A84YODTZ"; //Website ID in VNPAY System
     $vnp_HashSecret = "SLZLEGMMCWDJWEHFKXCVYFMEKYGZHRNS"; //Secret key
     $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-    $vnp_Returnurl = "http://localhost:8088/prj_sem2/onlinePaymentBill.php?onlinepayment=success&gate=vnpay&";
+    $vnp_Returnurl = "http://localhost:8088/prj_sem2/onlinePaymentBill.php?onlinepayment=success&gate=vnpay";
     $vnp_apiUrl = "http://sandbox.vnpayment.vn/merchant_webapi/merchant.html";
     //Config input format
     //Expire
