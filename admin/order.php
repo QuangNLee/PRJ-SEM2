@@ -9,6 +9,7 @@
 ?>
 <?php
     $order = new orderController();
+    $fm = new Format();
     if(isset($_GET['shippedId'])){
         $id = $_GET['shippedId'];
         $productId = $_GET['productId'];
@@ -51,12 +52,16 @@
                 </thead>
                 <tbody>
                     <?php
-                        $order = new orderController();
-                        $fm = new Format();
-                        $get_all_order = $order->get_all_order();
-                        if($get_all_order){
-                            $i = 0;
-                            while ($result = $get_all_order->fetch_assoc()){
+                        $limit = 10;
+                        $get_order = $order->get_all_order();
+                        $total_order = mysqli_num_rows($get_order);
+                        $current_page_order = isset($_GET['page']) ? $_GET['page'] : 1;
+                        $order_start = ($current_page_order -1) * $limit;
+                        $total_page_order = ceil($total_order/$limit);
+                        $get_pagination_order = $order->get_pagination_all_order($order_start,$limit);
+                        $i = 0;
+                        if($get_pagination_order){
+                            while($result = $get_pagination_order->fetch_assoc()){
                                 $i++;
                     ?>
                     <tr class="odd gradeX">
@@ -119,6 +124,29 @@
                     ?>
                 </tbody>
             </table>
+            <div class="pagination">
+                <?php
+                if ($current_page_order -1 > 0){
+                    ?>
+                    <li><a href="order.php?page=<?php echo $current_page_order-1; ?>">&laquo;</a></li>
+                    <?php
+                }
+                ?>
+                <?php
+                for($i = 1; $i <= $total_page_order; $i++){
+                    ?>
+                    <li class="<?php echo (($current_page_order == $i)?'active': '') ?>"><a href="order.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+                    <?php
+                }
+                ?>
+                <?php
+                if($current_page_order +1 <= $total_page_order){
+                    ?>
+                    <li><a href="order.php?page=<?php echo $current_page_order+1; ?>">&raquo;</a></li>
+                    <?php
+                }
+                ?>
+            </div>
         </div>
     </div>
 </div>
