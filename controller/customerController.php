@@ -125,5 +125,29 @@
                 }
             }
         }
+
+        public function changePassword($id,$data){
+            $id = mysqli_real_escape_string($this->db->link, $id);
+            $o_password = mysqli_real_escape_string($this->db->link, md5($data['o_password']));
+            $n_password = mysqli_real_escape_string($this->db->link, md5($data['n_password']));
+            $rn_password = mysqli_real_escape_string($this->db->link, md5($data['rn_password']));
+            $query_check = "SELECT * FROM tbl_customer WHERE id = '$id' AND password = '$o_password'";
+            $result_check = $this->db->select($query_check);
+            if ($result_check){
+                if($n_password != $rn_password){
+                    echo '<span class="error">Old password and new password do not match!!!</span>';
+                } else {
+                    $query = "UPDATE tbl_customer SET password = '$n_password' WHERE id = '$id'";
+                    $result = $this->db->update($query);
+                    if($result){
+                        echo '<span class="success">Success!!!</span>';
+                    } else {
+                        echo '<span class="error">Failed!!!</span>';
+                    }
+                }
+            } else {
+                echo '<span class="error">Old password does not match!!!</span>';
+            }
+        }
     }
 ?>
