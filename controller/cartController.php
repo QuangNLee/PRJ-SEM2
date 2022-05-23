@@ -49,7 +49,7 @@
 
         public function update_quantity_cart($quantity,$cartId){
             $quantity = mysqli_real_escape_string($this->db->link, $quantity);
-            $id = mysqli_real_escape_string($this->db->link,$cartId);
+            $cartId = mysqli_real_escape_string($this->db->link,$cartId);
             $query = "UPDATE tbl_cart SET quantity = '$quantity' WHERE cartId = '$cartId'";
             $result = $this->db->update($query);
             if($result){
