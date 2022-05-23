@@ -45,6 +45,14 @@
             return $result;
         }
 
+        public function show_pagination_category($cat_start,$limit){
+            $cat_start = mysqli_real_escape_string($this->db->link, $cat_start);
+            $limit = mysqli_real_escape_string($this->db->link, $limit);
+            $query = "SELECT * FROM tbl_category ORDER BY catName ASC LIMIT {$cat_start},{$limit}";
+            $result = $this->db->select($query);
+            return $result;
+        }
+
         public function show_category_index(){
             $query = "SELECT * FROM tbl_category WHERE status = '1' ORDER BY catName ASC";
             $result = $this->db->select($query);
