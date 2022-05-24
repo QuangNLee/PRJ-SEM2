@@ -48,7 +48,7 @@
         public function show_pagination_brand($brand_start,$limit){
             $brand_start = mysqli_real_escape_string($this->db->link, $brand_start);
             $limit = mysqli_real_escape_string($this->db->link, $limit);
-            $query = "SELECT * FROM tbl_brand ORDER BY brandName ASC LIMIT {$brand_start},{$limit}";
+            $query = "SELECT * FROM tbl_brand ORDER BY brandId ASC LIMIT {$brand_start},{$limit}";
             $result = $this->db->select($query);
             return $result;
         }

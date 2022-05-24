@@ -13,7 +13,7 @@
             <table class="data display">
                 <thead>
                     <tr>
-                        <th>Serial No.</th>
+                        <th>No.</th>
                         <th>Category Name</th>
                         <th>Status</th>
                         <th>Action</th>
@@ -34,9 +34,9 @@
                                 $i++;
                     ?>
                         <tr class="odd gradeX">
-                            <td><?php echo $i; ?></td>
+                            <td style="text-align: center"><?php echo $i; ?></td>
                             <td><?php echo $result['catName'] ?></td>
-                            <td>
+                            <td style="text-align: center">
                                 <?php
                                 if($result['status'] == 1){
                                     ?>

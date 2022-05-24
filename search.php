@@ -3,7 +3,11 @@
 ?>
 <?php
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $keyword = $_POST['keyword'];
+        if($_POST['keyword'] == ""){
+            echo '';
+        } else {
+            $keyword = $_POST['keyword'];
+        }
     }
 ?>
 <div class="main">

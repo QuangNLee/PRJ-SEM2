@@ -34,7 +34,7 @@
                     echo $shipped;
                 }
             ?>
-            <table class="data display datatable" id="example">
+            <table class="data display">
                 <thead>
                     <tr>
                         <th>No.</th>
@@ -77,7 +77,7 @@
                             ?>
                         </td>
                         <td><?php echo $result['gate'] ?></td>
-                        <td><?php echo $result['customerId'] ?></td>
+                        <td style="text-align: center"><?php echo $result['customerId'] ?></td>
                         <td><a href="customer.php?customerId=<?php echo $result['customerId'] ?>">View customer</a></td>
                         <td><?php echo $result['productName'] ?></td>
                         <td><?php echo $result['quantity'] ?></td>

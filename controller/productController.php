@@ -62,7 +62,7 @@
             $query = "SELECT p.*, c.catName, b.brandName
                 FROM tbl_product AS p, tbl_category AS c, tbl_brand AS b
                 WHERE p.catId = c.catId and p.brandId = b.brandId
-                ORDER BY p.productName ASC LIMIT {$product_start},{$limit}";
+                ORDER BY p.productId ASC LIMIT {$product_start},{$limit}";
             $result = $this->db->select($query);
             return $result;
         }
