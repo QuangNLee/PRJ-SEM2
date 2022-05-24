@@ -26,7 +26,7 @@
             <table class="data display">
                 <thead>
                     <tr>
-                        <th width="5%">No.</th>
+                        <th width="5%">ID</th>
                         <th width="20%">Product Name</th>
                         <th width="5%">Category</th>
                         <th width="5%">Brand</th>
@@ -47,13 +47,11 @@
                         $product_start = ($current_page_product -1) * $limit;
                         $total_page_product = ceil($total_product/$limit);
                         $get_pagination_product = $product->get_pagination_product($product_start,$limit);
-                        $i = 0;
                         if($get_pagination_product){
                             while($result = $get_pagination_product->fetch_assoc()){
-                                $i++;
                     ?>
                     <tr class="odd gradeX">
-                        <td><?php echo $i ?></td>
+                        <td><?php echo $result['productId'] ?></td>
                         <td><?php echo $result['productName'] ?></td>
                         <td><?php echo $result['catName'] ?></td>
                         <td><?php echo $result['brandName'] ?></td>

@@ -29,8 +29,8 @@
                 return $alert;
             } else {
                 if(!empty($file_name)){
-                    if($file_size > 20480){
-                        $alert = "<span class='error'>Image size should be less than 2MB!</span>";
+                    if($file_size > 2048000){
+                        $alert = "<span class='error'>Image size should be less than 200MB!</span>";
                         return $alert;
                     } else if (in_array($file_ext, $permitted) === false){
                         $alert = "<span class='error'> You can upload only :-".implode(', ', $permitted)."</span>";

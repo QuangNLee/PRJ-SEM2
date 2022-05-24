@@ -13,7 +13,7 @@
             <table class="data display">
                 <thead>
                     <tr>
-                        <th>Serial No.</th>
+                        <th>ID</th>
                         <th>Brand Name</th>
                         <th>Status</th>
                         <th>Action</th>
@@ -29,14 +29,12 @@
                         $total_page_brand = ceil($total_brand/$limit);
                         $get_pagination_brand = $brand->show_pagination_brand($brand_start,$limit);
                         if($get_pagination_brand){
-                            $i = 0;
                             while($result = $get_pagination_brand->fetch_assoc()){
-                                $i++;
                     ?>
                     <tr class="odd gradeX">
-                        <td><?php echo $i; ?></td>
+                        <td style="text-align: center"><?php echo $result['brandId'] ?></td>
                         <td><?php echo $result['brandName'] ?></td>
-                        <td>
+                        <td style="text-align: center;">
                             <?php
                                 if($result['status'] == 1){
                                     echo '<span style="color: green">Available</span>';

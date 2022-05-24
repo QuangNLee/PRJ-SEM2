@@ -51,11 +51,11 @@
                         <?php
                             if($result_slider['type'] == 1){
                         ?>
-                        <a href="?change_type=<?php echo $result_slider['id'] ?>&type=0">ON</a>
+                        <a href="?change_type=<?php echo $result_slider['id'] ?>&type=0" style="color: green">ON</a>
                         <?php
                             } else {
                         ?>
-                        <a href="?change_type=<?php echo $result_slider['id'] ?>&type=1">OFF</a>
+                        <a href="?change_type=<?php echo $result_slider['id'] ?>&type=1" style="color: red">OFF</a>
                         <?php
                             }
                         ?>
