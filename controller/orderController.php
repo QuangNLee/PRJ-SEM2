@@ -62,7 +62,7 @@
             $get_order = $this->db->select($query_get_order);
             $result_get_order = $get_order->fetch_assoc();
             $order_id = $result_get_order['id'];
-            $query_get_orderDetail = "SELECT ROUND(SUM(unitPrice*quantity + unitPrice*quantity*VAT/100)) AS 'total' FROM tbl_orderDetail WHERE orderId = '$order_id'";
+            $query_get_orderDetail = "SELECT ROUND(SUM(unitPrice*quantity)) AS 'total' FROM tbl_orderDetail WHERE orderId = '$order_id'";
             $get_od = $this->db->select($query_get_orderDetail);
             return $get_od;
         }
@@ -73,7 +73,7 @@
             $result_get_order = $get_order->fetch_assoc();
             $order_id = $result_get_order['id'];
             $query = "SELECT p.productId, p.productName, p.image, od.unitPrice, 
-                        od.quantity, od.VAT, ROUND(od.unitPrice*od.quantity + od.unitPrice*od.quantity*od.VAT/100) as 'total', 
+                        od.quantity, od.VAT, ROUND(od.unitPrice*od.quantity) as 'total', 
                         o.createdAt, od.status FROM tbl_product p, tbl_orderDetail od, tbl_order o
                         WHERE od.orderId = '$order_id' AND p.productId = od.productId AND o.id = od.orderId";
             $result = $this->db->select($query);
@@ -88,7 +88,7 @@
 
         public function get_all_order_detail($customer_id){
             $query = "SELECT p.productId, p.productName, p.image, od.unitPrice, o.id, 
-                        od.quantity, od.VAT, ROUND(od.unitPrice*od.quantity + od.unitPrice*od.quantity*od.VAT/100) as 'total', 
+                        od.quantity, od.VAT, ROUND(od.unitPrice*od.quantity) as 'total', 
                         o.createdAt AS 'orderDate', od.status FROM tbl_product p, tbl_orderDetail od, tbl_order o
                         WHERE o.customerId = '$customer_id' AND p.productId = od.productId AND o.id = od.orderId";
             $result = $this->db->select($query);
@@ -100,7 +100,7 @@
             $order_start = mysqli_real_escape_string($this->db->link, $order_start);
             $limit = mysqli_real_escape_string($this->db->link, $limit);
             $query = "SELECT p.productId, p.productName, p.image, od.unitPrice, o.id, o.orderType, 
-                        od.quantity, od.VAT, ROUND(od.unitPrice*od.quantity + od.unitPrice*od.quantity*od.VAT/100) as 'total', 
+                        od.quantity, od.VAT, ROUND(od.unitPrice*od.quantity) as 'total', 
                         o.createdAt AS 'orderDate', od.status FROM tbl_product p, tbl_orderDetail od, tbl_order o
                         WHERE o.customerId = '$customer_id' AND p.productId = od.productId AND o.id = od.orderId
                         ORDER BY orderDate DESC LIMIT {$order_start},{$limit}";
@@ -110,7 +110,7 @@
 
         public function get_inbox_order(){
             $query = "SELECT o.id, o.customerId, o.createdAt, o.orderType, o.customerId, p.productName, od.quantity, od.productId, 
-                        ROUND(od.quantity*od.unitPrice + od.quantity*od.unitPrice*od.VAT/100) AS 'total', od.status
+                        ROUND(od.quantity*od.unitPrice) AS 'total', od.status
                       FROM tbl_order o, tbl_orderDetail od, tbl_product p
                       WHERE o.id = od.orderId AND p.productId = od.productId AND od.status IN (SELECT DISTINCT status FROM tbl_orderDetail where status = '0' OR status = '1')
                       ORDER BY o.createdAt DESC";
@@ -120,7 +120,7 @@
 
         public function get_all_order(){
             $query = "SELECT o.id, o.customerId, o.createdAt, o.orderType, o.gate, o.customerId, p.productName, od.quantity, od.productId, 
-                        ROUND(od.quantity*od.unitPrice + od.quantity*od.unitPrice*od.VAT/100) AS 'total', od.status
+                        ROUND(od.quantity*od.unitPrice) AS 'total', od.status
                       FROM tbl_order o, tbl_orderDetail od, tbl_product p
                       WHERE o.id = od.orderId AND p.productId = od.productId
                       ORDER BY o.createdAt DESC";
@@ -132,7 +132,7 @@
             $order_start = mysqli_real_escape_string($this->db->link, $order_start);
             $limit = mysqli_real_escape_string($this->db->link, $limit);
             $query = "SELECT o.id, o.customerId, o.createdAt, o.orderType, o.gate, o.customerId, p.productName, od.quantity, od.productId, 
-                        ROUND(od.quantity*od.unitPrice + od.quantity*od.unitPrice*od.VAT/100) AS 'total', od.status
+                        ROUND(od.quantity*od.unitPrice) AS 'total', od.status
                       FROM tbl_order o, tbl_orderDetail od, tbl_product p
                       WHERE o.id = od.orderId AND p.productId = od.productId
                       ORDER BY o.createdAt DESC LIMIT {$order_start},{$limit}";
@@ -142,7 +142,7 @@
 
         public function get_completed_order(){
             $query = "SELECT o.id, o.customerId, o.createdAt, o.orderType, o.customerId, p.productName, od.quantity, od.productId, 
-                        ROUND(od.quantity*od.unitPrice + od.quantity*od.unitPrice*od.VAT/100) AS 'total', od.status
+                        ROUND(od.quantity*od.unitPrice) AS 'total', od.status
                       FROM tbl_order o, tbl_orderDetail od, tbl_product p
                       WHERE o.id = od.orderId AND p.productId = od.productId AND od.status IN (SELECT DISTINCT status FROM tbl_orderDetail where status = '2' OR status = '3')
                       ORDER BY o.createdAt DESC";
@@ -154,7 +154,7 @@
             $order_start = mysqli_real_escape_string($this->db->link, $order_start);
             $limit = mysqli_real_escape_string($this->db->link, $limit);
             $query = "SELECT o.id, o.customerId, o.createdAt, o.orderType, o.customerId, p.productName, od.quantity, od.productId, 
-                        ROUND(od.quantity*od.unitPrice + od.quantity*od.unitPrice*od.VAT/100) AS 'total', od.status
+                        ROUND(od.quantity*od.unitPrice) AS 'total', od.status
                       FROM tbl_order o, tbl_orderDetail od, tbl_product p
                       WHERE o.id = od.orderId AND p.productId = od.productId AND od.status IN (SELECT DISTINCT status FROM tbl_orderDetail where status = '2' OR status = '3')
                       ORDER BY o.createdAt DESC LIMIT {$order_start},{$limit}";
