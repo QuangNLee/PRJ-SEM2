@@ -79,19 +79,6 @@
                                         ?>
                                         VND</td>
                                 </tr>
-                                <tr>
-                                    <th>VAT : </th>
-                                    <td>5% (<?php echo $vat = $subtotal * 0.05?>)</td>
-                                </tr>
-                                <tr>
-                                    <th>Grand Total :</th>
-                                    <td><?php
-                                        $vat = $subtotal * 0.05;
-                                        $gtotal = $subtotal + $vat;
-                                        echo $fm->format_currency($gtotal);
-                                        ?>
-                                        VND</td>
-                                </tr>
                             </table>
                             <?php
                                 }

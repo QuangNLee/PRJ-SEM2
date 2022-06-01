@@ -54,12 +54,10 @@
                         $fm = new Format();
                         $get_inbox_order = $order->get_inbox_order();
                         if($get_inbox_order){
-                            $i = 0;
                             while ($result = $get_inbox_order->fetch_assoc()){
-                                $i++;
                     ?>
                     <tr class="odd gradeX">
-                        <td><?php echo $i ?></td>
+                        <td><?php echo $result['id'] ?></td>
                         <td><?php echo $fm->formatDate($result['createdAt']) ?></td>
                         <td>
                             <?php

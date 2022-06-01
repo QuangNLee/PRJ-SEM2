@@ -39,13 +39,11 @@
                     $order_start = ($current_page_order -1) * $limit;
                     $total_page_order = ceil($total_order/$limit);
                     $get_pagination_order = $order->get_pagination_completed_order($order_start,$limit);
-                    $i = 0;
                     if($get_pagination_order){
                         while($result = $get_pagination_order->fetch_assoc()){
-                            $i++;
                 ?>
                 <tr class="odd gradeX">
-                    <td><?php echo $i ?></td>
+                    <td><?php echo $result['id'] ?></td>
                     <td><?php echo $fm->formatDate($result['createdAt']) ?></td>
                     <td>
                         <?php

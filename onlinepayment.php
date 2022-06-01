@@ -57,21 +57,6 @@
                             VND
                         </td>
                     </tr>
-                    <tr>
-                        <th>VAT : </th>
-                        <td>5%</td>
-                    </tr>
-                    <tr>
-                        <th>Grand Total :</th>
-                        <td>
-                            <?php
-                            $vat = $subtotal * 0.05;
-                            $gtotal = $subtotal + $vat;
-                            echo $fm->format_currency($gtotal);
-                            ?>
-                            VND
-                        </td>
-                    </tr>
                 </table>
                 <?php
                     } else {
@@ -85,12 +70,12 @@
                         if(Session::get('customer_id') == true && $check_cart){
                     ?>
                     <form action="paymentgatevnpay.php" method="POST">
-                        <input type="hidden" name="total_payment" value="<?php echo $gtotal; ?>">
+                        <input type="hidden" name="total_payment" value="<?php echo $subtotal; ?>">
                         <button class="btn btn-success btn-payment" name="redirect" id="redirect">Cash by VNPAY</button>
                     </form><br>
                     <div id="paypal-button-container" class="btn btn-success" style="background: white">
                         <?php
-                            $priceUSD = round($gtotal/23000);
+                            $priceUSD = round($subtotal/23000);
                         ?>
                         <input type="hidden" id="priceUSD" value="<?php echo $priceUSD; ?>">
 

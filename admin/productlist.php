@@ -51,7 +51,7 @@
                             while($result = $get_pagination_product->fetch_assoc()){
                     ?>
                     <tr class="odd gradeX">
-                        <td><?php echo $result['productId'] ?></td>
+                        <td style="text-align: center"><?php echo $result['productId'] ?></td>
                         <td><?php echo $result['productName'] ?></td>
                         <td><?php echo $result['catName'] ?></td>
                         <td><?php echo $result['brandName'] ?></td>

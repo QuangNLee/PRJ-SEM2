@@ -38,7 +38,6 @@
                             <th width="15%">Image</th>
                             <th width="15%">Price</th>
                             <th width="5%">Quantity</th>
-                            <th width="10%">VAT</th>
                             <th width="15%">Total Price</th>
                             <th width="10%">Order date</th>
                             <th width="5%">Type</th>
@@ -60,7 +59,6 @@
                             <td><img src="admin/uploads/<?php echo $result['image'] ?>" alt=""/></td>
                             <td><?php echo $fm->format_currency($result['unitPrice']) ?> VND</td>
                             <td><?php echo $result['quantity'] ?></td>
-                            <td><?php echo $result['VAT'] ?> %</td>
                             <td><?php echo $fm->format_currency($result['total']) ?> VND</td>
                             <td><?php echo $fm->formatDate($result['orderDate']) ?></td>
                             <td>
