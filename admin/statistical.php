@@ -26,7 +26,7 @@
 
     $now = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
 
-    $sql = "SELECT DATE(o.createdAt) as 'date', COUNT(*) AS 'order', SUM(od.quantity*od.unitPrice + od.quantity*od.unitPrice*od.VAT/100) AS 'salary', SUM(quantity) AS 'quantity'
+    $sql = "SELECT DATE(o.createdAt) as 'date', COUNT(*) AS 'order', SUM(od.quantity*od.unitPrice) AS 'salary', SUM(quantity) AS 'quantity'
             FROM tbl_order o, tbl_orderDetail od
             WHERE o.id = od.orderId AND od.status = 2
             GROUP BY DATE(o.createdAt)

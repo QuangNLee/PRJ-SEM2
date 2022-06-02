@@ -73,7 +73,7 @@
             $result_get_order = $get_order->fetch_assoc();
             $order_id = $result_get_order['id'];
             $query = "SELECT p.productId, p.productName, p.image, od.unitPrice, 
-                        od.quantity, od.VAT, ROUND(od.unitPrice*od.quantity) as 'total', 
+                        od.quantity, ROUND(od.unitPrice*od.quantity) as 'total', 
                         o.createdAt, od.status FROM tbl_product p, tbl_orderDetail od, tbl_order o
                         WHERE od.orderId = '$order_id' AND p.productId = od.productId AND o.id = od.orderId";
             $result = $this->db->select($query);
@@ -88,7 +88,7 @@
 
         public function get_all_order_detail($customer_id){
             $query = "SELECT p.productId, p.productName, p.image, od.unitPrice, o.id, 
-                        od.quantity, od.VAT, ROUND(od.unitPrice*od.quantity) as 'total', 
+                        od.quantity, ROUND(od.unitPrice*od.quantity) as 'total', 
                         o.createdAt AS 'orderDate', od.status FROM tbl_product p, tbl_orderDetail od, tbl_order o
                         WHERE o.customerId = '$customer_id' AND p.productId = od.productId AND o.id = od.orderId";
             $result = $this->db->select($query);
@@ -100,7 +100,7 @@
             $order_start = mysqli_real_escape_string($this->db->link, $order_start);
             $limit = mysqli_real_escape_string($this->db->link, $limit);
             $query = "SELECT p.productId, p.productName, p.image, od.unitPrice, o.id, o.orderType, 
-                        od.quantity, od.VAT, ROUND(od.unitPrice*od.quantity) as 'total', 
+                        od.quantity, ROUND(od.unitPrice*od.quantity) as 'total', 
                         o.createdAt AS 'orderDate', od.status FROM tbl_product p, tbl_orderDetail od, tbl_order o
                         WHERE o.customerId = '$customer_id' AND p.productId = od.productId AND o.id = od.orderId
                         ORDER BY orderDate DESC LIMIT {$order_start},{$limit}";
