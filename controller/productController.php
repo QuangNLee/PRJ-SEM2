@@ -20,6 +20,34 @@
             $product_description = mysqli_real_escape_string($this->db->link, $data['product_description']);
             $price = mysqli_real_escape_string($this->db->link, $data['price']);
             $type = mysqli_real_escape_string($this->db->link, $data['type']);
+            $origin = mysqli_real_escape_string($this->db->link, $data['origin']);
+            $size = mysqli_real_escape_string($this->db->link, $data['size']);
+            $productWeight = mysqli_real_escape_string($this->db->link, $data['productWeight']);
+            $material = mysqli_real_escape_string($this->db->link, $data['material']);
+            $radiators = mysqli_real_escape_string($this->db->link, $data['radiators']);
+            $cpu = mysqli_real_escape_string($this->db->link, $data['cpu']);
+            $ram = mysqli_real_escape_string($this->db->link, $data['ram']);
+            $typeOfRam = mysqli_real_escape_string($this->db->link, $data['typeOfRam']);
+            $ramSpeed = mysqli_real_escape_string($this->db->link, $data['ramSpeed']);
+            $numberOfRamSlot = mysqli_real_escape_string($this->db->link, $data['numberOfRamSlot']);
+            $maximumRamSupport = mysqli_real_escape_string($this->db->link, $data['maximumRamSupport']);
+            $screenSize = mysqli_real_escape_string($this->db->link, $data['screenSize']);
+            $resolution = mysqli_real_escape_string($this->db->link, $data['resolution']);
+            $screenRatio = mysqli_real_escape_string($this->db->link, $data['screenRatio']);
+            $onboardCard = mysqli_real_escape_string($this->db->link, $data['onboardCard']);
+            $removableCard = mysqli_real_escape_string($this->db->link, $data['removableCard']);
+            $storage = mysqli_real_escape_string($this->db->link, $data['storage']);
+            $webCommunication = mysqli_real_escape_string($this->db->link, $data['webCommunication']);
+            $wifi = mysqli_real_escape_string($this->db->link, $data['wifi']);
+            $bluetooth = mysqli_real_escape_string($this->db->link, $data['bluetooth']);
+            $camera = mysqli_real_escape_string($this->db->link, $data['camera']);
+            $keyboardType = mysqli_real_escape_string($this->db->link, $data['keyboardType']);
+            $pin = mysqli_real_escape_string($this->db->link, $data['pin']);
+            $osVersion = mysqli_real_escape_string($this->db->link, $data['osVersion']);
+            $waterResistance = mysqli_real_escape_string($this->db->link, $data['waterResistance']);
+            $internalMemory = mysqli_real_escape_string($this->db->link, $data['internalMemory']);
+            $simType = mysqli_real_escape_string($this->db->link, $data['simType']);
+            $networkSupport = mysqli_real_escape_string($this->db->link, $data['networkSupport']);
             //Check image and put image into folder upload
             $permitted = array('jpg','jpeg','png','gif');
             $file_name = $_FILES['image']['name'];
@@ -38,8 +66,130 @@
                     VALUES ('$productName', '$category', '$brand', '$product_description', '$type', '$price', '$unique_image')";
                 $result = $this->db->insert($query);
                 if($result){
-                    $alert = "<span class='success'>Success!!!</span>";
-                    return $alert;
+                    $get_ID_pro = "SELECT productId FROM tbl_product ORDER BY productId DESC LIMIT 1";
+                    $result_get_ID_pro = $this->db->select($get_ID_pro)->fetch_assoc();
+                    $productId = $result_get_ID_pro['productId'];
+                    $get_origin_id = "SELECT id FROM tbl_specification WHERE name LIKE '%origin%'";
+                    $result_origin_id = $this->db->select($get_origin_id)->fetch_assoc();
+                    $originId = $result_origin_id['id'];
+                    $get_size_id = "SELECT id FROM tbl_specification WHERE name LIKE '%size%'";
+                    $result_size_id = $this->db->select($get_size_id)->fetch_assoc();
+                    $sizeId = $result_size_id['id'];
+                    $get_productWeight_id = "SELECT id FROM tbl_specification WHERE name LIKE '%product weigh%'";
+                    $result_productWeight_id = $this->db->select($get_productWeight_id)->fetch_assoc();
+                    $productWeightId = $result_productWeight_id['id'];
+                    $get_material_id = "SELECT id FROM tbl_specification WHERE name LIKE '%material%'";
+                    $result_material_id = $this->db->select($get_material_id)->fetch_assoc();
+                    $materialId = $result_material_id['id'];
+                    $get_radiators_id = "SELECT id FROM tbl_specification WHERE name LIKE '%radiator%'";
+                    $result_radiators_id = $this->db->select($get_radiators_id)->fetch_assoc();
+                    $radiatorsId = $result_radiators_id['id'];
+                    $get_cpu_id = "SELECT id FROM tbl_specification WHERE name LIKE '%cpu%'";
+                    $result_cpu_id = $this->db->select($get_cpu_id)->fetch_assoc();
+                    $cpuId = $result_cpu_id['id'];
+                    $get_ram_id = "SELECT id FROM tbl_specification WHERE name LIKE '%ram%'";
+                    $result_ram_id = $this->db->select($get_ram_id)->fetch_assoc();
+                    $ramId = $result_ram_id['id'];
+                    $get_typeOfRam_id = "SELECT id FROM tbl_specification WHERE name LIKE '%type of ram%'";
+                    $result_typeOfRam_id = $this->db->select($get_typeOfRam_id)->fetch_assoc();
+                    $typeOfRamId = $result_typeOfRam_id['id'];
+                    $get_ramSpeed_id = "SELECT id FROM tbl_specification WHERE name LIKE '%ram speed%'";
+                    $result_ramSpeed_id = $this->db->select($get_ramSpeed_id)->fetch_assoc();
+                    $ramSpeedId = $result_ramSpeed_id['id'];
+                    $get_numberOfRamSlot_id = "SELECT id FROM tbl_specification WHERE name LIKE '%number of ram slot%'";
+                    $result_numberOfRamSlot_id = $this->db->select($get_numberOfRamSlot_id)->fetch_assoc();
+                    $numberOfRamSlotId = $result_numberOfRamSlot_id['id'];
+                    $get_maximumRamSupport_id = "SELECT id FROM tbl_specification WHERE name LIKE '%maximum ram support%'";
+                    $result_maximumRamSupport_id = $this->db->select($get_maximumRamSupport_id)->fetch_assoc();
+                    $maximumRamSupportId = $result_maximumRamSupport_id['id'];
+                    $get_screenSize_id = "SELECT id FROM tbl_specification WHERE name LIKE '%screen size%'";
+                    $result_screenSize_id = $this->db->select($get_screenSize_id)->fetch_assoc();
+                    $screenSizeId = $result_screenSize_id['id'];
+                    $get_resolution_id = "SELECT id FROM tbl_specification WHERE name LIKE '%resolution%'";
+                    $result_resolution_id = $this->db->select($get_resolution_id)->fetch_assoc();
+                    $resolutionId = $result_resolution_id['id'];
+                    $get_screenRatio_id = "SELECT id FROM tbl_specification WHERE name LIKE '%screen ratio%'";
+                    $result_screenRatio_id = $this->db->select($get_screenRatio_id)->fetch_assoc();
+                    $screenRatioId = $result_screenRatio_id['id'];
+                    $get_onboardCard_id = "SELECT id FROM tbl_specification WHERE name LIKE '%onboard card%'";
+                    $result_onboardCard_id = $this->db->select($get_onboardCard_id)->fetch_assoc();
+                    $onboardCardId = $result_onboardCard_id['id'];
+                    $get_removableCard_id = "SELECT id FROM tbl_specification WHERE name LIKE '%removable card%'";
+                    $result_removableCard_id = $this->db->select($get_removableCard_id)->fetch_assoc();
+                    $removableCardId = $result_removableCard_id['id'];
+                    $get_storage_id = "SELECT id FROM tbl_specification WHERE name LIKE '%storage%'";
+                    $result_storage_id = $this->db->select($get_storage_id)->fetch_assoc();
+                    $storageId = $result_storage_id['id'];
+                    $get_webCommunication_id = "SELECT id FROM tbl_specification WHERE name LIKE '%the web of communication%'";
+                    $result_webCommunication_id = $this->db->select($get_webCommunication_id)->fetch_assoc();
+                    $webCommunicationId = $result_webCommunication_id['id'];
+                    $get_wifi_id = "SELECT id FROM tbl_specification WHERE name LIKE '%wifi%'";
+                    $result_wifi_id = $this->db->select($get_wifi_id)->fetch_assoc();
+                    $wifiId = $result_wifi_id['id'];
+                    $get_bluetooth_id = "SELECT id FROM tbl_specification WHERE name LIKE '%bluetooth%'";
+                    $result_bluetooth_id = $this->db->select($get_bluetooth_id)->fetch_assoc();
+                    $bluetoothId = $result_bluetooth_id['id'];
+                    $get_camera_id = "SELECT id FROM tbl_specification WHERE name LIKE '%camera%'";
+                    $result_camera_id = $this->db->select($get_camera_id)->fetch_assoc();
+                    $cameraId = $result_camera_id['id'];
+                    $get_keyboardType_id = "SELECT id FROM tbl_specification WHERE name LIKE '%keyboard type%'";
+                    $result_keyboardType_id = $this->db->select($get_keyboardType_id)->fetch_assoc();
+                    $keyboardTypeId = $result_keyboardType_id['id'];
+                    $get_pin_id = "SELECT id FROM tbl_specification WHERE name LIKE '%pin%'";
+                    $result_pin_id = $this->db->select($get_pin_id)->fetch_assoc();
+                    $pinId = $result_pin_id['id'];
+                    $get_osVersion_id = "SELECT id FROM tbl_specification WHERE name LIKE '%os version%'";
+                    $result_osVersion_id = $this->db->select($get_osVersion_id)->fetch_assoc();
+                    $osVersionId = $result_osVersion_id['id'];
+                    $get_waterResistance_id = "SELECT id FROM tbl_specification WHERE name LIKE '%Water/Dirt resistance%'";
+                    $result_waterResistance_id = $this->db->select($get_waterResistance_id)->fetch_assoc();
+                    $waterResistanceId = $result_waterResistance_id['id'];
+                    $get_internalMemory_id = "SELECT id FROM tbl_specification WHERE name LIKE '%internal memory%'";
+                    $result_internalMemory_id = $this->db->select($get_internalMemory_id)->fetch_assoc();
+                    $internalMemoryId = $result_internalMemory_id['id'];
+                    $get_simType_id = "SELECT id FROM tbl_specification WHERE name LIKE '%sim type%'";
+                    $result_simType_id = $this->db->select($get_simType_id)->fetch_assoc();
+                    $simTypeId = $result_simType_id['id'];
+                    $get_networkSupport_id = "SELECT id FROM tbl_specification WHERE name LIKE '%network support%'";
+                    $result_networkSupport_id = $this->db->select($get_networkSupport_id)->fetch_assoc();
+                    $networkSupportId = $result_networkSupport_id['id'];
+                    $query_pro_spec = "insert into tbl_pro_spec values
+                        ('$productId','$originId','$origin'),
+                        ('$productId','$sizeId','$size'),
+                        ('$productId','$productWeightId','$productWeight'),
+                        ('$productId','$materialId','$material'),
+                        ('$productId','$radiatorsId','$radiators'),
+                        ('$productId','$cpuId','$cpu'),
+                        ('$productId','$ramId','$ram'),
+                        ('$productId','$typeOfRamId','$typeOfRam'),
+                        ('$productId','$ramSpeedId','$ramSpeed'),
+                        ('$productId','$numberOfRamSlotId','$numberOfRamSlot'),
+                        ('$productId','$maximumRamSupportId','$maximumRamSupport'),
+                        ('$productId','$screenSizeId','$screenSize'),
+                        ('$productId','$resolutionId','$resolution'),
+                        ('$productId','$screenRatioId','$screenRatio'),
+                        ('$productId','$onboardCardId','$onboardCard'),
+                        ('$productId','$removableCardId','$removableCard'),
+                        ('$productId','$storageId','$storage'),
+                        ('$productId','$webCommunicationId','$webCommunication'),
+                        ('$productId','$wifiId','$wifi'),
+                        ('$productId','$bluetoothId','$bluetooth'),
+                        ('$productId','$cameraId','$camera'),
+                        ('$productId','$keyboardTypeId','$keyboardType'),
+                        ('$productId','$pinId','$pin'),
+                        ('$productId','$osVersionId','$osVersion'),
+                        ('$productId','$waterResistanceId','$waterResistance'),
+                        ('$productId','$internalMemoryId','$internalMemory'),
+                        ('$productId','$simTypeId','$simType'),
+                        ('$productId','$networkSupportId','$networkSupport');";
+                    $result_pro_spec = $this->db->insert($query_pro_spec);
+                    if($result_pro_spec){
+                        $alert = "<span class='success'>Success!!!</span>";
+                        return $alert;
+                    } else {
+                        $alert = "<span class='error'>Failed!!!</span>";
+                        return $alert;
+                    }
                 } else {
                     $alert = "<span class='error'>Failed!!!</span>";
                     return $alert;
