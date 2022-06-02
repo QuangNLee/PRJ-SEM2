@@ -122,6 +122,7 @@
             }
         }).render('#paypal-button-container');
     </script>
+    <script type="text/javascript" src="js/modal.js"></script>
 </body>
 
 </html>

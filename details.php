@@ -34,7 +34,39 @@
 				?>
 				<div class="cont-desc span_1_of_2">				
 					<div class="grid images_3_of_2">
-						<img src="admin/uploads/<?php echo $result_details['image'] ?>" alt="" />
+						<img src="admin/uploads/<?php echo $result_details['image'] ?>" alt="" /><br>
+                        <button type="button" class="buysubmit" id="mySpecBtn">Show specification</button>
+                        <!-- The Modal -->
+                        <div id="myModal" class="modal">
+                            <!-- Modal content -->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <span class="close">&times;</span>
+                                    <h2>Specification</h2>
+                                </div><br>
+                                <div class="modal-body">
+                                    <table class="table table-striped">
+                                        <tbody>
+                                            <?php
+                                                $get_pro_spec = $product->get_product_spec($id);
+                                                if($get_pro_spec){
+                                                    while ($result_pro_spec = $get_pro_spec->fetch_assoc()){
+                                            ?>
+                                            <tr>
+                                                <td><?php echo $result_pro_spec['name'] ?></td>
+                                                <td>:</td>
+                                                <td><?php echo $result_pro_spec['value'] ?></td>
+                                            </tr>
+                                            <?php
+                                                    }
+                                                }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
 					</div>
 					<div class="desc span_3_of_2">
 						<h2><?php echo $result_details['productName'] ?></h2>				
