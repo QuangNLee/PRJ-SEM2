@@ -117,6 +117,25 @@
                             <input type="file" name="image" />
                         </td>
                     </tr>
+                    <?php
+                        $get_pro_spec = $prod->get_value_pro_spec($id);
+                        $i = 0;
+                        if($get_pro_spec){
+                            while($result_pro_spec = $get_pro_spec->fetch_assoc()){
+                                $i++;
+                    ?>
+                    <tr>
+                        <td>
+                            <label><?php echo $result_pro_spec['name'] ?></label>
+                        </td>
+                        <td>
+                            <input type="text" name="<?php echo $i; ?>" value="<?php echo $result_pro_spec['value'] ?>" placeholder="<?php echo $result_pro_spec['name'] ?>..." class="medium">
+                        </td>
+                    </tr>
+                    <?php
+                            }
+                        }
+                    ?>
                     <tr>
                         <td>
                             <label>Product Type</label>
