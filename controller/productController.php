@@ -253,5 +253,11 @@
             $result = $this->db->select($query);
             return $result;
         }
+
+        public function get_product_spec($productId){
+            $query = "SELECT s.name, ps.value FROM tbl_specification s, tbl_pro_spec ps WHERE s.id = ps.specId AND ps.productId = '$productId' AND ps.value NOT LIKE ''";
+            $result = $this->db->select($query);
+            return $result;
+        }
     }
 ?>
