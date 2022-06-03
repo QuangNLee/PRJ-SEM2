@@ -579,7 +579,7 @@
         }
 
         public function get_value_pro_spec($productId){
-            $query = "SELECT s.name, ps.value FROM tbl_specification s, tbl_pro_spec ps WHERE productId = '$productId' AND ps.specId = s.id";
+            $query = "SELECT s.id, s.name, ps.value FROM tbl_specification s, tbl_pro_spec ps WHERE productId = '$productId' AND ps.specId = s.id";
             $result = $this->db->select($query);
             return $result;
         }
