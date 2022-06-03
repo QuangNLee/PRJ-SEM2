@@ -610,6 +610,7 @@ p.note{
 } 
 .images_1_of_4 {
 	width: 20%;
+	justify-content: space-between;
 	padding:1.5%;
 	text-align:center;
 	position:relative; 
