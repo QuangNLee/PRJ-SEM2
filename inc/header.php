@@ -159,7 +159,7 @@
                         echo '<li><a href="compare.php">Compare</a> </li>';
                     }
                 ?>
-				<li><a href="contact.php">Contact</a> </li>
+				<li><a href="contact.php">Contact Us</a> </li>
 				<div class="clear"></div>
 			</ul>
 		</div>
