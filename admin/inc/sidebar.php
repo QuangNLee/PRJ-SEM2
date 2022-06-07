@@ -31,10 +31,9 @@
                         <li><a href="sliderlist.php">Slider List</a> </li>
                     </ul>
                 </li>
-                 <li><a class="menuitem">Update Pages</a>
+                <li><a class="menuitem">Contact</a>
                     <ul class="submenu">
-                        <li><a>About Us</a></li>
-                        <li><a>Contact Us</a></li>
+                        <li><a href="contact.php">Require from customer</a></li>
                     </ul>
                 </li>
             </ul>

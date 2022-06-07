@@ -120,6 +120,11 @@
 				?>
                 <div class="product-desc">
                     <h2>Comment</h2>
+                    <?php
+                        if(isset($insert_comment)){
+                            echo $insert_comment;
+                        }
+                    ?>
                     <div class="comment">
                         <form action="" method="POST">
                             <p><input type="text" placeholder="Enter your name..." class="form-control" name="commentName"></p>

@@ -49,7 +49,7 @@
                                 }
                                 ?>
                             </td>
-                            <td><a href="catedit.php?catId=<?php echo $result['catId'] ?>">Edit</a></td>
+                            <td style="text-align: center"><a href="catedit.php?catId=<?php echo $result['catId'] ?>">Edit</a></td>
                         </tr>
                     <?php
                             }
