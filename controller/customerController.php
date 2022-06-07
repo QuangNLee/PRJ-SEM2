@@ -149,5 +149,43 @@
                 echo '<span class="error">Old password does not match!!!</span>';
             }
         }
+
+        public function contact_support($data){
+            $name = mysqli_real_escape_string($this->db->link, $data['name']);
+            $email = mysqli_real_escape_string($this->db->link, $data['email']);
+            $phoneNumber = mysqli_real_escape_string($this->db->link, $data['phoneNumber']);
+            $subjectQuestion = mysqli_real_escape_string($this->db->link, $data['subjectQuestion']);
+            if($name == "" || $email == "" || $phoneNumber == "" || $subjectQuestion == ""){
+                $alert = '<span style="color: red; font-size: 18px">Fields must not empty!!!</span>';
+                return $alert;
+            } else {
+                $query = "INSERT INTO tbl_contact (name, email, phone, subject) VALUES ('$name', '$email', '$phoneNumber', '$subjectQuestion')";
+                $result = $this->db->insert($query);
+                if($result){
+                    echo '<span style="color: green; font-size: 18px">We will answer your question soon!!!</span>';
+                } else {
+                    echo '<span style="color: red; font-size: 18px">Failed!!!</span>';
+                }
+            }
+        }
+
+        public function get_contact(){
+            $query = "SELECT * FROM tbl_contact ORDER BY id DESC";
+            $result = $this->db->select($query);
+            return $result;
+        }
+        public function get_pagination_contact($contact_start, $limit){
+            $contact_start = mysqli_real_escape_string($this->db->link, $contact_start);
+            $limit = mysqli_real_escape_string($this->db->link, $limit);
+            $query = "SELECT * FROM tbl_contact ORDER BY id DESC LIMIT {$contact_start},{$limit}";
+            $result = $this->db->select($query);
+            return $result;
+        }
+
+        public function update_status_contact($id,$status){
+            $query = "UPDATE tbl_contact SET status = '$status' WHERE id = '$id'";
+            $result = $this->db->update($query);
+            return $result;
+        }
     }
 ?>
