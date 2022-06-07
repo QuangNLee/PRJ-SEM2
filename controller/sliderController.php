@@ -57,7 +57,15 @@
         }
 
         public function show_slider_admin(){
-            $query = "SELECT * FROM tbl_slider ORDER BY id DESC";
+            $query = "SELECT * FROM tbl_slider";
+            $result = $this->db->select($query);
+            return $result;
+        }
+
+        public function show_pagination_slider($slider_start, $limit){
+            $slider_start = mysqli_real_escape_string($this->db->link, $slider_start);
+            $limit = mysqli_real_escape_string($this->db->link, $limit);
+            $query = "SELECT * FROM tbl_slider ORDER BY id ASC LIMIT {$slider_start},{$limit}";
             $result = $this->db->select($query);
             return $result;
         }
