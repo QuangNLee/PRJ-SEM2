@@ -87,7 +87,7 @@
                                 if($result['status'] == 0){
                             ?>
                                 <td>
-                                    <a onclick="confirm('Do you want to cancel?')" href="?cancelId=<?php echo $result['id'] ?>&productId=<?php echo $result['productId'] ?>
+                                    <a onclick="return confirm('Do you want to cancel?')" href="?cancelId=<?php echo $result['id'] ?>&productId=<?php echo $result['productId'] ?>
                                         &quantity=<?php echo $result['quantity'] ?>">Cancel</a>
                                 </td>
                             <?php
@@ -96,7 +96,7 @@
                                 <td>
                                     <a href="?confirmId=<?php echo $result['id'] ?>&productId=<?php echo $result['productId'] ?>
                                         &quantity=<?php echo $result['quantity'] ?>">Accept</a> ||
-                                    <a onclick="confirm('Do you want to cancel?')" href="?cancelId=<?php echo $result['id'] ?>&productId=<?php echo $result['productId'] ?>
+                                    <a onclick="return confirm('Do you want to cancel?')" href="?cancelId=<?php echo $result['id'] ?>&productId=<?php echo $result['productId'] ?>
                                         &quantity=<?php echo $result['quantity'] ?>">Cancel</a>
                                 </td>
                             <?php

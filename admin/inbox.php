@@ -92,12 +92,12 @@
                             ?>
                             <a href="?shippedId=<?php echo $result['id'] ?>&productId=<?php echo $result['productId'] ?>
                                 &quantity=<?php echo $result['quantity'] ?>" style="color: blue">Ship</a> ||
-                            <a onclick="confirm('Do you want to cancel?')" href="?cancelId=<?php echo $result['id'] ?>&productId=<?php echo $result['productId'] ?>
+                            <a onclick="return confirm('Do you want to cancel?')" href="?cancelId=<?php echo $result['id'] ?>&productId=<?php echo $result['productId'] ?>
                                 &quantity=<?php echo $result['quantity'] ?>" style="color: #8B0000">Cancel</a>
                             <?php
                                 } else if ($result['status'] == 1 || $result['status'] == 2) {
                             ?>
-                            <a onclick="confirm('Do you want to cancel?')" href="?cancelId=<?php echo $result['id'] ?>&productId=<?php echo $result['productId'] ?>
+                            <a onclick="return confirm('Do you want to cancel?')" href="?cancelId=<?php echo $result['id'] ?>&productId=<?php echo $result['productId'] ?>
                                 &quantity=<?php echo $result['quantity'] ?>" style="color: #8B0000">Cancel</a>
                             <?php
                                 } else {
