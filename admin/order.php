@@ -27,7 +27,7 @@
 ?>
 <div class="grid_10">
     <div class="box round first grid">
-        <h2>Order list</h2>
+        <h2>All order</h2>
         <div class="block">
             <?php
                 if(isset($shipped)){

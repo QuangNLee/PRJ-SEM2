@@ -22,7 +22,7 @@
                 </li>
                 <li><a class="menuitem">Order</a>
                     <ul class="submenu">
-                        <li><a href="order.php">All order list</a></li>
+                        <li><a href="order.php">All order</a></li>
                     </ul>
                 </li>
                 <li><a class="menuitem">Slider</a>

@@ -35,13 +35,13 @@
 				<div class="cont-desc span_1_of_2">				
 					<div class="grid images_3_of_2">
 						<img src="admin/uploads/<?php echo $result_details['image'] ?>" alt="" /><br>
-                        <button type="button" class="buysubmit" id="mySpecBtn">Show specification</button>
+                        <button type="button" class="buysubmit modal-btn" data-target="#modal<?php echo $id ?>">Show specification</button>
                         <!-- The Modal -->
-                        <div id="myModal" class="modal">
+                        <div id="modal<?php echo $id ?>" class="modal">
                             <!-- Modal content -->
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <span class="close">&times;</span>
+                                    <button class="close modal-btn" style="background-color: #602d8d; border: none" data-target="#modal<?php echo $i ?>">&times;</button>
                                     <h2>Specification</h2>
                                 </div><br>
                                 <div class="modal-body">
@@ -65,7 +65,6 @@
                                     </table>
                                 </div>
                             </div>
-
                         </div>
 					</div>
 					<div class="desc span_3_of_2">
@@ -151,6 +150,7 @@
 			</div>
 		</div>
 	</div>
+    <div class="overlay"></div>
 <?php
 	include 'inc/footer.php';
 ?>

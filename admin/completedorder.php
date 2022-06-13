@@ -14,7 +14,7 @@
 ?>
 <div class="grid_10">
     <div class="box round first grid">
-        <h2>Inbox</h2>
+        <h2>Completed order</h2>
         <div class="block">
             <table class="data display">
                 <thead>
@@ -54,7 +54,7 @@
                             }
                         ?>
                     </td>
-                    <td><?php echo $result['customerId'] ?></td>
+                    <td style="text-align: center"><?php echo $result['customerId'] ?></td>
                     <td><a href="customer.php?customerId=<?php echo $result['customerId'] ?>">View customer</a></td>
                     <td><?php echo $result['productName'] ?></td>
                     <td><?php echo $result['quantity'] ?></td>
@@ -62,7 +62,7 @@
                     <?php
                         if($result['status'] == 2){
                     ?>
-                            <td><a style="color: green">Success</a></td>
+                            <td style="text-align: center"><a style="color: green">Success</a></td>
                     <?php
                         } else {
                     ?>
@@ -81,21 +81,21 @@
                 <?php
                 if ($current_page_order -1 > 0){
                     ?>
-                    <li><a href="order.php?page=<?php echo $current_page_order-1; ?>">&laquo;</a></li>
+                    <li><a href="completedorder.php?page=<?php echo $current_page_order-1; ?>">&laquo;</a></li>
                     <?php
                 }
                 ?>
                 <?php
                 for($i = 1; $i <= $total_page_order; $i++){
                     ?>
-                    <li class="<?php echo (($current_page_order == $i)?'active': '') ?>"><a href="order.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+                    <li class="<?php echo (($current_page_order == $i)?'active': '') ?>"><a href="completedorder.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
                     <?php
                 }
                 ?>
                 <?php
                 if($current_page_order +1 <= $total_page_order){
                     ?>
-                    <li><a href="order.php?page=<?php echo $current_page_order+1; ?>">&raquo;</a></li>
+                    <li><a href="completedorder.php?page=<?php echo $current_page_order+1; ?>">&raquo;</a></li>
                     <?php
                 }
                 ?>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th6 07, 2022 lúc 11:15 AM
+-- Thời gian đã tạo: Th6 13, 2022 lúc 08:55 AM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 7.4.29
 
@@ -20,6 +20,19 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `prj_sem2`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `news`
+--
+
+CREATE TABLE `news` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `content` text DEFAULT NULL,
+  `createdAt` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -259,7 +272,11 @@ INSERT INTO `tbl_order` (`id`, `customerId`, `createdAt`, `orderType`, `gate`) V
 (16, 4, '2022-05-24 18:39:47', 1, 'vnpay'),
 (17, 4, '2022-05-24 18:41:50', 0, NULL),
 (18, 4, '2022-06-01 09:58:04', 0, NULL),
-(19, 4, '2022-06-01 10:02:50', 1, 'vnpay');
+(19, 4, '2022-06-01 10:02:50', 1, 'vnpay'),
+(20, 4, '2022-06-07 17:48:31', 0, NULL),
+(21, 4, '2022-06-07 17:49:29', 0, NULL),
+(22, 4, '2022-06-07 17:53:13', 0, NULL),
+(23, 4, '2022-06-10 19:38:15', 1, 'vnpay');
 
 -- --------------------------------------------------------
 
@@ -300,7 +317,11 @@ INSERT INTO `tbl_orderdetail` (`orderId`, `productId`, `quantity`, `unitPrice`, 
 (17, 62, 1, 33990000, 2),
 (18, 62, 3, 33990000, 2),
 (19, 58, 1, 34990000, 2),
-(19, 62, 1, 33990000, 2);
+(19, 62, 1, 33990000, 2),
+(20, 75, 1, 8399000, 3),
+(21, 62, 1, 33990000, 3),
+(22, 62, 1, 33990000, 2),
+(23, 75, 1, 8399000, 2);
 
 -- --------------------------------------------------------
 
@@ -2580,13 +2601,13 @@ CREATE TABLE `tbl_slider` (
 --
 
 INSERT INTO `tbl_slider` (`id`, `sliderName`, `image`, `type`) VALUES
-(1, 'slider 1', 'f73b40e99b.jpg', 1),
-(2, 'slider 2', '32f3ef91e4.jpg', 1),
+(1, 'slider 1', 'f73b40e99b.jpg', 0),
+(2, 'slider 2', '32f3ef91e4.jpg', 0),
 (3, 'Slider 3', '68db805411.png', 1),
 (4, 'Slider 4', '2a0931bf73.png', 1),
 (5, 'Slider 5', 'f766a28e98.png', 1),
 (6, 'slider 6', '82c5971198.jpg', 1),
-(7, 'Slider 7', '1781f31aaf.png', 0);
+(7, 'Slider 7', '1781f31aaf.png', 1);
 
 -- --------------------------------------------------------
 
@@ -2637,6 +2658,12 @@ INSERT INTO `tbl_specification` (`id`, `name`, `description`) VALUES
 --
 -- Chỉ mục cho các bảng đã đổ
 --
+
+--
+-- Chỉ mục cho bảng `news`
+--
+ALTER TABLE `news`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Chỉ mục cho bảng `tbl_admin`
@@ -2744,6 +2771,12 @@ ALTER TABLE `tbl_specification`
 --
 
 --
+-- AUTO_INCREMENT cho bảng `news`
+--
+ALTER TABLE `news`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT cho bảng `tbl_admin`
 --
 ALTER TABLE `tbl_admin`
@@ -2759,7 +2792,7 @@ ALTER TABLE `tbl_brand`
 -- AUTO_INCREMENT cho bảng `tbl_cart`
 --
 ALTER TABLE `tbl_cart`
-  MODIFY `cartId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cartId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_category`
@@ -2777,7 +2810,7 @@ ALTER TABLE `tbl_comment`
 -- AUTO_INCREMENT cho bảng `tbl_compare`
 --
 ALTER TABLE `tbl_compare`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_contact`
@@ -2795,13 +2828,13 @@ ALTER TABLE `tbl_customer`
 -- AUTO_INCREMENT cho bảng `tbl_favoritelist`
 --
 ALTER TABLE `tbl_favoritelist`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_order`
 --
 ALTER TABLE `tbl_order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_product`
