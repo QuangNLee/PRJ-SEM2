@@ -135,7 +135,7 @@
             $result_check = $this->db->select($query_check);
             if ($result_check){
                 if($n_password != $rn_password){
-                    echo '<span class="error">Old password and new password do not match!!!</span>';
+                    echo '<span class="error">Password and retype password do not match!!!</span>';
                 } else {
                     $query = "UPDATE tbl_customer SET password = '$n_password' WHERE id = '$id'";
                     $result = $this->db->update($query);
