@@ -28,8 +28,8 @@
                 }
             ?>
         	<form action="" method="post">
-                <input type="text" name="email" class="field" placeholder="Enter email">
-                <input type="password" name="password" class="field" placeholder="Enter password">
+                <input type="text" name="email" class="field" placeholder="Enter email" required>
+                <input type="password" name="password" class="field" placeholder="Enter password" required>
                 <p class="note">If you forgot your password just enter your email and click <a href="#">here</a></p>
                 <div class="buttons"><div><input type="submit" name="login" class="grey" value="Sign in"></div></div>
             </form>
@@ -47,24 +47,24 @@
                         <tr>
                             <td>
                                 <div>
-                                    <input type="text" name="name" placeholder="Enter your name ...">
+                                    <input type="text" name="name" placeholder="Enter your name ..." required>
                                 </div>
                                 <div>
-                                    <input type="text" name="district" placeholder="Enter district ...">
+                                    <input type="text" name="district" placeholder="Enter district ..." required>
                                 </div>
                                 <div>
                                     <input type="text" name="zipcode" placeholder="Enter zipcode ...">
                                 </div>
                                 <div>
-                                    <input type="text" name="email" placeholder="Enter your email ...">
+                                    <input type="text" name="email" placeholder="Enter your email ..." pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" required>
                                 </div>
                             </td>
                             <td>
                                 <div>
-                                    <input type="text" name="address" placeholder="Enter your address ...">
+                                    <input type="text" name="address" placeholder="Enter your address ..." required>
                                 </div>
                                 <div>
-                                    <select id="city" name="city" onchange="change_country(this.value)" class="frm-field required">
+                                    <select id="city" name="city" onchange="change_country(this.value)" class="frm-field required" required>
                                         <option value="null">Select a City</option>
                                         <option value="HaNoi">Hà Nội</option>
                                         <option value="TPHCM">Thành phố Hồ Chí Minh</option>
@@ -76,10 +76,10 @@
                                     </select>
                                 </div>
                                 <div>
-                                    <input type="text" name="phone" placeholder="Enter your phone number ...">
+                                    <input type="text" name="phone" placeholder="Enter your phone number ..." required>
                                 </div>
                                 <div>
-                                    <input type="text" name="password" placeholder="Enter your password ...">
+                                    <input type="text" name="password" placeholder="Enter your password ..." pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
                                 </div>
                             </td>
                         </tr>
